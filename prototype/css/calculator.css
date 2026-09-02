@@ -1,0 +1,340 @@
+/* ═══════════════════════════════════════════════════════════
+   Калькулятор — поп-ап предварительного расчёта фасада.
+
+   Композиция, сетки и размеры перенесены из блока заказчика.
+   Заменено: акцент #d80200 → фирменный оранжевый МЗТ, Montserrat → Raleway,
+   текст #333333 → #121212. Иначе на странице МЗТ был бы чужой бренд.
+   Удалены стили карточки на странице и служебного слоя капчи Tilda.
+   ═══════════════════════════════════════════════════════════ */
+
+:root {
+  --efc1-accent:       var(--mzt-accent);
+  --efc1-accent-hover: #CF470A;
+  --efc1-text:         var(--mzt-ink);
+  --efc1-ok:           #1F8A3B;
+  --efc1-err:          #D80200;
+
+  --efc1-fs-heading:    28px;
+  --efc1-fs-main:       13px;
+  --efc1-fs-additional: 11px;
+
+  --efc1-z-modal: 99999;
+}
+
+/* ─── Оболочка поп-апа ─── */
+
+.ef-calc-modal {
+  position: fixed;
+  inset: 0;
+  z-index: var(--efc1-z-modal);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  font-family: var(--mzt-font);
+  color: var(--efc1-text);
+}
+.ef-calc-modal.is-open { display: flex; }
+
+.ef-calc-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, .52);
+}
+
+.ef-calc-modal-dialog {
+  position: relative;
+  z-index: 2;
+  width: min(1120px, 100%);
+  max-height: 92vh;
+  overflow: auto;
+  padding: 30px;
+  background: #fff;
+  border-radius: 22px;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, .28);
+}
+
+.ef-calc-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 1px solid rgba(18, 18, 18, .16);
+  border-radius: 50%;
+  background: #fff;
+  color: var(--efc1-text);
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 160ms, border-color 160ms;
+}
+.ef-calc-modal-close:hover { background: #F5F6F7; border-color: rgba(18, 18, 18, .28); }
+
+.ef-calc-modal-head { margin-bottom: 24px; padding-right: 46px; }
+.ef-calc-modal-head h2 {
+  margin: 0 0 8px;
+  font-size: var(--efc1-fs-heading);
+  line-height: 1.15;
+  font-weight: var(--mzt-fw-black);
+  text-transform: uppercase;
+  letter-spacing: .035em;
+}
+.ef-calc-modal-head p { margin: 0; font-size: var(--efc1-fs-main); line-height: 1.5; color: #666; }
+
+.ef-calc-modal-grid { display: grid; grid-template-columns: 320px 1fr; gap: 24px; }
+
+.ef-calc-modal-settings,
+.ef-calc-modal-table-wrap {
+  padding: 22px;
+  background: #F5F6F7;
+  border: 1px solid rgba(18, 18, 18, .10);
+  border-radius: 18px;
+}
+
+.ef-calc-modal-settings h3,
+.ef-calc-modal-table-wrap h3 {
+  margin: 0 0 18px;
+  font-size: 15px;
+  line-height: 1.25;
+  font-weight: var(--mzt-fw-black);
+  text-transform: uppercase;
+}
+
+/* ─── Поля ─── */
+
+.ef-popup-fields { display: grid; gap: 14px; }
+.ef-popup-field { display: flex; flex-direction: column; gap: 8px; }
+.ef-popup-field span {
+  font-size: var(--efc1-fs-additional);
+  line-height: 1;
+  font-weight: var(--mzt-fw-medium);
+}
+
+.ef-popup-field input,
+.ef-popup-field select,
+.ef-calc-lead input {
+  width: 100%;
+  height: 44px;
+  padding: 0 15px;
+  border: 1px solid rgba(18, 18, 18, .20);
+  border-radius: 6px;
+  background: #fff;
+  font-family: inherit;
+  font-size: var(--efc1-fs-main);
+  font-weight: var(--mzt-fw-medium);
+  color: var(--efc1-text);
+  transition: border-color 160ms, box-shadow 160ms;
+}
+.ef-popup-field input:focus-visible,
+.ef-popup-field select:focus-visible,
+.ef-calc-lead input:focus-visible,
+.ef-calc-table-row input:focus-visible {
+  outline: 2px solid var(--efc1-accent);
+  outline-offset: 2px;
+}
+
+.ef-popup-field input:focus,
+.ef-popup-field select:focus,
+.ef-calc-lead input:focus {
+  outline: none;
+  border-color: var(--efc1-accent);
+  box-shadow: 0 0 0 2px rgba(230, 80, 11, .16);
+}
+
+.ef-calc-summary { display: grid; gap: 10px; margin-top: 20px; }
+.ef-calc-summary div {
+  padding: 14px;
+  background: #fff;
+  border: 1px solid rgba(18, 18, 18, .10);
+  border-radius: 12px;
+}
+.ef-calc-summary span {
+  display: block;
+  margin-bottom: 6px;
+  font-size: var(--efc1-fs-additional);
+  color: #777;
+}
+.ef-calc-summary strong { display: block; font-size: 18px; }
+
+/* ─── Таблица состава ─── */
+
+.ef-calc-table { display: grid; gap: 8px; }
+
+.ef-calc-table-row {
+  display: grid;
+  grid-template-columns: 1.5fr 120px 120px 120px;
+  gap: 12px;
+  align-items: center;
+  padding: 12px;
+  background: #fff;
+  border: 1px solid rgba(18, 18, 18, .08);
+  border-radius: 12px;
+}
+
+.ef-calc-table-head {
+  padding: 0 12px 4px;
+  background: transparent;
+  border: none;
+  font-size: 10px;
+  font-weight: var(--mzt-fw-black);
+  text-transform: uppercase;
+  color: #777;
+}
+
+.ef-calc-table-row strong { display: block; margin-bottom: 4px; font-size: 13px; line-height: 1.25; }
+.ef-calc-table-row span   { display: block; font-size: var(--efc1-fs-additional); line-height: 1.35; color: #777; }
+.ef-calc-table-row small  { display: block; margin-top: 4px; font-size: 10px; color: #888; }
+
+.ef-calc-table-row input {
+  width: 100%;
+  height: 38px;
+  padding: 0 10px;
+  border: 1px solid rgba(18, 18, 18, .18);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 12px;
+  color: var(--efc1-text);
+}
+.ef-calc-table-row input:focus {
+  outline: none;
+  border-color: var(--efc1-accent);
+  box-shadow: 0 0 0 2px rgba(230, 80, 11, .16);
+}
+
+.ef-row-price {
+  display: flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 0 10px;
+  background: #F5F6F7;
+  border: 1px solid rgba(18, 18, 18, .12);
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: var(--mzt-fw-bold);
+  white-space: nowrap;
+}
+
+.ef-row-total {
+  font-size: 14px;
+  font-weight: var(--mzt-fw-black);
+  white-space: nowrap;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+/* ─── Итог ─── */
+
+.ef-calc-total-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  margin-top: 14px;
+  padding: 18px;
+  background: var(--mzt-ink);
+  color: #fff;
+  border-radius: 14px;
+}
+.ef-calc-total-box span   { font-size: 13px; font-weight: var(--mzt-fw-bold); }
+.ef-calc-total-box strong { font-size: 26px; line-height: 1; font-variant-numeric: lining-nums tabular-nums; }
+
+/* ─── Заявка ─── */
+
+.ef-calc-lead {
+  display: grid;
+  grid-template-columns: 1fr 240px;
+  gap: 14px;
+  align-items: end;
+  margin-top: 16px;
+}
+.ef-calc-lead label { display: flex; flex-direction: column; gap: 8px; }
+.ef-calc-lead label span {
+  font-size: var(--efc1-fs-additional);
+  font-weight: var(--mzt-fw-medium);
+}
+
+.ef-calc-lead button {
+  height: 44px;
+  border: none;
+  border-radius: 12px;
+  background: var(--efc1-accent);
+  color: #fff;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: var(--mzt-fw-black);
+  text-transform: uppercase;
+  letter-spacing: .03em;
+  cursor: pointer;
+  transition: background 160ms, transform 160ms;
+}
+.ef-calc-lead button:hover:not(:disabled) { background: var(--efc1-accent-hover); }
+.ef-calc-lead button:active:not(:disabled) { transform: translateY(1px); }
+.ef-calc-lead button:disabled { opacity: .6; cursor: default; }
+
+.ef-policy-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 14px;
+  font-size: var(--efc1-fs-additional);
+  line-height: 1.45;
+  color: #666;
+  cursor: pointer;
+}
+.ef-policy-check input {
+  flex: 0 0 16px;
+  width: 16px;
+  height: 16px;
+  margin-top: 1px;
+  accent-color: var(--efc1-accent);
+}
+.ef-policy-check a {
+  color: var(--efc1-accent);
+  border-bottom: 1px solid rgba(230, 80, 11, .3);
+}
+.ef-policy-check a:hover { border-bottom-color: var(--efc1-accent); }
+
+.ef-calc-disclaimer {
+  margin: 14px 0 0;
+  font-size: var(--efc1-fs-additional);
+  line-height: 1.55;
+  color: #777;
+}
+
+/* ─── Уведомление о статусе ─── */
+
+.ef-calc-note {
+  display: none;
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: var(--efc1-fs-main);
+  line-height: 1.45;
+  font-weight: var(--mzt-fw-medium);
+}
+.ef-calc-note.is-visible { display: block; }
+.ef-calc-note.is-info { background: #F0F2F4; color: #555; }
+.ef-calc-note.is-ok   { background: rgba(31, 138, 59, .10); color: var(--efc1-ok); }
+.ef-calc-note.is-err  { background: rgba(216, 2, 0, .08);  color: var(--efc1-err); }
+
+body.ef-modal-lock { overflow: hidden; }
+
+/* ─── Узкие экраны: поп-ап не должен ломаться, даже вне объёма этапа ─── */
+
+@media (max-width: 980px) {
+  .ef-calc-modal-grid { grid-template-columns: 1fr; }
+  .ef-calc-table-row  { grid-template-columns: 1.3fr 110px 110px 110px; }
+}
+
+@media (max-width: 640px) {
+  .ef-calc-modal { padding: 10px; align-items: flex-start; }
+  .ef-calc-modal-dialog { max-height: calc(100vh - 20px); padding: 22px 14px 16px; border-radius: 18px; }
+  .ef-calc-table-head { display: none; }
+  .ef-calc-table-row { grid-template-columns: 1fr; gap: 10px; }
+  .ef-calc-total-box { flex-direction: column; align-items: flex-start; }
+  .ef-calc-lead { grid-template-columns: 1fr; }
+}

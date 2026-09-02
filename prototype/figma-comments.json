@@ -1,0 +1,186 @@
+{
+ "comments": [
+  {
+   "id": "1898917619",
+   "uuid": "6c0f333b-54f7-4fb1-b2ef-bceecf15ff89",
+   "file_key": "4xhAaa2IkIqUddv23e0i3i",
+   "parent_id": "",
+   "user": {
+    "handle": "Julia Galkina",
+    "img_url": "https://s3-alpha.figma.com/profile/944515073470651146/eb2267d2-b784-412a-8a6a-270e17f32d12",
+    "id": "944515073470651146"
+   },
+   "created_at": "2026-08-25T13:16:30.370Z",
+   "resolved_at": null,
+   "message": "добавить эффект паралакса снизу вверх как здесь на первом экране https://brick-art.ru/?ref=https://tilda.cc/ru/madeontilda/",
+   "reactions": [],
+   "client_meta": {
+    "node_id": "119:884",
+    "node_offset": {
+     "x": 1097,
+     "y": 559
+    },
+    "stable_path": [
+     "119:884"
+    ]
+   },
+   "order_id": "7"
+  },
+  {
+   "id": "1898907181",
+   "uuid": "549d302d-4bc1-49ff-9507-4da0521cd0df",
+   "file_key": "4xhAaa2IkIqUddv23e0i3i",
+   "parent_id": "",
+   "user": {
+    "handle": "Julia Galkina",
+    "img_url": "https://s3-alpha.figma.com/profile/944515073470651146/eb2267d2-b784-412a-8a6a-270e17f32d12",
+    "id": "944515073470651146"
+   },
+   "created_at": "2026-08-25T13:11:43.266Z",
+   "resolved_at": null,
+   "message": "при наведении меняет цвет\nСмотреть в блоках состояния",
+   "reactions": [],
+   "client_meta": {
+    "node_id": "119:884",
+    "node_offset": {
+     "x": 664,
+     "y": 6077
+    },
+    "stable_path": [
+     "119:884"
+    ]
+   },
+   "order_id": "6"
+  },
+  {
+   "id": "1898897594",
+   "uuid": "7412de90-f979-4736-ba8f-374a87ee95b5",
+   "file_key": "4xhAaa2IkIqUddv23e0i3i",
+   "parent_id": "",
+   "user": {
+    "handle": "Julia Galkina",
+    "img_url": "https://s3-alpha.figma.com/profile/944515073470651146/eb2267d2-b784-412a-8a6a-270e17f32d12",
+    "id": "944515073470651146"
+   },
+   "created_at": "2026-08-25T13:07:02.646Z",
+   "resolved_at": null,
+   "message": "При нажатии фотография увеличивается на весь экран",
+   "reactions": [],
+   "client_meta": {
+    "node_id": "119:884",
+    "node_offset": {
+     "x": 1788,
+     "y": 1277
+    },
+    "stable_path": [
+     "119:884"
+    ]
+   },
+   "order_id": "5"
+  },
+  {
+   "id": "1898897480",
+   "uuid": "dfe34019-bd55-4c0a-8626-175d046b643c",
+   "file_key": "4xhAaa2IkIqUddv23e0i3i",
+   "parent_id": "",
+   "user": {
+    "handle": "Julia Galkina",
+    "img_url": "https://s3-alpha.figma.com/profile/944515073470651146/eb2267d2-b784-412a-8a6a-270e17f32d12",
+    "id": "944515073470651146"
+   },
+   "created_at": "2026-08-25T13:06:58.874Z",
+   "resolved_at": null,
+   "message": "При нажатии фотография увеличивается на весь экран. Пример второй экран на сайте https://brick-art.ru/?ref=https://tilda.cc/ru/madeontilda/",
+   "reactions": [],
+   "client_meta": {
+    "node_id": "119:884",
+    "node_offset": {
+     "x": 1432,
+     "y": 1461
+    },
+    "stable_path": [
+     "119:884"
+    ]
+   },
+   "order_id": "4"
+  },
+  {
+   "id": "1898896223",
+   "uuid": "93149039-06bd-4537-8a3e-8359f1221aba",
+   "file_key": "4xhAaa2IkIqUddv23e0i3i",
+   "parent_id": "",
+   "user": {
+    "handle": "Julia Galkina",
+    "img_url": "https://s3-alpha.figma.com/profile/944515073470651146/eb2267d2-b784-412a-8a6a-270e17f32d12",
+    "id": "944515073470651146"
+   },
+   "created_at": "2026-08-25T13:06:21.932Z",
+   "resolved_at": null,
+   "message": "при наведении сделать приближение картинки",
+   "reactions": [],
+   "client_meta": {
+    "node_id": "119:884",
+    "node_offset": {
+     "x": 600,
+     "y": 4262
+    },
+    "stable_path": [
+     "119:884"
+    ]
+   },
+   "order_id": "3"
+  },
+  {
+   "id": "1898878988",
+   "uuid": "a27f0180-eeeb-41a8-9e60-23b8050eb961",
+   "file_key": "4xhAaa2IkIqUddv23e0i3i",
+   "parent_id": "",
+   "user": {
+    "handle": "Julia Galkina",
+    "img_url": "https://s3-alpha.figma.com/profile/944515073470651146/eb2267d2-b784-412a-8a6a-270e17f32d12",
+    "id": "944515073470651146"
+   },
+   "created_at": "2026-08-25T12:57:38.856Z",
+   "resolved_at": null,
+   "message": "вставить интерактивную карту яндекс",
+   "reactions": [],
+   "client_meta": {
+    "node_id": "119:884",
+    "node_offset": {
+     "x": 974,
+     "y": 10476
+    },
+    "stable_path": [
+     "119:884"
+    ]
+   },
+   "order_id": "2"
+  },
+  {
+   "id": "1896898208",
+   "uuid": "b36c512e-3c54-4e5d-aee7-6f6c8fc4723d",
+   "file_key": "4xhAaa2IkIqUddv23e0i3i",
+   "parent_id": "",
+   "user": {
+    "handle": "Julia Galkina",
+    "img_url": "https://s3-alpha.figma.com/profile/944515073470651146/eb2267d2-b784-412a-8a6a-270e17f32d12",
+    "id": "944515073470651146"
+   },
+   "created_at": "2026-08-24T11:50:06.089Z",
+   "resolved_at": null,
+   "message": "Статичные кнопки, идущие через всю страницу: Калькулятор, Визуализатор",
+   "reactions": [],
+   "client_meta": {
+    "node_id": "119:884",
+    "node_offset": {
+     "x": 1587,
+     "y": 840
+    },
+    "stable_path": [
+     "119:884"
+    ]
+   },
+   "order_id": "1"
+  }
+ ]
+}

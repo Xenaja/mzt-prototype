@@ -1,0 +1,222 @@
+{
+  "_note": "Единственный источник изменяемых данных. Тексты сняты из утверждённого макета Figma «МЗТ», страница «Для разработчика (десктоп)», фрейм «Главная 1920x12092». Отсутствующее значение = null, не пустая строка.",
+  "company": {
+    "name": "Московский Завод Термопанелей",
+    "legal": "ООО «Московский завод термопанелей»",
+    "ogrn": "ОГРН 1217700648373",
+    "copyright": "© 2026 ООО «Московский завод термопанелей». Все права защищены.",
+    "developer": "Разработка сайта — Вилрэй Студия"
+  },
+  "contacts": {
+    "phone": "+7 (800) 511-46-20",
+    "phoneHref": "tel:+78005114620",
+    "email": "mos@zavodpanel.ru",
+    "officeLabel": "Главный офис:",
+    "address": "115191, Москва, ул. Городская, 8, 7 этаж, офис 705",
+    "hoursLabel": "Режим работы:",
+    "hours": [
+      "Пн-Чт с 10:00 до 18:00",
+      "Пт с 10:00 до 17:00",
+      "Сб-Вс по предварительной договорённости"
+    ]
+  },
+  "nav": {
+    "main": [
+      {
+        "label": "Каталог",
+        "href": "#catalog"
+      },
+      {
+        "label": "Услуги",
+        "href": "#services"
+      },
+      {
+        "label": "Проекты",
+        "href": "#projects"
+      },
+      {
+        "label": "О заводе",
+        "href": "#about"
+      },
+      {
+        "label": "Контакты",
+        "href": "#contacts"
+      },
+      {
+        "label": "Визуализатор",
+        "href": "visualizer.html"
+      }
+    ],
+    "dealer": {
+      "label": "Вход для дилеров",
+      "href": null
+    },
+    "extra": [
+      {
+        "label": "Стать дилером",
+        "href": null
+      },
+      {
+        "label": "Сертификаты",
+        "href": null
+      }
+    ]
+  },
+  "hero": {
+    "h1": "Фасадные термопанели от производителя",
+    "lead": "Готовое решение для утепления и отделки дома",
+    "image": "assets/hero/hero-house.webp",
+    "imageAlt": "Двухэтажный дом с фасадом из термопанелей МЗТ",
+    "primary": {
+      "label": "Рассчитать стоимость",
+      "action": "calculator"
+    },
+    "secondary": {
+      "label": "Перейти в каталог",
+      "href": "#catalog"
+    },
+    "stats": [
+      {
+        "value": "8",
+        "label": "топ- брендов плитки",
+        "icon": "assets/patterns/brick-1.svg"
+      },
+      {
+        "value": "25",
+        "label": "лет гарантии, смотреть документы",
+        "icon": "assets/patterns/brick-2.svg"
+      },
+      {
+        "value": "105",
+        "label": "официальных дилеров по РФ",
+        "icon": "assets/patterns/brick-3.svg"
+      },
+      {
+        "value": "7",
+        "label": "рабочих дней — минимальный срок производства",
+        "icon": "assets/patterns/brick-4.svg"
+      }
+    ]
+  },
+  "dock": {
+    "calculator": {
+      "label": "Калькулятор",
+      "action": "calculator"
+    },
+    "visualizer": {
+      "label": "Визуализатор",
+      "href": "visualizer.html"
+    }
+  },
+  "footer": {
+    "navTitle": "Навигация",
+    "extraTitle": "Дополнительно",
+    "socialTitle": "Социальные сети",
+    "social": [
+      {
+        "name": "Telegram",
+        "icon": "assets/icons/icon-telegram.svg",
+        "href": null
+      },
+      {
+        "name": "WhatsApp",
+        "icon": "assets/icons/icon-whatsapp.svg",
+        "href": null
+      },
+      {
+        "name": "MAX",
+        "icon": "assets/icons/icon-max.svg",
+        "href": null
+      }
+    ],
+    "legalLinks": [
+      {
+        "label": "Согласие на обработку персональных данных",
+        "href": null
+      },
+      {
+        "label": "Политика конфиденциальности",
+        "href": null
+      }
+    ]
+  },
+  "services": {
+    "title": "Поможем реализовать проект",
+    "accent_letter": "П",
+    "lead": "Сопровождаем проект от первоначального расчёта до монтажа готового фасада.",
+    "cta": "Заказать консультацию",
+    "items": [
+      {
+        "price": "Бесплатно",
+        "name": "Расчет проекта",
+        "photo": "assets/services/raschet.webp"
+      },
+      {
+        "price": "Бесплатно",
+        "name": "Монтаж",
+        "photo": "assets/services/montazh.webp"
+      },
+      {
+        "price": "от 5.000₽",
+        "name": "Замер",
+        "photo": "assets/services/zamer.webp"
+      },
+      {
+        "price": "от 10.000₽",
+        "name": "Шеф-монтаж",
+        "photo": "assets/services/shef-montazh.webp"
+      },
+      {
+        "price": "от 15.000₽",
+        "name": "3d визуализация",
+        "photo": "assets/services/vizualizaciya.webp"
+      },
+      {
+        "price": "от 5.000₽",
+        "name": "Доставка",
+        "photo": "assets/services/dostavka.webp"
+      }
+    ],
+    "_note": "Полные тексты карточек — в index.html: там расставлены переносы строк по макету"
+  },
+  "reviews": {
+    "title": "Отзывы о работе с нами",
+    "accent_letter": "О",
+    "cta": "Читать больше отзывов",
+    "items": [
+      {
+        "name": "Ваня Кубиков",
+        "photo": "assets/reviews/review-1.webp"
+      },
+      {
+        "name": "Александр Медведев",
+        "photo": "assets/reviews/review-2.webp"
+      },
+      {
+        "name": "Олег Чумаев",
+        "photo": "assets/reviews/review-3.webp"
+      }
+    ],
+    "_note": "Тексты отзывов — в index.html, там расставлены переносы по макету"
+  },
+  "dealers": {
+    "title": "Найдите нас в своём городе",
+    "accent_letter": "Н",
+    "lead": "Наша продукция представлена у официальных дилеров в разных регионах России. Найдите ближайшую точку продаж и получите консультацию по подбору материалов.",
+    "actions": [
+      "Выбрать город",
+      "Стать дилером"
+    ],
+    "map": "assets/dealers/map.webp",
+    "form": {
+      "title": "Рассчитаем фасад вашего дома",
+      "lead": "Оставьте заявку — специалист поможет подобрать термопанели, рассчитать необходимое количество материалов и сориентирует по стоимости.",
+      "fields": [
+        "Имя",
+        "+7 (000) 000-00-00"
+      ],
+      "consent": "Я подтверждаю ознакомление и даю Согласие на обработку моих персональных данных в порядке и на условиях, указанных в Политике обработки персональных данных",
+      "submit": "Отправить"
+    }
+  }
+}

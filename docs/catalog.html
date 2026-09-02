@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>Каталог термопанелей — Московский Завод Термопанелей</title>
+<meta name="description" content="Каталог фасадных термопанелей: клинкерная плитка, 20 моделей, выбор толщины и плотности утеплителя.">
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/sections.css">
+<link rel="stylesheet" href="css/pages.css">
+<link rel="stylesheet" href="css/catalog.css">
+<link rel="stylesheet" href="css/calculator.css">
+</head>
+
+<body class="page">
+
+<a class="skip-link" href="#main">Перейти к содержимому</a>
+
+<div class="page-topbar-wrap">
+  <header class="topbar">
+    <a class="topbar__logo" href="index.html" aria-label="Московский Завод Термопанелей, на главную">
+      <img src="assets/logo/logo-header.svg" alt="" width="226" height="25">
+    </a>
+
+    <nav class="topbar__nav" aria-label="Основная навигация">
+      <ul class="topbar__list">
+        <li><a class="navchip is-current" href="catalog.html" aria-current="page">Каталог</a></li>
+        <li><a class="navchip" href="index.html#services">Услуги</a></li>
+        <li><a class="navchip" href="index.html#projects">Проекты</a></li>
+        <li><a class="navchip" href="index.html#about">О заводе</a></li>
+        <li><a class="navchip" href="index.html#contacts">Контакты</a></li>
+        <li><a class="navchip" href="visualizer.html">Визуализатор</a></li>
+      </ul>
+    </nav>
+
+    <div class="topbar__side">
+      <a class="navchip navchip--phone" href="tel:+78005114620">+7 (800) 511-46-20</a>
+      <a class="navchip navchip--dark" href="#">Вход для дилеров</a>
+    </div>
+  </header>
+</div>
+
+<main id="main">
+
+  <section class="page-head">
+    <div class="page-head__inner">
+      <p class="page-head__crumbs">
+        <a href="index.html">Главная</a><span aria-hidden="true">→</span><span>Каталог</span>
+      </p>
+      <h1 class="page-head__title"><span class="hero__title-accent">Т</span>ермопанели с клинкерной плиткой</h1>
+      <p class="page-head__lead" id="catalogLead">
+        Готовые панели с облицовкой и утеплителем: выберите цвет, толщину и плотность —
+        цена пересчитается сразу.
+      </p>
+    </div>
+  </section>
+
+  <section class="cat" aria-label="Каталог товаров">
+    <div class="section-inner">
+
+      <form class="cat__filters" id="catFilters" aria-label="Подбор товаров">
+        <div class="cat__filter">
+          <span class="cat__filter-name" id="fBrandName">Бренд</span>
+          <div class="cat__chips" role="group" aria-labelledby="fBrandName" data-filter="brand"></div>
+        </div>
+        <div class="cat__filter">
+          <span class="cat__filter-name" id="fColorName">Цвет</span>
+          <div class="cat__chips" role="group" aria-labelledby="fColorName" data-filter="color"></div>
+        </div>
+        <div class="cat__filter">
+          <span class="cat__filter-name" id="fThickName">Толщина панели</span>
+          <div class="cat__chips" role="group" aria-labelledby="fThickName" data-filter="Толщина панели"></div>
+        </div>
+        <div class="cat__filter">
+          <span class="cat__filter-name" id="fDensName">Плотность ППС</span>
+          <div class="cat__chips" role="group" aria-labelledby="fDensName" data-filter="Плотность ППС"></div>
+        </div>
+
+        <div class="cat__filter cat__filter--sort">
+          <label class="cat__filter-name" for="catSort">Сортировка</label>
+          <select class="cat__sort" id="catSort">
+            <option value="default">по умолчанию</option>
+            <option value="price-asc">сначала дешёвые</option>
+            <option value="price-desc">сначала дорогие</option>
+            <option value="title">по названию</option>
+          </select>
+        </div>
+      </form>
+
+      <p class="cat__hint">Толщина и плотность есть у каждой панели — выбор меняет цену в карточках.</p>
+
+      <div class="cat__bar">
+        <p class="cat__count" id="catCount" role="status" aria-live="polite"></p>
+        <button class="link-action link-action--underline cat__reset" type="button" id="catReset" hidden>
+          Сбросить подбор
+        </button>
+      </div>
+
+      <div class="cat__grid" id="catGrid"></div>
+
+      <p class="cat__empty" id="catEmpty" hidden>
+        По такому подбору ничего нет. Снимите часть условий или сбросьте подбор.
+      </p>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- Панель кнопок: на внутренних страницах она плавающая всегда -->
+<div class="dock is-floating">
+  <button class="btn btn--accent" type="button" data-open-calculator>Калькулятор</button>
+  <a class="btn btn--dark" href="visualizer.html">Визуализатор</a>
+</div>
+
+<footer class="footer" id="contacts">
+  <div class="footer__inner">
+
+    <!-- Верхний ряд: логотип | адрес и ссылки | контакты -->
+    <div class="footer__grid">
+
+      <div class="footer__brand">
+        <img src="assets/logo/logo-footer.svg" alt="Московский Завод Термопанелей"
+             width="441" height="49">
+      </div>
+
+      <div class="footer__info">
+        <div class="footer__office">
+          <div class="footer__address-box">
+            <p class="footer__label">Главный офис:</p>
+            <p class="footer__address">115191, Москва, ул.&nbsp;Городская,&nbsp;8, 7&nbsp;этаж, офис&nbsp;705</p>
+          </div>
+          <p class="footer__hours">
+            Режим работы:<br>
+            Пн-Чт с 10:00 до 18:00<br>
+            Пт с 10:00 до 17:00<br>
+            Сб-Вс по предварительной договорённости
+          </p>
+        </div>
+
+        <div class="footer__links-row">
+          <nav class="footer__col" aria-label="Навигация в подвале">
+            <h2 class="footer__title">Навигация</h2>
+            <ul class="footer__links">
+              <li><a href="catalog.html">Каталог</a></li>
+              <li><a href="#services">Услуги</a></li>
+              <li><a href="#projects">Проекты</a></li>
+              <li><a href="#about">О заводе</a></li>
+              <li><a href="#contacts">Контакты</a></li>
+              <li><a href="visualizer.html">Визуализатор</a></li>
+            </ul>
+          </nav>
+
+          <div class="footer__col">
+            <h2 class="footer__title">Дополнительно</h2>
+            <ul class="footer__links">
+              <li><a href="#">Стать дилером</a></li>
+              <li><a href="#">Сертификаты</a></li>
+            </ul>
+          </div>
+
+          <div class="footer__col">
+            <h2 class="footer__title">Социальные сети</h2>
+            <ul class="footer__social">
+              <li><a href="#" aria-label="MAX"><img src="assets/icons/icon-max.svg" alt="" width="50" height="50"></a></li>
+              <li><a href="#" aria-label="WhatsApp"><img src="assets/icons/icon-whatsapp.svg" alt="" width="50" height="50"></a></li>
+              <li><a href="#" aria-label="Telegram"><img src="assets/icons/icon-telegram.svg" alt="" width="50" height="50"></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__contacts">
+        <a class="footer__phone" href="tel:+78005114620">+7 (800) 511-46-20</a>
+        <a class="footer__email" href="mailto:mos@zavodpanel.ru">mos@zavodpanel.ru</a>
+      </div>
+    </div>
+
+    <!-- Нижний ряд под разделителем -->
+    <div class="footer__bottom">
+      <p class="footer__legal">
+        ООО «Московский завод термопанелей»<br>
+        ОГРН 1217700648373
+      </p>
+      <p class="footer__copy">© 2026 ООО «Московский завод термопанелей». Все права защищены.</p>
+      <p class="footer__policy">
+        <a href="#">Согласие на обработку персональных данных</a>
+        <a href="#">Политика конфиденциальности</a>
+      </p>
+      <p class="footer__dev">Разработка сайта — Вилрэй Студия</p>
+    </div>
+
+  </div>
+</footer>
+
+<!-- ═══ Калькулятор: общий поп-ап ═══
+     Логика расчёта перенесена из блока заказчика без изменений.
+     Отправка в Tilda удалена — по ТЗ показывается подтверждение без передачи данных. -->
+<div class="ef-calc-modal" id="efCalcModal" aria-hidden="true" hidden>
+  <div class="ef-calc-modal-backdrop" data-ef-close></div>
+
+  <div class="ef-calc-modal-dialog" role="dialog" aria-modal="true"
+       aria-labelledby="efCalcTitle">
+    <button class="ef-calc-modal-close" type="button" data-ef-close aria-label="Закрыть">×</button>
+
+    <div class="ef-calc-modal-head">
+      <h2 id="efCalcTitle">Предварительный расчёт фасада</h2>
+      <p>Уточните параметры — состав и сумма пересчитаются автоматически.</p>
+    </div>
+
+    <div class="ef-calc-modal-grid">
+
+      <div class="ef-calc-modal-settings">
+        <h3>Параметры расчёта</h3>
+        <div class="ef-popup-fields">
+          <label class="ef-popup-field">
+            <span>Тип объекта</span>
+            <select id="efObjectType">
+              <option value="private">Частный дом</option>
+              <option value="cottage">Коттедж</option>
+              <option value="commercial">Коммерческий объект</option>
+            </select>
+          </label>
+          <label class="ef-popup-field">
+            <span>Площадь фасада, м²</span>
+            <input id="efModalArea" type="number" min="1" step="1" value="150" inputmode="numeric">
+          </label>
+          <label class="ef-popup-field">
+            <span>Запас материала, %</span>
+            <input id="efReserveInput" type="number" min="0" step="1" value="10" inputmode="numeric">
+          </label>
+          <label class="ef-popup-field">
+            <span>Материал</span>
+            <select id="efModalMaterial">
+              <option value="eps">Термопанели ЭППС</option>
+              <option value="pps25">Термопанели ППС 25</option>
+            </select>
+          </label>
+          <label class="ef-popup-field">
+            <span>Доставка</span>
+            <select id="efDeliveryInput">
+              <option value="moscow">Москва, Московская область</option>
+              <option value="russia">Доставка по России</option>
+              <option value="pickup">Самовывоз</option>
+            </select>
+          </label>
+          <label class="ef-popup-field">
+            <span>Монтаж</span>
+            <select id="efInstallInput">
+              <option value="none">Без монтажа</option>
+              <option value="install">Монтаж под ключ</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="ef-calc-summary">
+          <div><span>Площадь с запасом</span><strong id="efAreaWithReserve">0 м²</strong></div>
+          <div><span>Ориентировочно панелей</span><strong id="efPanelQtyInfo">0 шт.</strong></div>
+        </div>
+      </div>
+
+      <div class="ef-calc-modal-table-wrap">
+        <h3>Состав предварительного расчёта</h3>
+
+        <div class="ef-calc-table">
+          <div class="ef-calc-table-row ef-calc-table-head">
+            <div>Позиция</div><div>Кол-во</div><div>Цена</div><div>Сумма</div>
+          </div>
+
+          <div class="ef-calc-table-row" data-row="panels">
+            <div><strong>Термопанели ЭППС</strong><span>Площадь фасада с запасом</span></div>
+            <div><input class="ef-row-qty" type="number" min="0" step="0.1" aria-label="Количество, м²"><small>м²</small></div>
+            <div><div class="ef-row-price" data-price="0">0</div><small>₽/м²</small></div>
+            <div class="ef-row-total">0 ₽</div>
+          </div>
+
+          <div class="ef-calc-table-row" data-row="glue">
+            <div><strong>Клей-пена</strong><span>Для монтажа термопанелей</span></div>
+            <div><input class="ef-row-qty" type="number" min="0" step="1" aria-label="Количество, шт."><small>шт.</small></div>
+            <div><div class="ef-row-price" data-price="0">0</div><small>₽/шт.</small></div>
+            <div class="ef-row-total">0 ₽</div>
+          </div>
+
+          <div class="ef-calc-table-row" data-row="grout">
+            <div><strong>Затирка</strong><span>Для обработки швов</span></div>
+            <div><input class="ef-row-qty" type="number" min="0" step="1" aria-label="Количество, мешков"><small>меш.</small></div>
+            <div><div class="ef-row-price" data-price="0">0</div><small>₽/меш.</small></div>
+            <div class="ef-row-total">0 ₽</div>
+          </div>
+
+          <div class="ef-calc-table-row" data-row="fasteners">
+            <div><strong>Крепёж</strong><span>Комплектующие для установки</span></div>
+            <div><input class="ef-row-qty" type="number" min="0" step="1" aria-label="Количество, шт."><small>шт.</small></div>
+            <div><div class="ef-row-price" data-price="0">0</div><small>₽/шт.</small></div>
+            <div class="ef-row-total">0 ₽</div>
+          </div>
+
+          <div class="ef-calc-table-row" data-row="delivery">
+            <div><strong>Доставка</strong><span>По выбранному направлению</span></div>
+            <div><input class="ef-row-qty" type="number" min="0" step="1" aria-label="Количество услуг"><small>усл.</small></div>
+            <div><div class="ef-row-price" data-price="0">0</div><small>₽</small></div>
+            <div class="ef-row-total">0 ₽</div>
+          </div>
+
+          <div class="ef-calc-table-row" data-row="install">
+            <div><strong>Монтаж</strong><span>Работы по облицовке фасада</span></div>
+            <div><input class="ef-row-qty" type="number" min="0" step="0.1" aria-label="Площадь монтажа, м²"><small>м²</small></div>
+            <div><div class="ef-row-price" data-price="0">0</div><small>₽/м²</small></div>
+            <div class="ef-row-total">0 ₽</div>
+          </div>
+        </div>
+
+        <div class="ef-calc-total-box">
+          <span>Итого ориентировочно</span>
+          <strong id="efCalcTotal">0 ₽</strong>
+        </div>
+
+        <div class="ef-calc-lead">
+          <label>
+            <span>Ваш телефон</span>
+            <input id="efClientPhone" type="tel" name="phone" autocomplete="tel"
+                   inputmode="tel" placeholder="+7 (___) ___-__-__">
+          </label>
+          <button type="button" id="efSendCalcRequest">Получить точный расчёт</button>
+        </div>
+
+        <div class="ef-calc-note" id="efCalcNote" role="status" aria-live="polite"></div>
+
+        <label class="ef-policy-check">
+          <input id="efPolicyInput" type="checkbox">
+          <span>
+            Я согласен с обработкой персональных данных и принимаю
+            <a href="#">политику конфиденциальности</a>
+          </span>
+        </label>
+
+        <p class="ef-calc-disclaimer">
+          Расчёт предварительный. Точные значения зависят от конфигурации фасада,
+          углов, проёмов, логистики и выбранной коллекции материала.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══ Просмотр фото на весь экран ═══
+     Требование из комментария к макету: «При нажатии фотография
+     увеличивается на весь экран» -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true"
+     aria-label="Просмотр фотографии" hidden>
+  <button class="lightbox__close" type="button" data-lb-close aria-label="Закрыть">×</button>
+  <button class="lightbox__nav lightbox__nav--prev" type="button" data-lb-prev aria-label="Предыдущее фото">‹</button>
+  <img class="lightbox__img" id="lightboxImg" src="" alt="">
+  <button class="lightbox__nav lightbox__nav--next" type="button" data-lb-next aria-label="Следующее фото">›</button>
+  <p class="lightbox__counter" id="lightboxCounter"></p>
+</div>
+
+<script src="js/main.js"></script>
+<script src="js/calculator.js"></script>
+<script src="js/gallery.js"></script>
+
+<script src="data/catalog.js"></script>
+<script src="js/main.js"></script>
+<script src="js/calculator.js"></script>
+<script src="js/catalog.js"></script>
+
+</body>
+</html>

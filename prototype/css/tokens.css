@@ -1,0 +1,32 @@
+/* Дизайн-токены МЗТ — извлечены из макета Figma (файл «МЗТ», 4xhAaa2IkIqUddv23e0i3i)
+   Источник: метаданные слоёв, не пипетка по скриншотам. */
+
+:root {
+  /* Цвета — 4 основных из 14 найденных в макете */
+  --mzt-ink:        #121212;  /* текст, тёмный фон      — 1099 использований */
+  --mzt-accent:     #E6500B;  /* оранжевый акцент       —  344 */
+  --mzt-white:      #FFFFFF;  /*                        —  240 */
+  --mzt-bg:         #F2F2F2;  /* светлая подложка       —  167 */
+
+  /* Вспомогательные */
+  --mzt-ink-80:     #282828;
+  --mzt-ink-70:     #393939;
+  --mzt-grey:       #8D8D8D;
+  --mzt-accent-lt:  #F07942;
+  --mzt-link:       #0B5BE6;
+
+  /* Типографика — Raleway */
+  --mzt-font: "Raleway", "Helvetica Neue", Arial, sans-serif;
+
+  --mzt-fs-display: 52px;  /* h1, hero            */
+  --mzt-fs-h2:      40px;
+  --mzt-fs-h3:      26px;
+  --mzt-fs-h4:      24px;
+  --mzt-fs-lead:    20px;
+  --mzt-fs-body:    16px;  /* основной, вес 500   */
+  --mzt-fs-small:   14px;
+
+  --mzt-fw-medium:  500;
+  --mzt-fw-bold:    700;
+  --mzt-fw-black:   800;
+}

@@ -1,0 +1,65 @@
+/* ═══════════════════════════════════════════════════════════
+   МЗТ — общее для внутренних страниц: шапка и заголовок раздела.
+   Раньше лежало в visualizer.css; вынесено, чтобы каталог
+   и карточка товара использовали то же самое.
+   ═══════════════════════════════════════════════════════════ */
+
+/* ─── Внутренняя страница ─── */
+
+.page { background: var(--mzt-bg); }
+.page-topbar-wrap {
+  max-width: var(--page);
+  margin-inline: auto;
+  padding: 30px var(--gutter) 0;
+}
+
+/* активный пункт навигации */
+.navchip.is-current {
+  background: var(--mzt-ink);
+  color: var(--mzt-bg);
+  font-weight: var(--mzt-fw-bold);
+}
+.navchip.is-current:hover { background: #2A2A2A; }
+
+.btn.is-current { box-shadow: inset 0 0 0 2px var(--mzt-accent); }
+
+/* ─── Заголовок страницы ─── */
+
+.page-head {
+  max-width: var(--page);
+  margin-inline: auto;
+  padding: 56px var(--gutter) 32px;
+}
+
+.page-head__crumbs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 22px;
+  font-size: var(--mzt-fs-small);
+  color: #6E6E6E;
+}
+.page-head__crumbs a {
+  border-bottom: 1px solid transparent;
+  transition: border-color 160ms;
+}
+.page-head__crumbs a:hover { border-bottom-color: currentColor; }
+
+.page-head__title {
+  margin: 0;
+  font-size: clamp(36px, 2.7vw, 52px);
+  font-weight: var(--mzt-fw-bold);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.page-head__lead {
+  max-width: 640px;
+  margin-top: 18px;
+  font-size: var(--mzt-fs-lead);
+  line-height: 1.35;
+  text-wrap: pretty;
+}
+
+/* ─── Секция визуализатора ─── */

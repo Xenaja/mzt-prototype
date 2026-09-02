@@ -1,0 +1,80 @@
+/* ═══════════════════════════════════════════════════════════
+   Страница визуализатора + подгонка стороннего блока под МЗТ.
+
+   Код визуализатора (loader.js / vis.js) не изменяется — он подключается
+   по ссылкам автора и сам инъектит свои стили в <head> при загрузке.
+   Поэтому перекрываем их селекторами с более высокой специфичностью
+   (html body #cusvis …), а не !important: его стили приходят позже наших.
+   ═══════════════════════════════════════════════════════════ */
+
+.vis-section {
+  max-width: var(--page);
+  margin-inline: auto;
+  padding: 0 var(--gutter) 72px;
+}
+
+#cusvis {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--mzt-bg);
+  min-height: 520px;   /* чтобы страница не прыгала, пока блок не собрался */
+}
+
+/* ─── Подгонка стороннего блока под фирменный стиль ─── */
+
+/* шрифт: его собственный Montserrat отключён меткой data-mzt-font в <head>,
+   здесь задаём фирменный Raleway для всего блока */
+html body #cusvis { font-family: var(--mzt-font); font-variant-numeric: lining-nums; }
+
+/* фон сцены — его #efefef на наш #F2F2F2.
+   Отступы продублированы намеренно (правка коллеги): те же значения задаёт
+   сам vis.js, но он подключается с внешнего хоста. Держим их у себя, чтобы
+   вёрстка не поехала, если автор изменит свой файл или тот не догрузится. */
+html body #cusvis .mzt-stage-wrap {
+  background: var(--mzt-bg);
+  padding: 24px 16px 30px;
+}
+
+/* спиннер загрузки: его коричневый #9a5e3a на фирменный оранжевый */
+html body #cusvis > .mztvld-loader-wrap { background: var(--mzt-bg); }
+
+html body #cusvis .mztvld-ring--outer,
+html body #cusvis .mztvld-ring--inner {
+  border-top-color: var(--mzt-accent);
+  border-right-color: var(--mzt-accent);
+}
+html body #cusvis .mztvld-ring--mid {
+  border-bottom-color: var(--mzt-accent);
+  border-left-color: var(--mzt-accent);
+}
+html body #cusvis .mztvld-cell-loader {
+  background: radial-gradient(circle at center, #E2E2E2 0%, var(--mzt-bg) 68%);
+}
+
+/* его акцентные коричневые (#c5a27a, #b78967, #9a5e3a) — на фирменный оранжевый.
+   Пять правил, найдены в его CSS; перекрываем точечно, файл автора не трогаем. */
+html body #cusvis .mzt-thumb.is-active,
+html body #cusvis .mzt-select-btn:focus,
+html body #cusvis .mzt-tile.is-selected,
+html body #cusvis .mzt-pagebtn.is-active {
+  border-color: var(--mzt-accent);
+}
+
+html body #cusvis .mzt-pagebtn.is-active {
+  background: var(--mzt-accent);
+  color: #fff;
+}
+
+html body #cusvis .mzt-render-zoomhint svg { color: var(--mzt-accent); }
+
+/* подпись в полноэкранном просмотре — светло-коричневая rgba(197,162,122) */
+html body #cusvis .mzt-fs-info-label { color: var(--mzt-accent); }
+
+/* видимый фокус внутри блока — своего он не задаёт */
+html body #cusvis :focus-visible {
+  outline: 3px solid var(--mzt-accent);
+  outline-offset: 2px;
+}
+
+/* нижняя панель не должна перекрывать блок на коротких экранах */
+.page .footer { padding-bottom: 120px; }

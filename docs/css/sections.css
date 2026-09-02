@@ -1,0 +1,1155 @@
+/* ═══════════════════════════════════════════════════════════
+   МЗТ — секции главной со 2-й по 10-ю.
+   Размеры сняты с макета: страница «Для разработчика (десктоп)»,
+   фрейм «Главная 1920×12092».
+   ═══════════════════════════════════════════════════════════ */
+
+/* ─────────── Общее для секций ─────────── */
+
+.section-inner {
+  max-width: var(--page);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* Заголовок секции + действие справа. По макету блок 1760×54:
+   заголовок 52px / вес 700 / интервал 90% / трекинг −4%, кнопка 284×54 */
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  min-height: 54px;
+}
+
+.section-title {
+  margin: 0;
+  font-size: clamp(34px, 2.7083vw, 52px);
+  font-weight: var(--mzt-fw-bold);
+  line-height: .9;
+  letter-spacing: -0.04em;
+}
+
+/* В макете это не кнопка-плашка: заливка прозрачная, обводки нет —
+   просто тёмный текст 20px/700 со стрелкой */
+.link-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 54px;
+  /* плашки нет, но внутренние поля 20 остаются: в макете блок 284×54,
+     текст со стрелкой занимает 244 и не прижат к краю контейнера */
+  padding-inline: 20px;
+  border: none;
+  background: none;
+  color: var(--mzt-ink);
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: var(--mzt-fw-bold);
+  line-height: 1.2;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: opacity var(--dur) var(--ease);
+}
+.link-action:hover { opacity: .65; }
+.link-action .btn__arrow { width: 13px; height: 13px; flex: 0 0 auto; fill: none; }
+
+/* ─────────── 2. Готовые проекты ─────────── */
+
+/* В макете секция начинается на 1100 при высоте первого экрана 900 —
+   отступ 200px */
+.projects { padding-top: 200px; }
+
+.projects__list {
+  margin-top: 60px;      /* 114 − 54 от низа шапки секции */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Карточка 1760×480, белая, скругление 10, внутренние поля 20.
+   Колонки: текст 580 · зазор 138 · галерея 1002 */
+.project {
+  display: grid;
+  grid-template-columns: 580fr 138fr 1002fr;
+  align-items: start;
+  min-height: 480px;
+  padding: 20px;
+  background: var(--mzt-white);
+  border-radius: var(--radius-lg);
+}
+
+.project__info    { grid-column: 1; }
+.project__gallery { grid-column: 3; }
+
+/* теги: 43px высотой, поля 15, промежуток 10 */
+.project__tags { display: flex; gap: 10px; }
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  height: 43px;
+  padding-inline: 15px;
+  border-radius: var(--radius-sm);
+  background: var(--mzt-bg);
+  font-size: 18px;
+  font-weight: var(--mzt-fw-medium);
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+/* 40px / вес 700 / интервал 100% / трекинг −4% */
+.project__title {
+  margin: 34px 0 0;      /* 40 макетных минус 6px верхнего полулида */
+  font-size: clamp(28px, 2.0833vw, 40px);
+  font-weight: var(--mzt-fw-bold);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+/* 16px / вес 500 / интервал 120% */
+.project__text {
+  margin-top: 34px;      /* 40 макетных минус 6px нижнего полулида заголовка */
+  font-size: 16px;
+  font-weight: var(--mzt-fw-medium);
+  line-height: 1.2;
+}
+
+/* галерея: главное фото 875×440 · зазор 10 · колонка миниатюр 117 */
+.project__gallery {
+  display: grid;
+  grid-template-columns: 875fr 10fr 117fr;
+}
+
+.project__main {
+  grid-column: 1;
+  padding: 0;
+  border: none;
+  background: none;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: zoom-in;
+  aspect-ratio: 875 / 440;
+}
+.project__main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 320ms var(--ease);
+}
+.project__main:hover img { transform: scale(1.04); }
+
+.project__thumbs {
+  grid-column: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.project__thumb {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 117 / 80;
+  transition: opacity var(--dur) var(--ease);
+}
+.project__thumb img { width: 100%; height: 100%; object-fit: cover; }
+.project__thumb:hover { opacity: .82; }
+
+/* ─────────── Просмотр фото на весь экран ─────────── */
+/* Требование из комментария к макету: «При нажатии фотография
+   увеличивается на весь экран», пример — brick-art.ru */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  background: rgba(12, 12, 12, .92);
+}
+.lightbox.is-open { display: flex; }
+
+.lightbox__img {
+  /* точный размер выставляет js/gallery.js: подгоняет под экран,
+     но увеличивает не более чем втрое, чтобы миниатюры не мылились */
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, .04);
+}
+
+.lightbox__close,
+.lightbox__nav {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, .35);
+  background: rgba(0, 0, 0, .35);
+  color: #fff;
+  cursor: pointer;
+  transition: background var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.lightbox__close:hover,
+.lightbox__nav:hover { background: rgba(0, 0, 0, .6); border-color: #fff; }
+
+.lightbox__close {
+  top: 24px;
+  right: 24px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-size: 28px;
+  line-height: 1;
+}
+
+.lightbox__nav {
+  top: 50%;
+  width: 56px;
+  height: 56px;
+  margin-top: -28px;
+  border-radius: 50%;
+  font-size: 24px;
+  line-height: 1;
+}
+.lightbox__nav--prev { left: 24px; }
+.lightbox__nav--next { right: 24px; }
+
+.lightbox__counter {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8px 16px;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, .45);
+  color: #fff;
+  font-size: 14px;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+body.lightbox-lock { overflow: hidden; }
+
+/* ─────────── Узкие десктопы ─────────── */
+
+@media (max-width: 1280px) {
+  .project {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .project__info, .project__gallery { grid-column: 1; }
+  .projects { padding-top: 120px; }
+}
+
+/* ─────────── 3. Утепление и отделка одновременно ─────────── */
+
+/* Блок 1760×800: фотография панели в разрезе — это заливка самого блока,
+   а не отдельный элемент. Скругление 10, карточка справа поверх. */
+.insulation { padding-top: 200px; }   /* 2874 − 2674 от конца блока 2 */
+
+.insulation__frame {
+  position: relative;
+  aspect-ratio: 1760 / 800;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.insulation__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* карточка 560×760, поля блока 20, внутренние поля 40 */
+.insulation__card {
+  position: absolute;
+  top: 2.5%;                /* 20 из 800  */
+  right: 1.14%;             /* 20 из 1760 */
+  width: 31.82%;            /* 560 из 1760 */
+  min-height: 95%;          /* 760 из 800; min- вместо height — чтобы содержимое
+                               не вылезало наружу, если строки перенеслись */
+  /* сверху 36 вместо 40: компенсация обрезки заголовка по высоте заглавных */
+  padding: 36px 40px 40px;
+  background: var(--mzt-white);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+}
+
+/* в макете заголовок 440 и значок 40 стоят вплотную: 440 + 40 = 480 */
+.insulation__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0;
+}
+
+/* 52px / вес 700 / интервал 90% / трекинг −4%, блок 440×131 — три строки */
+.insulation__title {
+  margin: 0;
+  max-width: 440px;
+  font-size: clamp(34px, 2.7083vw, 52px);
+  font-weight: var(--mzt-fw-bold);
+  line-height: .9;
+  letter-spacing: -0.04em;
+}
+
+.insulation__mark { flex: 0 0 40px; width: 40px; height: 40px; }
+
+/* 16px / вес 500 / интервал 120% */
+.insulation__text {
+  margin-top: 36px;      /* 40 макетных минус полулид заголовка */
+  font-size: 16px;
+  font-weight: var(--mzt-fw-medium);
+  line-height: 1.185;  /* макетные 120% дают на 3px больше из-за округления строк */
+}
+
+/* Плитки-преимущества: шахматная сетка 152 + 319 и 319 + 152, промежуток 10 */
+.tiles {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tiles__row { display: flex; gap: 10px; }
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  min-height: 158px;
+  padding: 20px;
+  background: var(--mzt-bg);
+  border-radius: var(--radius-sm);
+}
+.tile--sm { flex: 0 0 152px; }
+.tile--lg { flex: 1 1 auto; min-width: 0; }
+
+.tile img { width: 70px; height: 70px; }
+
+.tile span {
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: var(--mzt-fw-medium);
+  line-height: 1.2;
+}
+
+@media (max-width: 1650px) {
+  .insulation { padding-top: 120px; }
+  .insulation__frame { aspect-ratio: auto; }
+  .insulation__bg { position: relative; height: 320px; }
+  .insulation__card {
+    position: static;
+    width: 100%;
+    height: auto;
+    padding: 28px;
+  }
+  .tiles { margin-top: 28px; }
+}
+
+/* ─────────── 4. Каталог фасадных решений ─────────── */
+
+.catalog { padding-top: 200px; }   /* 3874 − 3674 от конца блока 3 */   /* 3874 − 3674 от конца блока 3 */
+
+/* ссылка секции с подчёркиванием — в этом блоке она подчёркнута, в блоке 2 нет */
+.link-action--underline { text-decoration: underline; text-underline-offset: 4px; }
+
+/* 16px / вес 500 / интервал 120%, блок 677×38 */
+.catalog__lead {
+  margin-top: 40px;      /* 94 − 54 от низа шапки секции */
+  max-width: 677px;
+  font-size: 16px;
+  font-weight: var(--mzt-fw-medium);
+  line-height: 1.185;
+}
+
+.catalog__rows {
+  margin-top: 60px;      /* 192 − 132 от низа шапки блока */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.catalog__row { display: flex; gap: 10px; }
+
+/* Плитка: фотография во всю площадь, подпись поверх сверху.
+   Требование из комментария к макету: «при наведении сделать
+   приближение картинки». */
+.ctile {
+  position: relative;
+  display: block;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  color: var(--mzt-white);
+}
+
+.ctile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 420ms var(--ease);
+}
+
+/* Затемнение под подписью. В макете это отдельный слой поверх снимка:
+   сверху 60 % тёмного, сходит на нет к 70 % высоты. Раньше оно было впечатано
+   в сами картинки вместе с текстом — из-за этого подпись двоилась. */
+.ctile::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(18, 18, 18, .6) 0%, rgba(18, 18, 18, 0) 70%);
+  pointer-events: none;
+}
+.ctile:hover img { transform: scale(1.06); }
+
+/* У трёх верхних снимков затемнение впечатано в сам файл: чистых оригиналов
+   с тем же кадром в выгрузке не нашлось. Им своё затемнение не рисуем,
+   иначе выйдет вдвое темнее. У четырёх нижних снимки чистые — там затемнение
+   рисуем сами, как в макете. */
+.ctile--baked::after { display: none; }
+
+.ctile__label {
+  position: absolute;
+  z-index: 1;   /* поверх затемнения */
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  font-size: 24px;
+  font-weight: var(--mzt-fw-bold);
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, .35);
+}
+.ctile__label sup { font-size: .58em; vertical-align: super; }
+
+/* ширины из макета: 728 · 580 · 432 при высоте 400 */
+.ctile--w728 { flex: 0 0 41.32%; aspect-ratio: 728 / 400; }
+.ctile--w580 { flex: 0 0 32.92%; aspect-ratio: 580 / 400; }
+.ctile--w432 { flex: 1 1 auto;   aspect-ratio: 432 / 400; }
+
+/* четыре категории по 433×200 */
+.ctile--cat { flex: 1 1 0; aspect-ratio: 433 / 200; }
+
+@media (max-width: 1280px) {
+  .catalog { padding-top: 120px; }
+  .catalog__row { flex-wrap: wrap; }
+  .ctile--w728, .ctile--w580, .ctile--w432 { flex: 1 1 300px; aspect-ratio: 16 / 10; }
+  .ctile--cat { flex: 1 1 220px; }
+}
+
+/* ─────────── 5. Визуализатор ─────────── */
+
+.visual { padding-top: 198px; }   /* 4876 − 4676 от конца блока 4 */
+
+/* тёмная карточка 580 · зазор 10 · скриншот 1171 */
+.visual__row {
+  display: flex;
+  gap: 10px;
+  align-items: stretch;
+}
+
+/* Вся карточка — ссылка на визуализатор: в макете это компонент-кнопка */
+.visual__card {
+  position: relative;
+  flex: 0 0 32.92%;          /* 580 из 1762 */
+  aspect-ratio: 580 / 655;
+  padding: 40px;
+  background: var(--mzt-ink);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  color: var(--mzt-white);
+  display: block;
+}
+
+.visual__head {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* 52px / вес 700 / интервал 90% / трекинг −4% */
+.visual__title {
+  margin: 0;
+  font-size: clamp(34px, 2.7083vw, 52px);
+  font-weight: var(--mzt-fw-bold);
+  line-height: .9;
+  letter-spacing: -0.04em;
+}
+
+.visual__arrow {
+  flex: 0 0 28px;
+  width: 28px;
+  height: 28px;
+  fill: none;
+  transition: transform var(--dur) var(--ease);
+}
+.visual__card:hover .visual__arrow { transform: translate(3px, -3px); }
+
+/* 16px / вес 500 / интервал 120% */
+.visual__text {
+  position: relative;
+  z-index: 1;
+  margin-top: 40px;      /* как в макете: заголовок 45 + 40 = текст на 125 */
+  font-size: 16px;
+  font-weight: var(--mzt-fw-medium);
+  line-height: 1.185;
+}
+
+/* кирпичный декор внизу карточки, обрезается её краем */
+.visual__decor {
+  position: absolute;
+  left: 6.9%;                /* 40 из 580  */
+  top: 33.1%;                /* 217 из 655 */
+  width: 86.2%;              /* 500 из 580 */
+  height: auto;
+  pointer-events: none;
+}
+
+/* скриншот интерфейса */
+.visual__shot {
+  flex: 1 1 auto;
+  min-width: 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: block;
+}
+.visual__shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 420ms var(--ease);
+}
+.visual__shot:hover img { transform: scale(1.02); }
+
+@media (max-width: 1280px) {
+  .visual { padding-top: 120px; }
+  .visual__row { flex-direction: column; }
+  .visual__card { flex: none; aspect-ratio: auto; min-height: 380px; }
+}
+
+/* ─────────── 6. Почему выбирают нас ─────────── */
+
+.why { padding-top: 191px; }   /* по сверке: макетные 200 дают перелёт */
+
+.why__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.why__intro { max-width: 580px; }
+
+/* 16px / вес 500 / интервал 120%, блок 580×38 */
+.why__lead {
+  margin-top: 40px;      /* 77 − 37 от низа заголовка */
+  font-size: 16px;
+  font-weight: var(--mzt-fw-medium);
+  line-height: 1.185;
+}
+
+/* значок стоит по верху блока и не участвует в компенсации полулида заголовка */
+.why__mark { flex: 0 0 40px; width: 40px; height: 40px; margin-top: 5px; }
+
+/* четыре карточки 433×309, промежуток 10 */
+.why__cards {
+  margin-top: 55px;      /* 60 макетных минус полулид подзаголовка */
+  display: flex;
+  gap: 10px;
+}
+
+.why__card {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 309px;
+  padding: 40px;
+  background: var(--mzt-white);
+  border-radius: var(--radius-lg);
+  text-align: left;
+  border: none;
+  font-family: inherit;
+}
+
+/* заголовок 295 и значок стоят вплотную: 295 + 58 = 353 = 433 − 80 */
+.why__card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0;
+}
+.why__card-top img { flex: 0 0 auto; }
+
+/* 40px / вес 700 / интервал 100% / трекинг −4% */
+.why__title {
+  margin: 0;
+  font-size: clamp(28px, 2.0833vw, 40px);
+  font-weight: var(--mzt-fw-bold);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+/* 16px / вес 500 / интервал 120% */
+.why__text {
+  margin-top: 34px;      /* 40 макетных минус полулид заголовка */
+  font-size: 16px;
+  font-weight: var(--mzt-fw-medium);
+  line-height: 1.185;
+}
+
+/* карточка-действие: тёмная, при наведении светлеет — состояние Hover из макета */
+.why__card--action {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  background: var(--mzt-ink);
+  color: var(--mzt-bg);
+  cursor: pointer;
+  transition: background var(--dur) var(--ease);
+}
+.why__card--action:hover { background: #393939; }
+
+.why__arrow {
+  flex: 0 0 28px;
+  width: 28px;
+  height: 28px;
+  fill: none;
+  transition: transform var(--dur) var(--ease);
+}
+.why__card--action:hover .why__arrow { transform: translate(3px, -3px); }
+
+@media (max-width: 1500px) {
+  .why { padding-top: 120px; }
+  .why__cards { flex-wrap: wrap; }
+  .why__card { flex: 1 1 300px; }
+}
+
+/* ─────────── 7. Производство МЗТ ─────────── */
+
+.prod { padding-top: 201px; }
+/* Отступ блока сдвигает всё, что ниже: после правки пятого и шестого блоков
+   (суммарно на 6px) седьмой держит цепочку, чтобы блоки 8-10 остались
+   на выверенных местах. */
+
+.prod__row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 580fr 158fr 1022fr;   /* левая · зазор · правая */
+  align-items: start;
+}
+.prod__left  { grid-column: 1; }
+.prod__right { grid-column: 3; position: relative; z-index: 1; }
+
+/* фото 580×392, скругление 10, отступ 168 от заголовка */
+.prod__photo {
+  margin-top: 126px;     /* 131 минус накопленный полулид */
+  width: 100%;
+  aspect-ratio: 580 / 392;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+}
+
+/* 40px / вес 700 / интервал 100% / трекинг −4%, блок 1022×68 */
+.prod__title {
+  margin: 0;
+  font-size: clamp(28px, 2.0833vw, 40px);
+  font-weight: var(--mzt-fw-bold);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+/* ─── аккордеон ─── */
+
+.acc { margin-top: 89px; }   /* 94 минус накопленный полулид */
+
+.acc__item { border-bottom: 1px solid var(--mzt-ink); }
+
+.acc__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 30px;
+  width: 100%;
+  padding: 31px 0 30px;
+  border: none;
+  background: none;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  color: var(--mzt-ink);
+}
+.acc__item:first-child .acc__head { padding-top: 0; padding-bottom: 0; }
+
+/* 24px / вес 700 / интервал 110% / трекинг −4% */
+.acc__title {
+  font-size: 24px;
+  font-weight: var(--mzt-fw-bold);
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+
+/* знак: минус — одна полоса, плюс — две (как в макете, 30×2 и 2×30) */
+.acc__sign {
+  position: relative;
+  flex: 0 0 30px;
+  width: 30px;
+  height: 30px;
+  margin-top: -6px;
+}
+.acc__sign::before,
+.acc__sign::after {
+  content: "";
+  position: absolute;
+  background: var(--mzt-ink);
+  transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+.acc__sign::before { left: 0; top: 14px; width: 30px; height: 2px; }
+.acc__sign::after  { left: 14px; top: 0; width: 2px; height: 30px; }
+
+/* раскрытый пункт: вертикальная полоса убирается — остаётся минус */
+.acc__head[aria-expanded="true"] .acc__sign::after {
+  opacity: 0;
+  transform: scaleY(0);
+}
+
+.acc__body { padding-bottom: 30px; }
+.acc__item:first-child .acc__body { padding-top: 40px; }
+
+.acc__body p {
+  font-size: 16px;
+  font-weight: var(--mzt-fw-medium);
+  line-height: 1.185;
+}
+
+.prod__more { margin-top: 82px; }   /* ссылка стоит по макету (y667), а не по сдвинутому аккордеону */
+
+/* белая графика справа, непрозрачность 0.5 как в макете */
+.prod__decor {
+  position: absolute;
+  left: 68.9%;           /* 1214 из 1761 */
+  top: 0;
+  width: 31.1%;          /* 547 из 1761 */
+  height: auto;
+  opacity: .5;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@media (max-width: 1500px) {
+  .prod { padding-top: 120px; }
+  .prod__row { grid-template-columns: 1fr; gap: 40px; }
+  .prod__left, .prod__right { grid-column: 1; }
+  .prod__photo { margin-top: 40px; }
+  .acc { margin-top: 40px; }
+  .prod__decor { display: none; }
+}
+
+/* ─────────── 8. Поможем реализовать проект ───────────
+   Макет: блок 1762×1496 от y=7290. Шапка 1762×162 — заголовок 52/700/90 %
+   с оранжевой первой буквой, подзаголовок 16/500/120 % на 124 ниже,
+   ссылка «Заказать консультацию» справа. Ниже сетка 2×3 из карточек 581×632:
+   фотография 581×316 сверху, белое поле 581×316 снизу. */
+
+.services { padding-top: 169px; }   /* по сверке: макетные 200 дают перелёт на 31px */
+
+/* Заголовок здесь в две строки, поэтому ссылка равняется по верху, а не по центру */
+.services__head { align-items: flex-start; }
+
+.services__intro { width: 580px; max-width: 100%; }
+
+.services__lead {
+  margin: 35px 0 0;   /* 124 макетных минус две строки заголовка и его полулид */
+  font-size: 16px;
+  font-weight: var(--mzt-fw-medium);
+  line-height: 1.2;
+}
+
+/* Верх ссылки в макете совпадает с высотой заглавных заголовка,
+   а строка заголовка начинается на 5px выше — на столько же опускаем ссылку */
+.services__cta { margin-top: 5px; flex: 0 0 auto; }
+
+.services__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px 9.5px;    /* 1762 − 3×581 = 19px на два зазора */
+  margin-top: 60px;   /* 222 макетных от верха шапки минус её высота 162 */
+}
+
+.svc {
+  display: flex;
+  flex-direction: column;
+  min-height: 632px;  /* высота из макета, но не жёсткая: текст может вырасти */
+  background: #FFFFFF;
+}
+
+.svc__photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 581 / 316;
+  object-fit: cover;
+}
+
+.svc__body { padding: 35px 40px 40px; }
+
+.svc__price {
+  margin: 0;
+  font-size: 24px;
+  font-weight: var(--mzt-fw-bold);
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+
+.svc__name {
+  margin: 10px 0 0;
+  font-size: 40px;
+  font-weight: var(--mzt-fw-bold);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.svc__text {
+  margin: 34px 0 0;   /* 461 макетных от верха карточки */
+  font-size: 16px;
+  font-weight: var(--mzt-fw-medium);
+  line-height: 1.2;
+}
+
+/* В макете абзацы разделены отступом 15px, а не пустой строкой */
+.svc__text + .svc__text { margin-top: 15px; }
+
+/* Переносы строк проставлены по макету: Figma и браузер разбивают одну
+   и ту же строку Raleway по-разному — в браузере в строку влезает
+   на слово больше. На узких экранах колонка другой ширины, там переносы
+   мешают, поэтому отключаются. */
+
+@media (max-width: 1500px) {
+  .services__grid { grid-template-columns: repeat(2, 1fr); }
+  .svc__text br { display: none; }
+}
+
+@media (max-width: 1000px) {
+  .services__grid { grid-template-columns: 1fr; }
+  .services__head { flex-wrap: wrap; gap: 24px; }
+  .svc { min-height: 0; }
+}
+
+/* ─────────── 9. Отзывы о работе с нами ───────────
+   Макет: блок 1763×776 от y=8986. Устроен как блок услуг, но шапка ниже
+   (только заголовок в две строки), карточка одна на отзыв: снимок объекта
+   581×316, имя 40/700 и текст 20/500. По углам белой части — уголки-скобки
+   14×14 в 20px от краёв, толщина 3px. */
+
+.reviews { padding-top: 196px; }   /* по сверке: 200 макетных минус полулид заголовка */
+
+.reviews__head { align-items: flex-start; }
+.reviews__cta { margin-top: 4px; flex: 0 0 auto; }
+
+.reviews__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px 9.5px;
+  margin-top: 55px;   /* 144 макетных минус высота шапки и поправка на полулид */
+}
+
+.rev {
+  display: flex;
+  flex-direction: column;
+  min-height: 632px;
+  background: #FFFFFF;
+}
+
+.rev__photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 581 / 316;
+  object-fit: cover;
+}
+
+.rev__body {
+  position: relative;
+  flex: 1;
+  padding: 48px 60px 40px;
+}
+
+.rev__name {
+  margin: 0;
+  font-size: 40px;
+  font-weight: var(--mzt-fw-bold);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.rev__text {
+  margin: 34px 0 0;
+  font-size: 20px;
+  font-weight: var(--mzt-fw-medium);
+  line-height: 1.2;
+}
+
+/* Уголки: четыре Г-образные скобки. Два держит сама карточка, ещё два —
+   отдельный пустой элемент: у одного узла всего два псевдоэлемента. */
+.rev__marks { position: absolute; inset: 0; pointer-events: none; }
+
+.rev__body::before, .rev__body::after,
+.rev__marks::before, .rev__marks::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 0 solid #D0D0D0;
+}
+.rev__body::before  { top: 20px;    left: 20px;  border-top-width: 3px;    border-left-width: 3px;  }
+.rev__body::after   { top: 20px;    right: 20px; border-top-width: 3px;    border-right-width: 3px; }
+.rev__marks::before { bottom: 20px; left: 20px;  border-bottom-width: 3px; border-left-width: 3px;  }
+.rev__marks::after  { bottom: 20px; right: 20px; border-bottom-width: 3px; border-right-width: 3px; }
+
+@media (max-width: 1500px) {
+  .reviews__grid { grid-template-columns: repeat(2, 1fr); }
+  .rev__text br { display: none; }
+}
+
+@media (max-width: 1000px) {
+  .reviews__grid { grid-template-columns: 1fr; }
+  .reviews__head { flex-wrap: wrap; gap: 24px; }
+  .rev { min-height: 0; }
+}
+
+/* ─────────── 10. Найдите нас в своём городе ───────────
+   Макет: блок 1762×1284 от y=9962. Шапка с двумя действиями справа,
+   карта 1760×600, ниже ряд: снимок 875×500 и форма заявки 875×500,
+   оба со скруглением 10. */
+
+.dealers { padding-top: 195px; }
+
+.dealers__head { align-items: flex-start; }
+
+.dealers__lead {
+  margin: 35px 0 0;   /* 77 макетных минус строка заголовка и его полулид */
+  font-size: 16px;
+  font-weight: var(--mzt-fw-medium);
+  line-height: 1.2;
+}
+
+.dealers__actions {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  flex: 0 0 auto;
+  margin-top: 5px;
+}
+
+.dealers__join { height: 52px; }
+
+/* Карта */
+.dealers__map {
+  position: relative;
+  margin-top: 59px;   /* 175 макетных от верха шапки минус её высота и полулид */
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.dealers__map-shot,
+.dealers__map iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1760 / 600;
+  border: 0;
+}
+
+/* Снимок карты — фотография, а не растягиваемая плашка: на узких экранах
+   ширина уменьшается, и без этого карта сплющивалась по вертикали.
+   Кадрируем от центра, подписи городов остаются читаемыми. */
+.dealers__map-shot { object-fit: cover; object-position: 42% 46%; }
+
+/* На узких окнах полоса 1760×600 становится слишком низкой — даём ей
+   подрасти, чтобы карта оставалась разборчивой */
+@media (max-width: 1400px) {
+  .dealers__map-shot,
+  .dealers__map iframe { aspect-ratio: 16 / 7; }
+}
+@media (max-width: 1000px) {
+  .dealers__map-shot,
+  .dealers__map iframe { aspect-ratio: 4 / 3; }
+}
+
+/* Кнопка на всю карту: до нажатия карта выглядит ровно как в макете,
+   поэтому у кнопки нет своего оформления — только подпись для клавиатуры
+   и экранного диктора. Появляется при наведении и при фокусе. */
+.dealers__map-btn {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  border: 0;
+  background: none;
+  color: transparent;
+  font: inherit;
+  cursor: pointer;
+}
+.dealers__map-btn:hover,
+.dealers__map-btn:focus-visible {
+  color: var(--mzt-ink);
+  background: rgba(242, 242, 242, .82);
+  font-size: 20px;
+  font-weight: var(--mzt-fw-bold);
+}
+.dealers__map.is-live .dealers__map-btn { display: none; }
+
+/* Нижний ряд: снимок и форма */
+.dealers__row {
+  display: grid;
+  grid-template-columns: 875fr 875fr;
+  gap: 10px;
+  margin-top: 9px;   /* 784 макетных от верха блока минус низ карты */
+}
+
+.dealers__photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.request {
+  min-height: 500px;
+  padding: 34px 40px 40px;
+  background: #FFFFFF;
+  border-radius: 10px;
+}
+
+.request__title {
+  margin: 0;
+  font-size: 40px;
+  font-weight: var(--mzt-fw-bold);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.request__lead {
+  margin: 34px 0 0;
+  font-size: 16px;
+  font-weight: var(--mzt-fw-medium);
+  line-height: 1.2;
+}
+
+.request__fields { margin-top: 62px; }   /* 208 макетных от верха формы */
+
+.field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid var(--mzt-ink);
+  padding-bottom: 10px;
+}
+.field + .field { margin-top: 40px; }
+
+.field__flag { flex: 0 0 auto; width: 24px; height: 16px; object-fit: cover; }
+.field__code { flex: 0 0 auto; }
+
+.field__input,
+.field__code {
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: var(--mzt-fw-medium);
+  line-height: 1.2;
+  color: var(--mzt-ink);
+}
+
+.field__input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: none;
+  padding: 0;
+}
+.field__input::placeholder { color: var(--mzt-ink); opacity: 1; }
+.field__input:focus { outline: none; }
+.field:focus-within { border-bottom-color: var(--mzt-accent); }
+/* при работе с клавиатуры одной линии под полем мало — показываем обводку */
+.field__input:focus-visible { outline: 2px solid var(--mzt-accent); outline-offset: 6px; }
+
+/* Согласие: свой квадрат 25×25 со скруглением 5, как в макете */
+.consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 30px;
+  cursor: pointer;
+}
+
+.consent__box {
+  flex: 0 0 auto;
+  width: 25px;
+  height: 25px;
+  margin: 2px 0 0;
+  border: 1px solid var(--mzt-ink);
+  border-radius: 5px;
+  appearance: none;
+  background: none;
+  cursor: pointer;
+}
+.consent__box:checked {
+  background: var(--mzt-ink);
+  /* галочка нарисована фоном, чтобы не заводить лишний элемент */
+  background-image: linear-gradient(45deg, transparent 45%, #fff 45%, #fff 58%, transparent 58%),
+                    linear-gradient(-45deg, transparent 52%, #fff 52%, #fff 65%, transparent 65%);
+  background-size: 60% 60%, 60% 60%;
+  background-position: 32% 62%, 62% 60%;
+  background-repeat: no-repeat;
+}
+.consent__box:focus-visible { outline: 2px solid var(--mzt-accent); outline-offset: 2px; }
+
+.consent__text {
+  font-size: 12px;
+  font-weight: var(--mzt-fw-medium);
+  line-height: 1.2;
+}
+.consent__text a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+
+.request__submit {
+  width: 100%;
+  margin-top: 40px;
+  border-radius: 5px;
+}
+
+.request__note {
+  margin: 16px 0 0;
+  font-size: 14px;
+  font-weight: var(--mzt-fw-medium);
+  line-height: 1.2;
+  color: var(--mzt-accent);
+}
+
+@media (max-width: 1500px) {
+  .dealers__lead br,
+  .request__lead br { display: none; }
+}
+
+@media (max-width: 1100px) {
+  .dealers__row { grid-template-columns: 1fr; }
+  .dealers__head { flex-wrap: wrap; gap: 24px; }
+  .dealers__photo { min-height: 320px; }
+  .request { min-height: 0; }
+}
+
+/* Подтверждение отправки — тёмным, ошибка остаётся оранжевой */
+.request__note.is-done { color: var(--mzt-ink); }
+
+/* Пока сообщения нет, строка не должна занимать место: в макете её нет,
+   и она делала форму на 32px выше нужного */
+.request__note:empty { display: none; }

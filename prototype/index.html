@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="ru" data-env="dev">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>Фасадные термопанели от производителя — Московский Завод Термопанелей</title>
+<meta name="description" content="Готовое решение для утепления и отделки дома. Собственное производство фасадных термопанелей, 105 официальных дилеров по РФ, гарантия 25 лет.">
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/sections.css">
+<link rel="stylesheet" href="css/calculator.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Перейти к содержимому</a>
+
+<main id="main">
+
+  <!-- ═══ Первый экран ═══ -->
+  <section class="hero">
+    <img class="hero__bg" src="assets/hero/hero-house.webp"
+         alt="Двухэтажный дом с фасадом из термопанелей МЗТ"
+         width="1920" height="900" fetchpriority="high">
+
+    <div class="hero__inner">
+
+      <!-- шапка -->
+      <header class="topbar">
+        <a class="topbar__logo" href="#main" aria-label="Московский Завод Термопанелей, на главную">
+          <img src="assets/logo/logo-header.svg" alt="" width="226" height="25">
+        </a>
+
+        <nav class="topbar__nav" aria-label="Основная навигация">
+          <ul class="topbar__list">
+            <li><a class="navchip" href="catalog.html">Каталог</a></li>
+            <li><a class="navchip" href="#services">Услуги</a></li>
+            <li><a class="navchip" href="#projects">Проекты</a></li>
+            <li><a class="navchip" href="#about">О заводе</a></li>
+            <li><a class="navchip" href="#contacts">Контакты</a></li>
+            <li><a class="navchip" href="visualizer.html">Визуализатор</a></li>
+          </ul>
+        </nav>
+
+        <div class="topbar__side">
+          <a class="navchip navchip--phone" href="tel:+78005114620">+7 (800) 511-46-20</a>
+          <a class="navchip navchip--dark" href="#" data-pending="P-05">Вход для дилеров</a>
+        </div>
+      </header>
+
+      <!-- контент первого экрана -->
+      <div class="hero__body">
+        <div class="hero__content">
+          <!-- Первая буква в макете фирменного оранжевого, остальной заголовок тёмный -->
+          <h1 class="hero__title"><span class="hero__title-accent">Ф</span>асадные термопанели от производителя</h1>
+          <!-- Перенос после «для» — как в макете: там строка обрывается,
+               хотя по ширине блока следующее слово поместилось бы -->
+          <p class="hero__lead">Готовое решение для<br>утепления и отделки дома</p>
+
+          <div class="hero__actions">
+            <button class="btn btn--dark" type="button" data-open-calculator>
+              Рассчитать стоимость
+              <svg class="btn__arrow" viewBox="0 0 15 15" aria-hidden="true" focusable="false">
+                <path d="M0.7414 14.2586L13.9516 1.04843" stroke="currentColor" stroke-width="2.09686"/>
+                <path d="M13.9516 14.2586V1.04843H0.7414" stroke="currentColor" stroke-width="2.09686"/>
+              </svg>
+            </button>
+            <a class="btn btn--light" href="catalog.html">
+              Перейти в каталог
+              <svg class="btn__arrow" viewBox="0 0 15 15" aria-hidden="true" focusable="false">
+                <path d="M0.7414 14.2586L13.9516 1.04843" stroke="currentColor" stroke-width="2.09686"/>
+                <path d="M13.9516 14.2586V1.04843H0.7414" stroke="currentColor" stroke-width="2.09686"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <ul class="stats">
+          <li class="stat">
+            <span class="stat__value">8</span>
+            <span class="stat__label">топ-&nbsp;брендов плитки</span>
+            <img class="stat__icon" src="assets/patterns/brick-1.svg" alt="" width="20" height="20">
+          </li>
+          <li class="stat">
+            <span class="stat__value">25</span>
+            <span class="stat__label">лет гарантии, смотреть документы</span>
+            <img class="stat__icon" src="assets/patterns/brick-2.svg" alt="" width="20" height="20">
+          </li>
+          <li class="stat">
+            <span class="stat__value">105</span>
+            <span class="stat__label">официальных дилеров по РФ</span>
+            <img class="stat__icon" src="assets/patterns/brick-3.svg" alt="" width="20" height="20">
+          </li>
+          <li class="stat">
+            <span class="stat__value">7</span>
+            <span class="stat__label">рабочих дней — минимальный срок производства</span>
+            <img class="stat__icon" src="assets/patterns/brick-4.svg" alt="" width="20" height="20">
+          </li>
+        </ul>
+      </div>
+
+      <!-- Нижняя панель: на первом экране стоит в макетной позиции,
+           за его пределами становится плавающей (см. js/main.js) -->
+      <div class="dock">
+        <button class="btn btn--accent" type="button" data-open-calculator>Калькулятор</button>
+        <a class="btn btn--dark" href="visualizer.html">Визуализатор</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Метка конца первого экрана: как только она входит в кадр,
+       панель переключается в плавающий режим -->
+  <div id="dockSentinel" aria-hidden="true"></div>
+
+  <!-- ═══ 2. Готовые проекты ═══ -->
+  <section class="projects" id="projects">
+    <div class="section-inner">
+
+      <div class="section-head">
+        <h2 class="section-title">Готовые проекты</h2>
+        <button class="link-action link-action--underline" type="button" data-open-calculator>
+          Рассчитать стоимость
+          <svg class="btn__arrow" viewBox="0 0 15 15" aria-hidden="true" focusable="false">
+            <path d="M0.7414 14.2586L13.9516 1.04843" stroke="currentColor" stroke-width="2.09686"/>
+            <path d="M13.9516 14.2586V1.04843H0.7414" stroke="currentColor" stroke-width="2.09686"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="projects__list">
+
+        <article class="project">
+          <div class="project__info">
+            <div class="project__tags">
+              <span class="tag">4 недели</span>
+              <span class="tag">210 м²</span>
+            </div>
+            <!-- перенос как в макете: строка обрывается после «в» -->
+            <h3 class="project__title">Частный дом в<br>классическом стиле</h3>
+            <p class="project__text">Светлый фасад с выраженной симметрией и классическими архитектурными элементами создаёт аккуратный и цельный образ дома. Центральный портик с колоннами и балконом подчёркивает входную группу, а тёмная кровля добавляет контраста. Крупные окна делают фасад визуально легче и наполняют интерьер естественным светом.</p>
+          </div>
+
+          <div class="project__gallery">
+            <button class="project__main" type="button" aria-label="Открыть фото на весь экран">
+              <img src="assets/projects/house-beige-1.webp" data-full="assets/projects/full/house-beige-1.webp"
+                   alt="Частный дом в классическом стиле, общий вид фасада"
+                   width="875" height="440" loading="lazy">
+            </button>
+            <ul class="project__thumbs">
+              <li><button class="project__thumb" type="button" aria-label="Показать фото 1">
+                <img src="assets/projects/thumb-house-beige-1.webp" data-full="assets/projects/full/thumb-house-beige-1.webp" alt="" width="117" height="80" loading="lazy"></button></li>
+              <li><button class="project__thumb" type="button" aria-label="Показать фото 2">
+                <img src="assets/projects/thumb-house-classic-1.webp" data-full="assets/projects/full/thumb-house-classic-1.webp" alt="" width="117" height="80" loading="lazy"></button></li>
+              <li><button class="project__thumb" type="button" aria-label="Показать фото 3">
+                <img src="assets/projects/thumb-house-beige-2.webp" data-full="assets/projects/full/thumb-house-beige-2.webp" alt="" width="117" height="80" loading="lazy"></button></li>
+              <li><button class="project__thumb" type="button" aria-label="Показать фото 4">
+                <img src="assets/projects/thumb-house-classic-2.webp" data-full="assets/projects/full/thumb-house-classic-2.webp" alt="" width="117" height="80" loading="lazy"></button></li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project__info">
+            <div class="project__tags">
+              <span class="tag">5 недель</span>
+              <span class="tag">240 м²</span>
+            </div>
+            <h3 class="project__title">Частный дом в сосновом саду</h3>
+            <p class="project__text">Дом из красного кирпича с выразительной геометрией фасада и сложной формой кровли. Вертикальные окна подчёркивают высоту здания, а закрытая терраса с бордовым ограждением добавляет архитектуре характер. Светлый каменный цоколь смягчает насыщенный оттенок кирпича и визуально связывает дом с окружающим садом.</p>
+          </div>
+
+          <div class="project__gallery">
+            <button class="project__main" type="button" aria-label="Открыть фото на весь экран">
+              <img src="assets/projects/house-red-1.webp" data-full="assets/projects/full/house-red-1.webp"
+                   alt="Дом из красного кирпича в сосновом саду"
+                   width="875" height="440" loading="lazy">
+            </button>
+            <ul class="project__thumbs">
+              <li><button class="project__thumb" type="button" aria-label="Показать фото 1">
+                <img src="assets/projects/thumb-house-red-1.webp" data-full="assets/projects/full/thumb-house-red-1.webp" alt="" width="117" height="80" loading="lazy"></button></li>
+              <li><button class="project__thumb" type="button" aria-label="Показать фото 2">
+                <img src="assets/projects/thumb-house-red-2.webp" data-full="assets/projects/full/thumb-house-red-2.webp" alt="" width="117" height="80" loading="lazy"></button></li>
+              <li><button class="project__thumb" type="button" aria-label="Показать фото 3">
+                <img src="assets/projects/thumb-house-red-3.webp" data-full="assets/projects/full/thumb-house-red-3.webp" alt="" width="117" height="80" loading="lazy"></button></li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project__info">
+            <div class="project__tags">
+              <span class="tag">8 недель</span>
+              <span class="tag">300 м²</span>
+            </div>
+            <h3 class="project__title">Производственное здание</h3>
+            <p class="project__text">Протяжённый одноэтажный корпус с ритмичным фасадом и высокими арочными окнами. Светлая отделка визуально облегчает объём здания, а тёмные оконные рамы и цоколь создают выразительный контраст. Большая площадь остекления обеспечивает естественное освещение внутренних помещений и подчёркивает современный характер архитектуры.</p>
+          </div>
+
+          <div class="project__gallery">
+            <button class="project__main" type="button" aria-label="Открыть фото на весь экран">
+              <img src="assets/projects/building-long-1.webp" data-full="assets/projects/full/building-long-1.webp"
+                   alt="Производственное здание с арочными окнами"
+                   width="875" height="440" loading="lazy">
+            </button>
+            <ul class="project__thumbs">
+              <li><button class="project__thumb" type="button" aria-label="Показать фото 1">
+                <img src="assets/projects/thumb-building-long-1.webp" data-full="assets/projects/full/thumb-building-long-1.webp" alt="" width="117" height="80" loading="lazy"></button></li>
+              <li><button class="project__thumb" type="button" aria-label="Показать фото 2">
+                <img src="assets/projects/thumb-building-long-2.webp" data-full="assets/projects/full/thumb-building-long-2.webp" alt="" width="117" height="80" loading="lazy"></button></li>
+              <li><button class="project__thumb" type="button" aria-label="Показать фото 3">
+                <img src="assets/projects/thumb-building-long-3.webp" data-full="assets/projects/full/thumb-building-long-3.webp" alt="" width="117" height="80" loading="lazy"></button></li>
+              <li><button class="project__thumb" type="button" aria-label="Показать фото 4">
+                <img src="assets/projects/thumb-building-site.webp" data-full="assets/projects/full/thumb-building-site.webp" alt="" width="117" height="80" loading="lazy"></button></li>
+            </ul>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══ 3. Утепление и отделка одновременно ═══ -->
+  <section class="insulation" id="about">
+    <div class="section-inner">
+      <div class="insulation__frame">
+        <img class="insulation__bg" src="assets/sections/insulation-bg.webp"
+             alt="Термопанель в разрезе: слой утеплителя и декоративная поверхность"
+             width="1760" height="800" loading="lazy">
+
+        <div class="insulation__card">
+          <div class="insulation__head">
+            <!-- первая буква оранжевая, как в заголовке первого экрана -->
+            <!-- переносы как в макете: «Утепление» / «и отделка» / «одновременно» -->
+            <h2 class="insulation__title"><span class="hero__title-accent">У</span>тепление<br>и отделка<br>одновременно</h2>
+            <img class="insulation__mark" src="assets/icons/icon-brick-mark.svg"
+                 alt="" width="40" height="40">
+          </div>
+
+          <p class="insulation__text">Термопанель объединяет теплоизоляционный<br>слой и готовую декоративную поверхность.<br>Такой формат позволяет одновременно утеплить<br>здание и изменить внешний вид фасада.</p>
+
+          <div class="tiles">
+            <div class="tiles__row">
+              <div class="tile tile--sm">
+                <img src="assets/icons/icon-house-eco.svg" alt="" width="70" height="70">
+                <span>Сохраняют тепло</span>
+              </div>
+              <div class="tile tile--lg">
+                <img src="assets/icons/icon-no-damage.svg" alt="" width="70" height="70">
+                <span>Не требуют дополнительной отделки</span>
+              </div>
+            </div>
+            <div class="tiles__row">
+              <div class="tile tile--lg">
+                <img src="assets/icons/icon-house-scaffolding.svg" alt="" width="70" height="70">
+                <span>Подходят для реконструкции и нового строительства</span>
+              </div>
+              <div class="tile tile--sm">
+                <img src="assets/icons/icon-shield-brick.svg" alt="" width="70" height="70">
+                <span>Защищают фасад</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══ 4. Каталог фасадных решений ═══ -->
+  <section class="catalog" id="catalog">
+    <div class="section-inner">
+
+      <div class="section-head">
+        <h2 class="section-title"><span class="hero__title-accent">К</span>аталог фасадных решений</h2>
+        <a class="link-action link-action--underline" href="catalog.html">
+          Перейти в каталог
+          <svg class="btn__arrow" viewBox="0 0 15 15" aria-hidden="true" focusable="false">
+            <path d="M0.7414 14.2586L13.9516 1.04843" stroke="currentColor" stroke-width="2.09686"/>
+            <path d="M13.9516 14.2586V1.04843H0.7414" stroke="currentColor" stroke-width="2.09686"/>
+          </svg>
+        </a>
+      </div>
+
+      <p class="catalog__lead">Выберите готовые термопанели, облицовочные<br>материалы и комплектующие для вашего проекта.</p>
+
+      <!-- три основные группы: 728 · 580 · 432 -->
+      <div class="catalog__rows">
+        <div class="catalog__row catalog__row--main">
+          <a class="ctile ctile--w728 ctile--baked" href="catalog.html">
+            <img src="assets/catalog/catalog-clinker.webp" alt="Термопанели с клинкерной плиткой"
+                 width="728" height="400" loading="lazy">
+            <span class="ctile__label">Термопанели с клинкерной плиткой <sup>237</sup></span>
+          </a>
+          <a class="ctile ctile--w580 ctile--baked" href="catalog.html">
+            <img src="assets/catalog/catalog-marble.webp" alt="Термопанели из мраморной крошки"
+                 width="580" height="400" loading="lazy">
+            <span class="ctile__label">Термопанели из мраморной крошки <sup>40</sup></span>
+          </a>
+          <a class="ctile ctile--w432 ctile--baked" href="catalog.html">
+            <img src="assets/catalog/catalog-stone.webp" alt="Термопанели с декоративным камнем"
+                 width="432" height="400" loading="lazy">
+            <span class="ctile__label">Термопанели с декоративным камнем <sup>33</sup></span>
+          </a>
+        </div>
+
+        <!-- четыре категории по 433 -->
+        <div class="catalog__row catalog__row--cats">
+          <a class="ctile ctile--cat" href="catalog.html">
+            <img src="assets/catalog/cat-steps.webp" alt="Ступени и терраса"
+                 width="433" height="200" loading="lazy">
+            <span class="ctile__label">Ступени и терраса</span>
+          </a>
+          <a class="ctile ctile--cat" href="catalog.html">
+            <img src="assets/catalog/cat-decor.webp" alt="Фасадный декор"
+                 width="433" height="200" loading="lazy">
+            <span class="ctile__label">Фасадный декор</span>
+          </a>
+          <a class="ctile ctile--cat" href="catalog.html">
+            <img src="assets/catalog/cat-corners.webp" alt="Угловые элементы"
+                 width="433" height="200" loading="lazy">
+            <span class="ctile__label">Угловые элементы</span>
+          </a>
+          <a class="ctile ctile--cat" href="catalog.html">
+            <img src="assets/catalog/cat-related.webp" alt="Сопутствующие товары"
+                 width="433" height="200" loading="lazy">
+            <span class="ctile__label">Сопутствующие товары</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══ 5. Визуализатор ═══ -->
+  <section class="visual" id="visual">
+    <div class="section-inner">
+      <div class="visual__row">
+
+        <a class="visual__card" href="visualizer.html">
+          <div class="visual__head">
+            <h2 class="visual__title"><span class="hero__title-accent">В</span>изуализатор</h2>
+            <svg class="visual__arrow" viewBox="0 0 15 15" aria-hidden="true" focusable="false">
+              <path d="M0.7414 14.2586L13.9516 1.04843" stroke="currentColor" stroke-width="2.09686"/>
+              <path d="M13.9516 14.2586V1.04843H0.7414" stroke="currentColor" stroke-width="2.09686"/>
+            </svg>
+          </div>
+          <p class="visual__text">Подберите вариант отделки и заранее оцените, как<br>выбранные материалы будут смотреться на доме.</p>
+          <img class="visual__decor" src="assets/sections/visualizer-decor.svg" alt="" aria-hidden="true">
+        </a>
+
+        <a class="visual__shot" href="visualizer.html" aria-label="Открыть визуализатор">
+          <img src="assets/sections/visualizer-screen.webp"
+               alt="Интерфейс визуализатора: подбор плитки и цвета затирки на фотографии дома"
+               width="1171" height="655" loading="lazy">
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══ 6. Почему выбирают нас ═══ -->
+  <section class="why" id="why">
+    <div class="section-inner">
+
+      <div class="why__head">
+        <div class="why__intro">
+          <h2 class="section-title"><span class="hero__title-accent">П</span>очему выбирают нас</h2>
+          <p class="why__lead">Контролируем весь процесс — от подбора<br>материалов до производства готовых термопанелей.</p>
+        </div>
+        <img class="why__mark" src="assets/icons/icon-brick-mark-dark.svg" alt="" width="40" height="40">
+      </div>
+
+      <div class="why__cards">
+        <div class="why__card">
+          <div class="why__card-top">
+            <h3 class="why__title">Собственное производство</h3>
+            <img src="assets/icons/icon-factory.svg" alt="" width="58" height="58">
+          </div>
+          <p class="why__text">Изготавливаем продукцию<br>на собственных<br>производственных мощностях.</p>
+        </div>
+
+        <div class="why__card">
+          <div class="why__card-top">
+            <!-- перенос из макета -->
+            <h3 class="why__title">Контроль<br>качества</h3>
+            <img src="assets/icons/icon-quality.svg" alt="" width="58" height="58">
+          </div>
+          <p class="why__text">Каждая готовая панель проходит<br>проверку перед отправкой заказчику.</p>
+        </div>
+
+        <div class="why__card">
+          <div class="why__card-top">
+            <h3 class="why__title">Большой<br>выбор<br>отделки</h3>
+            <img src="assets/icons/icon-variety.svg" alt="" width="73" height="65">
+          </div>
+          <p class="why__text">Работаем с различными<br>коллекциями клинкерной плитки,<br>камня и декоративных покрытий.</p>
+        </div>
+
+        <!-- в макете это компонент-кнопка: при наведении фон светлеет до #393939 -->
+        <button class="why__card why__card--action" type="button" data-open-calculator>
+          <span class="why__title">Подберите решение под ваш фасад с менеджером</span>
+          <svg class="why__arrow" viewBox="0 0 15 15" aria-hidden="true" focusable="false">
+            <path d="M0.7414 14.2586L13.9516 1.04843" stroke="currentColor" stroke-width="2.09686"/>
+            <path d="M13.9516 14.2586V1.04843H0.7414" stroke="currentColor" stroke-width="2.09686"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══ 7. Производство МЗТ ═══ -->
+  <section class="prod" id="about-plant">
+    <div class="section-inner">
+      <div class="prod__row">
+
+        <div class="prod__left">
+          <h2 class="section-title"><span class="hero__title-accent">П</span>роизводство МЗТ</h2>
+          <img class="prod__photo" src="assets/sections/production.webp"
+               alt="Шоурум МЗТ: образцы термопанелей на стенде"
+               width="580" height="392" loading="lazy">
+        </div>
+
+        <div class="prod__right">
+          <h3 class="prod__title">Производим термопанели сами —<br>контролируем качество на каждом этапе</h3>
+
+          <div class="acc">
+          <div class="acc__item">
+            <button class="acc__head" type="button" aria-expanded="true" aria-controls="acc1">
+              <span class="acc__title">Собственное производство</span>
+              <span class="acc__sign" aria-hidden="true"></span>
+            </button>
+            <div class="acc__body" id="acc1">
+              <p>Изготавливаем термопанели на собственном производстве. Это позволяет контролировать<br>качество материалов, точность изготовления и соблюдать сроки выполнения каждого заказа.</p>
+            </div>
+          </div>
+          <div class="acc__item">
+            <button class="acc__head" type="button" aria-expanded="false" aria-controls="acc2">
+              <span class="acc__title">Свой склад материалов</span>
+              <span class="acc__sign" aria-hidden="true"></span>
+            </button>
+            <div class="acc__body" id="acc2" hidden>
+              <p>Поддерживаем запас основных материалов и комплектующих, чтобы быстрее запускать заказы<br>в производство и меньше зависеть от сроков поставок.</p>
+            </div>
+          </div>
+          <div class="acc__item">
+            <button class="acc__head" type="button" aria-expanded="false" aria-controls="acc3">
+              <span class="acc__title">Контроль качества</span>
+              <span class="acc__sign" aria-hidden="true"></span>
+            </button>
+            <div class="acc__body" id="acc3" hidden>
+              <p>Проверяем продукцию на каждом этапе производства. Контроль каждой партии помогает<br>поддерживать стабильное качество готовых термопанелей.</p>
+            </div>
+          </div>
+          <div class="acc__item">
+            <button class="acc__head" type="button" aria-expanded="false" aria-controls="acc4">
+              <span class="acc__title">Стандартные и нестандартные элементы</span>
+              <span class="acc__sign" aria-hidden="true"></span>
+            </button>
+            <div class="acc__body" id="acc4" hidden>
+              <p>Производим как стандартные термопанели, так и нестандартные элементы под особенности<br>конкретного объекта и архитектурные задачи.</p>
+            </div>
+          </div>
+          </div>
+
+          <a class="link-action link-action--underline prod__more" href="#about-plant">
+            Подробнее о заводе
+            <svg class="btn__arrow" viewBox="0 0 15 15" aria-hidden="true" focusable="false">
+              <path d="M0.7414 14.2586L13.9516 1.04843" stroke="currentColor" stroke-width="2.09686"/>
+              <path d="M13.9516 14.2586V1.04843H0.7414" stroke="currentColor" stroke-width="2.09686"/>
+            </svg>
+          </a>
+        </div>
+
+        <img class="prod__decor" src="assets/sections/production-decor.svg" alt="" aria-hidden="true">
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 8. Поможем реализовать проект ═══ -->
+  <section class="services" id="services" aria-labelledby="services-title">
+    <div class="section-inner">
+
+      <div class="section-head services__head">
+        <div class="services__intro">
+          <h2 class="section-title" id="services-title">
+            <span class="hero__title-accent">П</span>оможем реализовать проект
+          </h2>
+          <p class="services__lead">Сопровождаем проект от первоначального расчёта
+            до монтажа готового фасада.</p>
+        </div>
+
+        <a class="link-action link-action--underline services__cta" href="#request">
+          Заказать консультацию
+          <svg class="btn__arrow" viewBox="0 0 15 15" aria-hidden="true" focusable="false">
+              <path d="M0.7414 14.2586L13.9516 1.04843" stroke="currentColor" stroke-width="2.09686"/>
+              <path d="M13.9516 14.2586V1.04843H0.7414" stroke="currentColor" stroke-width="2.09686"/>
+            </svg>
+        </a>
+      </div>
+
+      <div class="services__grid">
+        <article class="svc">
+          <img class="svc__photo" src="assets/services/raschet.webp" alt="Проект дома с чертежами, рулеткой и калькулятором на столе"
+               width="581" height="316" loading="lazy" decoding="async">
+          <div class="svc__body">
+            <p class="svc__price">Бесплатно</p>
+            <h3 class="svc__name">Расчет проекта</h3>
+            <p class="svc__text">Мы бесплатно подготовим индивидуальный расчёт<br>
+              термопанелей для вашего фасада. Учитываем размеры<br>
+              стен, архитектурные элементы, проёмы и углы.</p>
+            <p class="svc__text">Вы получите точное количество панелей,<br>
+              уголков и комплектующих — ничего лишнего.<br>
+              Это сэкономит бюджет и ускорит монтаж.</p>
+          </div>
+        </article>
+        <article class="svc">
+          <img class="svc__photo" src="assets/services/montazh.webp" alt="Двое монтажников у готовой кирпичной стены"
+               width="581" height="316" loading="lazy" decoding="async">
+          <div class="svc__body">
+            <p class="svc__price">Бесплатно</p>
+            <h3 class="svc__name">Монтаж</h3>
+            <p class="svc__text">Наши специалисты выполнят индивидуальный<br>
+              качественный монтаж термопанелей по всем требованиям<br>
+              технологии. Работаем быстро, аккуратно и с гарантией.</p>
+            <p class="svc__text">Фасад будет не только красивым, но и тёплым на десятилетия.<br>
+              При необходимости выполним демонтаж старой отделки.</p>
+          </div>
+        </article>
+        <article class="svc">
+          <img class="svc__photo" src="assets/services/zamer.webp" alt="Замерщик с лазерным нивелиром у фасада дома"
+               width="581" height="316" loading="lazy" decoding="async">
+          <div class="svc__body">
+            <p class="svc__price">от 5.000₽</p>
+            <h3 class="svc__name">Замер</h3>
+            <p class="svc__text">Точный замер — основа качественного результата. Наш<br>
+              специалист приедет на объект, выполнит все необходимые<br>
+              измерения и даст рекомендации по выбору панелей.</p>
+            <p class="svc__text">Это исключит ошибки в расчёте и обеспечит идеальную<br>
+              стыковку элементов. Услуга бесплатна при заказе монтажа.</p>
+          </div>
+        </article>
+        <article class="svc">
+          <img class="svc__photo" src="assets/services/shef-montazh.webp" alt="Мастер в каске и сигнальном жилете на объекте"
+               width="581" height="316" loading="lazy" decoding="async">
+          <div class="svc__body">
+            <p class="svc__price">от 10.000₽</p>
+            <h3 class="svc__name">Шеф-монтаж</h3>
+            <p class="svc__text">Если у вас есть собственная бригада, мы можем предложить<br>
+              услугу шеф-монтажа. Наш мастер приедет на объект, обучит<br>
+              рабочих и проследит за правильной укладкой панелей.</p>
+            <p class="svc__text">Это особенно важно при сложной геометрии фасада. Вы<br>
+              получите гарантированный результат без лишних затрат.</p>
+          </div>
+        </article>
+        <article class="svc">
+          <img class="svc__photo" src="assets/services/vizualizaciya.webp" alt="Трёхмерная модель дома на экране монитора"
+               width="581" height="316" loading="lazy" decoding="async">
+          <div class="svc__body">
+            <p class="svc__price">от 15.000₽</p>
+            <h3 class="svc__name">3d визуализация</h3>
+            <p class="svc__text">Хотите увидеть, как будет выглядеть ваш фасад до начала<br>
+              работ? Мы создадим фотореалистичную 3D-визуализацию<br>
+              с учётом цвета, текстуры и раскладки термопанелей.</p>
+            <p class="svc__text">Это поможет принять уверенное решение<br>
+              и избежать сюрпризов. Услуга особенно<br>
+              полезна для нестандартных фасадов.</p>
+          </div>
+        </article>
+        <article class="svc">
+          <img class="svc__photo" src="assets/services/dostavka.webp" alt="Фура с термопанелями на трассе"
+               width="581" height="316" loading="lazy" decoding="async">
+          <div class="svc__body">
+            <p class="svc__price">от 5.000₽</p>
+            <h3 class="svc__name">Доставка</h3>
+            <p class="svc__text">Мы осуществляем доставку термопанелей по всей<br>
+              России. Используем надёжную упаковку и аккуратную<br>
+              логистику, чтобы материалы дошли в идеальном состоянии.</p>
+            <p class="svc__text">Работаем с проверенными транспортными<br>
+              компаниями. Возможен самовывоз со склада.</p>
+          </div>
+        </article>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ 9. Отзывы о работе с нами ═══ -->
+  <section class="reviews" id="reviews" aria-labelledby="reviews-title">
+    <div class="section-inner">
+
+      <div class="section-head reviews__head">
+        <h2 class="section-title" id="reviews-title">
+          <span class="hero__title-accent">О</span>тзывы о<br>работе с нами
+        </h2>
+
+        <a class="link-action link-action--underline reviews__cta" href="#reviews"
+           data-pending="P-14: нужна страница со всеми отзывами">
+          Читать больше отзывов
+          <svg class="btn__arrow" viewBox="0 0 15 15" aria-hidden="true" focusable="false">
+              <path d="M0.7414 14.2586L13.9516 1.04843" stroke="currentColor" stroke-width="2.09686"/>
+              <path d="M13.9516 14.2586V1.04843H0.7414" stroke="currentColor" stroke-width="2.09686"/>
+            </svg>
+        </a>
+      </div>
+
+      <div class="reviews__grid">
+        <article class="rev">
+          <img class="rev__photo" src="assets/reviews/review-1.webp" alt="Двухэтажный светлый дом, отделанный термопанелями"
+               width="581" height="316" loading="lazy" decoding="async">
+          <div class="rev__body">
+            <h3 class="rev__name">Ваня Кубиков</h3>
+            <blockquote class="rev__text">Благодарю компанию. Качественная<br>
+              продукция. Сделали панели в срок.<br>
+              Для нас, застройщиков, это важно!</blockquote>
+            <span class="rev__marks" aria-hidden="true"></span>
+          </div>
+        </article>
+        <article class="rev">
+          <img class="rev__photo" src="assets/reviews/review-2.webp" alt="Дом с красной кирпичной отделкой и эркером"
+               width="581" height="316" loading="lazy" decoding="async">
+          <div class="rev__body">
+            <h3 class="rev__name">Александр Медведев</h3>
+            <blockquote class="rev__text">Современное большое производство, заказ<br>
+              выполнили в срок с доставкой, качество<br>
+              продукции отличное, помогли всё рассчитать</blockquote>
+            <span class="rev__marks" aria-hidden="true"></span>
+          </div>
+        </article>
+        <article class="rev">
+          <img class="rev__photo" src="assets/reviews/review-3.webp" alt="Протяжённое здание с фасадом из термопанелей"
+               width="581" height="316" loading="lazy" decoding="async">
+          <div class="rev__body">
+            <h3 class="rev__name">Олег Чумаев</h3>
+            <blockquote class="rev__text">Ни разу не пожалел, что обратился<br>
+              в эту компанию. Качество панелей<br>
+              на высоте. По срокам не подвели,<br>
+              сделали мой заказ очень быстро за одну<br>
+              неделю. В общем остался довольным<br>
+              от сотрудничества с данной компанией.</blockquote>
+            <span class="rev__marks" aria-hidden="true"></span>
+          </div>
+        </article>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ 10. Найдите нас в своём городе ═══ -->
+  <section class="dealers" id="dealers" aria-labelledby="dealers-title">
+    <div class="section-inner">
+
+      <div class="section-head dealers__head">
+        <div class="dealers__intro">
+          <h2 class="section-title" id="dealers-title">
+            <span class="hero__title-accent">Н</span>айдите нас в своём городе
+          </h2>
+          <p class="dealers__lead">Наша продукция представлена у официальных дилеров в разных регионах России.<br>
+            Найдите ближайшую точку продаж и получите консультацию по подбору материалов.</p>
+        </div>
+
+        <div class="dealers__actions">
+          <button class="link-action link-action--underline" type="button"
+                  data-pending="P-11: выбор города — нужен список дилеров">
+            Выбрать город
+            <svg class="btn__arrow" viewBox="0 0 15 15" aria-hidden="true" focusable="false">
+            <path d="M0.7414 14.2586L13.9516 1.04843" stroke="currentColor" stroke-width="2.09686"/>
+            <path d="M13.9516 14.2586V1.04843H0.7414" stroke="currentColor" stroke-width="2.09686"/>
+          </svg>
+          </button>
+          <a class="btn btn--dark dealers__join" href="#dealers"
+             data-pending="P-05: адрес страницы «Стать дилером»">
+            Стать дилером
+            <svg class="btn__arrow" viewBox="0 0 15 15" aria-hidden="true" focusable="false">
+            <path d="M0.7414 14.2586L13.9516 1.04843" stroke="currentColor" stroke-width="2.09686"/>
+            <path d="M13.9516 14.2586V1.04843H0.7414" stroke="currentColor" stroke-width="2.09686"/>
+          </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Карта. По комментарию к макету здесь должна быть интерактивная карта
+           Яндекса. Точек дилеров и ключа API пока нет (PENDING, строка P-11),
+           поэтому показываем вид из макета, а по нажатию подключаем живую карту:
+           виджет Яндекса работает без ключа, метки добавятся вместе с данными. -->
+      <div class="dealers__map" id="dealersMap">
+        <img class="dealers__map-shot" src="assets/dealers/map.webp"
+             alt="Карта России с точками официальных дилеров МЗТ"
+             width="1760" height="600" loading="lazy" decoding="async">
+        <button class="dealers__map-btn" type="button" data-map-live>
+          Открыть интерактивную карту
+        </button>
+      </div>
+
+      <div class="dealers__row">
+        <img class="dealers__photo" src="assets/dealers/request.webp"
+             alt="Проектировщик за расчётом фасада: на экране визуализация дома, рядом образцы панелей"
+             width="875" height="500" loading="lazy" decoding="async">
+
+        <form class="request" id="request" novalidate>
+          <h3 class="request__title">Рассчитаем фасад вашего дома</h3>
+          <p class="request__lead">Оставьте заявку — специалист поможет подобрать термопанели, рассчитать<br>
+            необходимое количество материалов и сориентирует по стоимости.</p>
+
+          <div class="request__fields">
+            <div class="field">
+              <input class="field__input" id="reqName" name="name" type="text"
+                     placeholder="Имя" aria-label="Имя" autocomplete="name" required>
+            </div>
+
+            <div class="field field--phone">
+              <img class="field__flag" src="assets/dealers/flag-ru.webp" alt="" width="24" height="16">
+              <span class="field__code" aria-hidden="true">+7</span>
+              <input class="field__input" id="reqPhone" name="phone" type="tel"
+                     placeholder="(000) 000-00-00" aria-label="Телефон, код +7"
+                     autocomplete="tel" required>
+            </div>
+
+            <label class="consent">
+              <input class="consent__box" id="reqPolicy" type="checkbox" required>
+              <span class="consent__text">Я подтверждаю ознакомление и даю Согласие на обработку моих персональных
+                данных в порядке и на условиях, указанных в <a href="#dealers"
+                data-pending="P-05: адрес политики">Политике обработки персональных данных</a></span>
+            </label>
+
+            <button class="btn btn--dark request__submit" type="submit">
+              Отправить
+              <svg class="btn__arrow" viewBox="0 0 15 15" aria-hidden="true" focusable="false">
+            <path d="M0.7414 14.2586L13.9516 1.04843" stroke="currentColor" stroke-width="2.09686"/>
+            <path d="M13.9516 14.2586V1.04843H0.7414" stroke="currentColor" stroke-width="2.09686"/>
+          </svg>
+            </button>
+          </div>
+
+          <p class="request__note" id="reqNote" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- ═══ Футер ═══ -->
+<footer class="footer" id="contacts">
+  <div class="footer__inner">
+
+    <!-- Верхний ряд: логотип | адрес и ссылки | контакты -->
+    <div class="footer__grid">
+
+      <div class="footer__brand">
+        <img src="assets/logo/logo-footer.svg" alt="Московский Завод Термопанелей"
+             width="441" height="49">
+      </div>
+
+      <div class="footer__info">
+        <div class="footer__office">
+          <div class="footer__address-box">
+            <p class="footer__label">Главный офис:</p>
+            <p class="footer__address">115191, Москва, ул.&nbsp;Городская,&nbsp;8, 7&nbsp;этаж, офис&nbsp;705</p>
+          </div>
+          <p class="footer__hours">
+            Режим работы:<br>
+            Пн-Чт с 10:00 до 18:00<br>
+            Пт с 10:00 до 17:00<br>
+            Сб-Вс по предварительной договорённости
+          </p>
+        </div>
+
+        <div class="footer__links-row">
+          <nav class="footer__col" aria-label="Навигация в подвале">
+            <h2 class="footer__title">Навигация</h2>
+            <ul class="footer__links">
+              <li><a href="catalog.html">Каталог</a></li>
+              <li><a href="#services">Услуги</a></li>
+              <li><a href="#projects">Проекты</a></li>
+              <li><a href="#about">О заводе</a></li>
+              <li><a href="#contacts">Контакты</a></li>
+              <li><a href="visualizer.html">Визуализатор</a></li>
+            </ul>
+          </nav>
+
+          <div class="footer__col">
+            <h2 class="footer__title">Дополнительно</h2>
+            <ul class="footer__links">
+              <li><a href="#" data-pending="P-05">Стать дилером</a></li>
+              <li><a href="#" data-pending="P-05">Сертификаты</a></li>
+            </ul>
+          </div>
+
+          <div class="footer__col">
+            <h2 class="footer__title">Социальные сети</h2>
+            <ul class="footer__social" data-pending="P-06">
+              <li><a href="#" aria-label="MAX"><img src="assets/icons/icon-max.svg" alt="" width="50" height="50"></a></li>
+              <li><a href="#" aria-label="WhatsApp"><img src="assets/icons/icon-whatsapp.svg" alt="" width="50" height="50"></a></li>
+              <li><a href="#" aria-label="Telegram"><img src="assets/icons/icon-telegram.svg" alt="" width="50" height="50"></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__contacts">
+        <a class="footer__phone" href="tel:+78005114620">+7 (800) 511-46-20</a>
+        <a class="footer__email" href="mailto:mos@zavodpanel.ru">mos@zavodpanel.ru</a>
+      </div>
+    </div>
+
+    <!-- Нижний ряд под разделителем -->
+    <div class="footer__bottom">
+      <p class="footer__legal">
+        ООО «Московский завод термопанелей»<br>
+        ОГРН 1217700648373
+      </p>
+      <p class="footer__copy">© 2026 ООО «Московский завод термопанелей». Все права защищены.</p>
+      <p class="footer__policy">
+        <a href="#" data-pending="P-05">Согласие на обработку персональных данных</a>
+        <a href="#" data-pending="P-05">Политика конфиденциальности</a>
+      </p>
+      <p class="footer__dev">Разработка сайта — Вилрэй Студия</p>
+    </div>
+
+  </div>
+</footer>
+
+<!-- ═══ Калькулятор: общий поп-ап ═══
+     Логика расчёта перенесена из блока заказчика без изменений.
+     Отправка в Tilda удалена — по ТЗ показывается подтверждение без передачи данных. -->
+<div class="ef-calc-modal" id="efCalcModal" aria-hidden="true" hidden>
+  <div class="ef-calc-modal-backdrop" data-ef-close></div>
+
+  <div class="ef-calc-modal-dialog" role="dialog" aria-modal="true"
+       aria-labelledby="efCalcTitle">
+    <button class="ef-calc-modal-close" type="button" data-ef-close aria-label="Закрыть">×</button>
+
+    <div class="ef-calc-modal-head">
+      <h2 id="efCalcTitle">Предварительный расчёт фасада</h2>
+      <p>Уточните параметры — состав и сумма пересчитаются автоматически.</p>
+    </div>
+
+    <div class="ef-calc-modal-grid">
+
+      <div class="ef-calc-modal-settings">
+        <h3>Параметры расчёта</h3>
+        <div class="ef-popup-fields">
+          <label class="ef-popup-field">
+            <span>Тип объекта</span>
+            <select id="efObjectType">
+              <option value="private">Частный дом</option>
+              <option value="cottage">Коттедж</option>
+              <option value="commercial">Коммерческий объект</option>
+            </select>
+          </label>
+          <label class="ef-popup-field">
+            <span>Площадь фасада, м²</span>
+            <input id="efModalArea" type="number" min="1" step="1" value="150" inputmode="numeric">
+          </label>
+          <label class="ef-popup-field">
+            <span>Запас материала, %</span>
+            <input id="efReserveInput" type="number" min="0" step="1" value="10" inputmode="numeric">
+          </label>
+          <label class="ef-popup-field">
+            <span>Материал</span>
+            <select id="efModalMaterial">
+              <option value="eps">Термопанели ЭППС</option>
+              <option value="pps25">Термопанели ППС 25</option>
+            </select>
+          </label>
+          <label class="ef-popup-field">
+            <span>Доставка</span>
+            <select id="efDeliveryInput">
+              <option value="moscow">Москва, Московская область</option>
+              <option value="russia">Доставка по России</option>
+              <option value="pickup">Самовывоз</option>
+            </select>
+          </label>
+          <label class="ef-popup-field">
+            <span>Монтаж</span>
+            <select id="efInstallInput">
+              <option value="none">Без монтажа</option>
+              <option value="install">Монтаж под ключ</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="ef-calc-summary">
+          <div><span>Площадь с запасом</span><strong id="efAreaWithReserve">0 м²</strong></div>
+          <div><span>Ориентировочно панелей</span><strong id="efPanelQtyInfo">0 шт.</strong></div>
+        </div>
+      </div>
+
+      <div class="ef-calc-modal-table-wrap">
+        <h3>Состав предварительного расчёта</h3>
+
+        <div class="ef-calc-table">
+          <div class="ef-calc-table-row ef-calc-table-head">
+            <div>Позиция</div><div>Кол-во</div><div>Цена</div><div>Сумма</div>
+          </div>
+
+          <div class="ef-calc-table-row" data-row="panels">
+            <div><strong>Термопанели ЭППС</strong><span>Площадь фасада с запасом</span></div>
+            <div><input class="ef-row-qty" type="number" min="0" step="0.1" aria-label="Количество, м²"><small>м²</small></div>
+            <div><div class="ef-row-price" data-price="0">0</div><small>₽/м²</small></div>
+            <div class="ef-row-total">0 ₽</div>
+          </div>
+
+          <div class="ef-calc-table-row" data-row="glue">
+            <div><strong>Клей-пена</strong><span>Для монтажа термопанелей</span></div>
+            <div><input class="ef-row-qty" type="number" min="0" step="1" aria-label="Количество, шт."><small>шт.</small></div>
+            <div><div class="ef-row-price" data-price="0">0</div><small>₽/шт.</small></div>
+            <div class="ef-row-total">0 ₽</div>
+          </div>
+
+          <div class="ef-calc-table-row" data-row="grout">
+            <div><strong>Затирка</strong><span>Для обработки швов</span></div>
+            <div><input class="ef-row-qty" type="number" min="0" step="1" aria-label="Количество, мешков"><small>меш.</small></div>
+            <div><div class="ef-row-price" data-price="0">0</div><small>₽/меш.</small></div>
+            <div class="ef-row-total">0 ₽</div>
+          </div>
+
+          <div class="ef-calc-table-row" data-row="fasteners">
+            <div><strong>Крепёж</strong><span>Комплектующие для установки</span></div>
+            <div><input class="ef-row-qty" type="number" min="0" step="1" aria-label="Количество, шт."><small>шт.</small></div>
+            <div><div class="ef-row-price" data-price="0">0</div><small>₽/шт.</small></div>
+            <div class="ef-row-total">0 ₽</div>
+          </div>
+
+          <div class="ef-calc-table-row" data-row="delivery">
+            <div><strong>Доставка</strong><span>По выбранному направлению</span></div>
+            <div><input class="ef-row-qty" type="number" min="0" step="1" aria-label="Количество услуг"><small>усл.</small></div>
+            <div><div class="ef-row-price" data-price="0">0</div><small>₽</small></div>
+            <div class="ef-row-total">0 ₽</div>
+          </div>
+
+          <div class="ef-calc-table-row" data-row="install">
+            <div><strong>Монтаж</strong><span>Работы по облицовке фасада</span></div>
+            <div><input class="ef-row-qty" type="number" min="0" step="0.1" aria-label="Площадь монтажа, м²"><small>м²</small></div>
+            <div><div class="ef-row-price" data-price="0">0</div><small>₽/м²</small></div>
+            <div class="ef-row-total">0 ₽</div>
+          </div>
+        </div>
+
+        <div class="ef-calc-total-box">
+          <span>Итого ориентировочно</span>
+          <strong id="efCalcTotal">0 ₽</strong>
+        </div>
+
+        <div class="ef-calc-lead">
+          <label>
+            <span>Ваш телефон</span>
+            <input id="efClientPhone" type="tel" name="phone" autocomplete="tel"
+                   inputmode="tel" placeholder="+7 (___) ___-__-__">
+          </label>
+          <button type="button" id="efSendCalcRequest">Получить точный расчёт</button>
+        </div>
+
+        <div class="ef-calc-note" id="efCalcNote" role="status" aria-live="polite"></div>
+
+        <label class="ef-policy-check">
+          <input id="efPolicyInput" type="checkbox">
+          <span>
+            Я согласен с обработкой персональных данных и принимаю
+            <a href="#" data-pending="P-05">политику конфиденциальности</a>
+          </span>
+        </label>
+
+        <p class="ef-calc-disclaimer">
+          Расчёт предварительный. Точные значения зависят от конфигурации фасада,
+          углов, проёмов, логистики и выбранной коллекции материала.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══ Просмотр фото на весь экран ═══
+     Требование из комментария к макету: «При нажатии фотография
+     увеличивается на весь экран» -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true"
+     aria-label="Просмотр фотографии" hidden>
+  <button class="lightbox__close" type="button" data-lb-close aria-label="Закрыть">×</button>
+  <button class="lightbox__nav lightbox__nav--prev" type="button" data-lb-prev aria-label="Предыдущее фото">‹</button>
+  <img class="lightbox__img" id="lightboxImg" src="" alt="">
+  <button class="lightbox__nav lightbox__nav--next" type="button" data-lb-next aria-label="Следующее фото">›</button>
+  <p class="lightbox__counter" id="lightboxCounter"></p>
+</div>
+
+<script src="js/main.js"></script>
+<script src="js/calculator.js"></script>
+<script src="js/gallery.js"></script>
+</body>
+</html>
