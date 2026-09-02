@@ -84,15 +84,8 @@
     }).join('');
 
     var also = sameProducts().map(function (p) {
-      var prices = p.variants.map(function (x) { return x.price; }).filter(Boolean);
-      var min = Math.min.apply(null, prices);
       return '<a class="pcard" href="product.html?id=' + encodeURIComponent(p.id) + '">' +
-        '<div class="pcard__media"><img src="' + p.thumb + '" alt="' + esc(p.title) + '"' +
-        ' width="520" height="390" loading="lazy"></div>' +
-        '<div class="pcard__body"><p class="pcard__brand">' + esc(p.brand) + '</p>' +
-        '<h3 class="pcard__title">' + esc(p.title) + '</h3>' +
-        '<p class="pcard__price-row"><span class="pcard__price">от ' + money(min) +
-        ' <span>за ' + esc(p.unit || 'шт.') + '</span></span></p></div></a>';
+        window.MZTCard.markup(p, { headingTag: 'h3' }) + '</a>';
     }).join('');
 
     var crumbs =
@@ -131,6 +124,7 @@
         '<div class="pinfo__actions">' +
           '<button class="btn btn--accent" type="button" data-open-calculator>Рассчитать стоимость</button>' +
           '<a class="btn btn--light" href="index.html#request">Заказать консультацию</a>' +
+          '<a class="btn btn--dark" href="visualizer.html">Визуализатор</a>' +
         '</div>' +
         '<div class="pspecs">' + specs + '</div>' +
       '</div>';

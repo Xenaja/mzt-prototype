@@ -20,30 +20,13 @@
   /* Выбранное: имя условия -> набор значений */
   var picked = {};
 
-  /* Цвет в выгрузке бывает составным: «Бежевый;Коричневый» */
-  function colorsOf(product) {
-    return (product.color || '').split(';').map(function (c) { return c.trim(); }).filter(Boolean);
-  }
+  var colorsOf = window.MZTCard.colorsOf;
 
   function optionValues(name) {
     var o = (DATA.options || []).filter(function (x) { return x.name === name; })[0];
     return o ? o.values : [];
   }
 
-  /* Цена товара при выбранных толщине и плотности: если условие задано,
-     берём только подходящие варианты, иначе — самый дешёвый */
-  function priceOf(product) {
-    var vs = product.variants.filter(function (v) {
-      return ['Толщина панели', 'Плотность ППС'].every(function (name) {
-        var want = picked[name];
-        return !want || !want.length || want.indexOf(v.options[name]) !== -1;
-      });
-    });
-    if (!vs.length) vs = product.variants;
-    var prices = vs.map(function (v) { return v.price; }).filter(Boolean);
-    var olds   = vs.map(function (v) { return v.price_old; }).filter(Boolean);
-    return { min: Math.min.apply(null, prices), old: olds.length ? Math.min.apply(null, olds) : null };
-  }
 
   function matches(product) {
     if ((picked.brand || []).length && picked.brand.indexOf(product.brand) === -1) return false;
@@ -59,39 +42,19 @@
     });
   }
 
-  var money = function (n) {
-    return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ₽';
-  };
+  var money = window.MZTCard.money;
 
+  /* Карточку рисует общий компонент js/pcard.js — тот же, что в блоке
+     «Смотрите также» на странице товара. */
   function card(product) {
-    var p = priceOf(product);
-    var props = [product.design, colorsOf(product).join(', ')].filter(Boolean).join(' · ');
-    var a = document.createElement('a');
-    a.className = 'pcard';
-    a.href = 'product.html?id=' + encodeURIComponent(product.id);
-    a.innerHTML =
-      '<div class="pcard__media">' +
-        (product.mark ? '<span class="pcard__mark">' + product.mark + '</span>' : '') +
-        '<img src="' + product.thumb + '" alt="' + product.title.replace(/"/g, '&quot;') + '"' +
-        ' width="520" height="520" loading="lazy" decoding="async">' +
-      '</div>' +
-      '<div class="pcard__body">' +
-        '<p class="pcard__brand">' + product.brand + '</p>' +
-        '<h2 class="pcard__title">' + product.title + '</h2>' +
-        (props ? '<p class="pcard__props">' + props + '</p>' : '') +
-        '<p class="pcard__price-row">' +
-          '<span class="pcard__price">от ' + money(p.min) + ' <span>за ' + (product.unit || 'шт.') + '</span></span>' +
-          (p.old && p.old > p.min ? '<span class="pcard__old">' + money(p.old) + '</span>' : '') +
-        '</p>' +
-      '</div>';
-    return a;
+    return window.MZTCard.build(product, { picked: picked, headingTag: 'h2' });
   }
 
   function render() {
     var list = DATA.products.filter(matches);
     var mode = sortEl ? sortEl.value : 'default';
-    if (mode === 'price-asc')  list.sort(function (a, b) { return priceOf(a).min - priceOf(b).min; });
-    if (mode === 'price-desc') list.sort(function (a, b) { return priceOf(b).min - priceOf(a).min; });
+    if (mode === 'price-asc')  list.sort(function (a, b) { return window.MZTCard.priceOf(a, picked).min - window.MZTCard.priceOf(b, picked).min; });
+    if (mode === 'price-desc') list.sort(function (a, b) { return window.MZTCard.priceOf(b, picked).min - window.MZTCard.priceOf(a, picked).min; });
     if (mode === 'title')      list.sort(function (a, b) { return a.title.localeCompare(b.title, 'ru'); });
 
     grid.textContent = '';
