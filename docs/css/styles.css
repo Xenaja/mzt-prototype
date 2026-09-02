@@ -499,7 +499,7 @@ h1, h2, p { margin: 0; }
   /* колонка со ссылками — по ширине текста: в долях макета она сжималась
      на экранах уже 1920, ссылка переносилась на две строки и подчёркивание
      при наведении разрывалось */
-  grid-template-columns: 285fr 10fr 285fr 140fr max-content 590fr 137fr;
+  grid-template-columns: 285fr 10fr 285fr 140fr max-content 1fr max-content;
   font-size: 14px;
   line-height: 1.21;
 }
@@ -510,7 +510,7 @@ h1, h2, p { margin: 0; }
 .footer__legal  { grid-column: 1; }
 .footer__copy   { grid-column: 3; }
 .footer__policy { grid-column: 5; display: flex; flex-direction: column; align-items: flex-start; }
-.footer__dev    { grid-column: 7; }
+.footer__dev    { grid-column: 7; white-space: nowrap; }
 
 .footer__policy a {
   border-bottom: 1px solid transparent;
