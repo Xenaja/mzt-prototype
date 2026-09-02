@@ -258,27 +258,33 @@ body.lightbox-lock { overflow: hidden; }
 
 .insulation__frame {
   position: relative;
-  aspect-ratio: 1760 / 800;
   border-radius: var(--radius-lg);
   overflow: hidden;
+  /* Карточка лежит в правой колонке сетки, а не позиционируется абсолютно:
+     тогда блок растёт по её содержимому и на узких экранах композиция
+     сохраняется — раньше она разворачивалась в столбик уже на 1650px. */
+  display: grid;
+  /* правая колонка — карточка 560 плюс поле 20 = 580 из 1760 */
+  grid-template-columns: 1fr minmax(380px, 32.95%);
 }
 
+/* Фотография занимает обе колонки и задаёт высоту блока пропорцией
+   из макета. Если карточка окажется выше — сетка вырастет, а снимок
+   растянется вместе с ней. */
 .insulation__bg {
-  position: absolute;
-  inset: 0;
+  grid-area: 1 / 1 / 2 / 3;
   width: 100%;
-  height: 100%;
+  min-height: 100%;
+  aspect-ratio: 1760 / 800;
   object-fit: cover;
 }
 
 /* карточка 560×760, поля блока 20, внутренние поля 40 */
 .insulation__card {
-  position: absolute;
-  top: 2.5%;                /* 20 из 800  */
-  right: 1.14%;             /* 20 из 1760 */
-  width: 31.82%;            /* 560 из 1760 */
-  min-height: 95%;          /* 760 из 800; min- вместо height — чтобы содержимое
-                               не вылезало наружу, если строки перенеслись */
+  position: relative;
+  z-index: 1;
+  grid-area: 1 / 2 / 2 / 3;
+  margin: 20px 20px 20px 0;
   /* сверху 36 вместо 40: компенсация обрезки заголовка по высоте заглавных */
   padding: 36px 40px 40px;
   background: var(--mzt-white);
@@ -345,16 +351,19 @@ body.lightbox-lock { overflow: hidden; }
   line-height: 1.2;
 }
 
-@media (max-width: 1650px) {
+/* Средние экраны: композиция макета сохраняется, поджимаются только поля */
+@media (max-width: 1500px) {
+  .insulation { padding-top: 140px; }
+  .insulation__card { padding: 28px 28px 32px; }
+  .insulation__text { margin-top: 24px; }
+}
+
+/* Узкие окна: карточке уже не хватает места — разворачиваем в столбик */
+@media (max-width: 1100px) {
   .insulation { padding-top: 120px; }
-  .insulation__frame { aspect-ratio: auto; }
-  .insulation__bg { position: relative; height: 320px; }
-  .insulation__card {
-    position: static;
-    width: 100%;
-    height: auto;
-    padding: 28px;
-  }
+  .insulation__frame { display: block; }
+  .insulation__bg { height: 320px; min-height: 0; aspect-ratio: auto; }
+  .insulation__card { margin: 0; padding: 28px; }
   .tiles { margin-top: 28px; }
 }
 
@@ -749,7 +758,7 @@ body.lightbox-lock { overflow: hidden; }
   z-index: 0;
 }
 
-@media (max-width: 1500px) {
+@media (max-width: 1100px) {
   .prod { padding-top: 120px; }
   .prod__row { grid-template-columns: 1fr; gap: 40px; }
   .prod__left, .prod__right { grid-column: 1; }

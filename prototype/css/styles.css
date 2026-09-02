@@ -368,17 +368,23 @@ h1, h2, p { margin: 0; }
 /* Фоновая графика футера. Извлечена из эталонного SVG страницы
    (22 элемента, область 1762×1033 от x=80) — это ровно Group 185 из макета.
    Декоративная, кликам не мешает. */
-.footer::before {
+/* Графика привязана к тем же полям, что и текст подвала. Раньше она
+   считалась в долях окна, а текст — по сетке контейнера: на 1920 они
+   совпадали, а на 1440 расходились на 18px, на 1280 — на 24px. */
+.footer__inner::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 4.17%;             /* 80 из 1920   */
-  width: 91.77%;           /* 1762 из 1920 */
+  top: -65px;              /* верхнее поле подвала: графика идёт от его края */
+  left: var(--gutter);
+  right: var(--gutter);
   aspect-ratio: 1762 / 1033;
   background: url("../assets/patterns/footer-bg.svg") no-repeat top left / 100% auto;
   pointer-events: none;
   z-index: 0;
 }
+
+/* содержимое поверх графики */
+.footer__inner > * { position: relative; z-index: 1; }
 
 .footer__inner {
   position: relative;
