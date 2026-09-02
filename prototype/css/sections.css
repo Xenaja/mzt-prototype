@@ -926,12 +926,15 @@ body.lightbox-lock { overflow: hidden; }
 .rev__marks::before { bottom: 20px; left: 20px;  border-bottom-width: 3px; border-left-width: 3px;  }
 .rev__marks::after  { bottom: 20px; right: 20px; border-bottom-width: 3px; border-right-width: 3px; }
 
-@media (max-width: 1500px) {
+/* Три карточки держатся вплоть до 900px: на типичных ноутбучных экранах
+   (1280-1440) переход на 2 в ряд был не нужен и делал блок вдвое выше —
+   третья карточка просто падала во вторую строку. */
+@media (max-width: 900px) {
   .reviews__grid { grid-template-columns: repeat(2, 1fr); }
   .rev__text br { display: none; }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 640px) {
   .reviews__grid { grid-template-columns: 1fr; }
   .reviews__head { flex-wrap: wrap; gap: 24px; }
   .rev { min-height: 0; }
