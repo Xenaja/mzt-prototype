@@ -99,13 +99,6 @@
         </ul>
       </div>
 
-      <!-- Нижняя панель: на первом экране стоит в макетной позиции,
-           за его пределами становится плавающей (см. js/main.js) -->
-      <div class="dock">
-        <button class="btn btn--accent" type="button" data-open-calculator>Калькулятор</button>
-        <a class="btn btn--dark" href="visualizer.html">Визуализатор</a>
-      </div>
-
     </div>
   </section>
 
@@ -743,6 +736,14 @@
   </section>
 
 </main>
+
+<!-- Нижняя панель. Держим её вне первого экрана: он задаёт свой слой
+     (.hero__inner), и панель, лежавшая внутри, оказывалась под блоками
+     страницы, хотя её z-index выше. -->
+<div class="dock is-floating">
+  <button class="btn btn--accent" type="button" data-open-calculator>Калькулятор</button>
+  <a class="btn btn--dark" href="visualizer.html">Визуализатор</a>
+</div>
 
 <!-- ═══ Футер ═══ -->
 <footer class="footer" id="contacts">

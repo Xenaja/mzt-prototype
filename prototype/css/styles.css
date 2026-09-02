@@ -342,12 +342,6 @@ h1, h2, p { margin: 0; }
   gap: 10px;
 }
 
-.hero .dock:not(.is-floating) {
-  position: absolute;
-  right: var(--gutter);
-  bottom: 26px;   /* как в макете: панель на 822px при высоте экрана 900 */
-}
-
 /* метка конца первого экрана — только точка отсчёта, ничего не рисует */
 #dockSentinel { height: 1px; margin-top: -1px; }
 

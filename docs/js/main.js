@@ -52,68 +52,11 @@
     shift();
   }
 
-  /* ─── Нижняя панель: в потоке первого экрана, дальше — плавающая ───
-     В макете панель нарисована внутри первого экрана и не мешает карточкам
-     показателей. Если сделать её плавающей сразу, на окнах ниже 875px она
-     их перекрывает. Поэтому: пока первый экран не прокручен, панель стоит
-     в макетной позиции; как только его низ попадает в кадр — открепляется.
-     На внутренних страницах панели-в-hero нет, там она плавающая всегда. */
-  var sentinel = document.getElementById('dockSentinel');
-  var heroDock = document.querySelector('.hero .dock');
-
-  if (heroDock) {
-    /* Макетная позиция панели — 822px от верха первого экрана. Если окно ниже
-       875px, она оказывается за нижним краем и кнопки не видны, а комментарий
-       к макету требует «статичные кнопки, идущие через всю страницу».
-       Поэтому на низких окнах панель плавает сразу, на высоких — стоит по макету
-       и открепляется только при прокрутке. */
-    var scrolledPast = false;
-
-    /* Первый экран теперь высотой с окно, поэтому панель в его нижнем углу
-       всегда в кадре — отдельная проверка высоты больше не нужна. */
-    var applyDock = function () {
-      heroDock.classList.toggle('is-floating', scrolledPast);
-    };
-
-    if (sentinel && 'IntersectionObserver' in window) {
-      new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          scrolledPast = e.isIntersecting || e.boundingClientRect.top < 0;
-          applyDock();
-        });
-      }, { threshold: 0 }).observe(sentinel);
-    } else {
-      scrolledPast = true;                   // запасной вариант для старых браузеров
-    }
-
-    window.addEventListener('resize', applyDock, { passive: true });
-    applyDock();
-  }
-
-
-  /* ─── Аккордеон в блоке «Производство» ───
-     В макете первый пункт раскрыт, остальные свёрнуты: у раскрытого знак
-     «минус», у свёрнутых «плюс». Открытым может быть только один пункт. */
-  document.addEventListener('click', function (e) {
-    var head = e.target.closest('.acc__head');
-    if (!head) return;
-
-    var acc = head.closest('.acc');
-    var open = head.getAttribute('aria-expanded') === 'true';
-
-    acc.querySelectorAll('.acc__head').forEach(function (h) {
-      var body = document.getElementById(h.getAttribute('aria-controls'));
-      h.setAttribute('aria-expanded', 'false');
-      if (body) body.hidden = true;
-    });
-
-    if (!open) {
-      head.setAttribute('aria-expanded', 'true');
-      var body = document.getElementById(head.getAttribute('aria-controls'));
-      if (body) body.hidden = false;
-    }
-  });
-
+  /* ─── Нижняя панель ───
+     Панель плавающая на всех страницах и лежит рядом с подвалом, а не внутри
+     первого экрана: тот задаёт собственный слой, и панель из него не могла
+     подняться над блоками страницы. Позиция в макете (правый нижний угол,
+     поле 80 и 26 снизу) совпадает с плавающей, поэтому переключать нечего. */
 
   /* ─── Карта дилеров ───
      Комментарий к макету требует интерактивную карту Яндекса. Точек дилеров
