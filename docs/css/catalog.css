@@ -91,6 +91,9 @@
 .cat__count strong { font-weight: var(--mzt-fw-bold); }
 
 .cat__reset { height: auto; padding: 0; font-size: 16px; }
+/* у ссылки-действия задан display, и он перебивал атрибут hidden:
+   кнопка сброса показывалась, когда сбрасывать нечего */
+.cat__reset[hidden] { display: none; }
 
 /* ─── Сетка товаров ─── */
 
