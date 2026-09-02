@@ -507,7 +507,11 @@ h1, h2, p { margin: 0; }
      при наведении разрывалось */
   /* последняя колонка — 137 из 1760 по макету, но не уже своего текста:
      иначе подпись разработчика рассыпается на четыре строки */
-  grid-template-columns: 285fr 10fr 285fr 140fr max-content 1fr minmax(max-content, 7.78%);
+  /* Зазор перед подписью разработчика — не уже 40px: на средних ширинах
+     колонка схлопывалась в ноль и текст слипался с соседним. */
+  grid-template-columns: 285fr 10fr 285fr minmax(40px, 140fr) max-content
+                         minmax(40px, 1fr) minmax(max-content, 7.78%);
+  column-gap: 0;
   font-size: 14px;
   line-height: 1.21;
 }
@@ -573,7 +577,7 @@ h1, h2, p { margin: 0; }
 
 /* На узких десктопах колонки макета не помещаются — перестраиваем,
    чтобы ничего не наезжало (мобильная версия вне объёма этапа) */
-@media (max-width: 1180px) {
+@media (max-width: 1300px) {
   .footer__grid {
     grid-template-columns: 1fr;
     gap: 40px;
