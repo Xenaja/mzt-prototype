@@ -1,0 +1,9 @@
+# Единые переводы строк: в репозитории LF, в рабочей копии — как в системе
+* text=auto eol=lf
+
+# Двоичные файлы не трогать
+*.webp binary
+*.png  binary
+*.jpg  binary
+*.woff2 binary
+*.zip  binary
