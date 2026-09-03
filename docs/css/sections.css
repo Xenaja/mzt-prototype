@@ -1105,7 +1105,10 @@ body.lightbox-lock { overflow: hidden; }
   background: none;
   padding: 0;
 }
-.field__input::placeholder { color: var(--mzt-ink); opacity: 1; }
+/* В макете подсказка в поле и текст согласия — не чёрные, а приглушённые
+   на 50% (opacity узла в Figma, не подобрано на глаз). Раньше стояла
+   полная непрозрачность — эти строки читались темнее, чем в макете. */
+.field__input::placeholder { color: var(--mzt-ink); opacity: .5; }
 .field__input:focus { outline: none; }
 .field:focus-within { border-bottom-color: var(--mzt-accent); }
 /* при работе с клавиатуры одной линии под полем мало — показываем обводку */
@@ -1146,6 +1149,7 @@ body.lightbox-lock { overflow: hidden; }
   font-size: 12px;
   font-weight: var(--mzt-fw-medium);
   line-height: 1.2;
+  opacity: .5;   /* в макете весь блок согласия приглушён, включая ссылку */
 }
 .consent__text a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
 
