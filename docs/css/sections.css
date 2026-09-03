@@ -1062,7 +1062,12 @@ body.lightbox-lock { overflow: hidden; }
 
 .request__title {
   margin: 0;
-  font-size: 40px;
+  /* Единственный заголовок в проекте, который стоял фиксированным 40px —
+     на узких окнах колонка формы сужается вместе с картой рядом, а текст
+     оставался прежнего размера и переставал помещаться в строку.
+     Тот же clamp, что у .pinfo__title в карточке товара: там колонка
+     той же ширины (половина контейнера ~1760px). */
+  font-size: clamp(26px, 2.08vw, 40px);
   font-weight: var(--mzt-fw-bold);
   line-height: 1;
   letter-spacing: -0.04em;
