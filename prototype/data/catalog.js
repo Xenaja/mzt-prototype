@@ -3562,7 +3562,7 @@ window.MZT_CATALOG = {
    "price_old": 2250.0,
    "variants": [
     {
-     "sku": "32837-100 мм/16",
+     "sku": null,
      "options": {
       "Толщина панели": "40 мм",
       "Плотность ППС": "16"

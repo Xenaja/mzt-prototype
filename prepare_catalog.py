@@ -53,6 +53,40 @@ def num(v):
     except ValueError: return None
 
 
+ISSUES = []   # накапливаются по всей выгрузке, печатаются одним блоком в конце
+
+
+def check_variants(title, variants):
+    """Ловит рассинхрон выгрузки Тильды: колонки SKU и Editions относятся
+    к одной строке, но физически заполняются раздельно и иногда расходятся —
+    так уже было один раз (Керамин Куба 2): SKU утверждал «100 мм/16»,
+    Editions — «40 мм»/16. Код каталога доверяет Editions (это то, что видит
+    и выбирает покупатель), поэтому у разошедшейся строки артикул — просто
+    неверный текст. Показывать его нельзя: убираем и предупреждаем, чтобы
+    заказчик поправил у источника, в Тильде."""
+    for v in variants:
+        opts = v["options"]
+        thick, dens = opts.get("Толщина панели"), opts.get("Плотность ППС")
+        if thick is None or dens is None or "-" not in v["sku"]:
+            continue   # другая форма данных — проверку не применяем, а не гадаем
+        suffix = v["sku"].split("-", 1)[1].split("-")[0]
+        expected = f"{thick}/{dens}"
+        if suffix != expected:
+            ISSUES.append(f"  SKU не совпадает с Editions: «{title}»\n"
+                          f"    артикул «{v['sku']}» говорит «{suffix}», а выбор товара — «{expected}».\n"
+                          f"    Артикул для этой строки убран из данных, цена не показывалась некорректно.")
+            v["sku"] = None
+
+    seen = {}
+    for v in variants:
+        key = (v["options"].get("Толщина панели"), v["options"].get("Плотность ППС"))
+        seen.setdefault(key, []).append(v["sku"])
+    for key, skus in seen.items():
+        if len(skus) > 1:
+            ISSUES.append(f"  Дубль сочетания {key} у «{title}»: артикулы {skus}.\n"
+                          f"    Показывается первый по порядку, второй в каталоге не виден.")
+
+
 def main():
     text = open(CSV, "rb").read().decode("utf-8-sig")
     delim = ";" if text.count(";") > text.count(",") else ","
@@ -82,6 +116,7 @@ def main():
                     if val not in option_values[name]: option_values[name].append(val)
             variants.append({"sku": k["SKU"].strip(), "options": opts,
                              "price": num(k["Price"]), "price_old": num(k["Price Old"])})
+        check_variants(p["Title"].strip(), variants)
         prices = [v["price"] for v in variants if v["price"]]
 
         # фотографии: папка соответствует порядковому номеру товара
@@ -156,6 +191,14 @@ def main():
           f"{saved_bytes/1048576:.1f} МБ (было 77 МБ)")
     print(f"данные: {os.path.relpath(out, HERE)}, {os.path.getsize(out)/1024:.0f} КБ")
     print(f"        {os.path.relpath(js, HERE)}, {os.path.getsize(js)/1024:.0f} КБ (для открытия с диска)")
+
+    if ISSUES:
+        print(f"\nВНИМАНИЕ — найдено проблем в выгрузке: {len(ISSUES)}. Показывать это заказчику\n"
+              f"нельзя без правки в Тильде, каталог их уже обходит, но источник надо поправить:\n")
+        for msg in ISSUES:
+            print(msg)
+    else:
+        print("\nпроверка SKU/Editions и дублей сочетаний: расхождений не найдено")
 
 
 if __name__ == "__main__":

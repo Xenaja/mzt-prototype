@@ -23,15 +23,25 @@
     });
   };
 
+  /* aria-labelledby принимает список id через пробел, а «Толщина панели»
+     сам пробел содержит — браузер читал id="opt-Толщина панели" как два
+     несуществующих id вместо одного, и группа оставалась без имени
+     для скринридера. Дефис вместо пробела снимает разбор на токены. */
+  var slug = function (s) { return String(s).replace(/\s+/g, '-'); };
+
   /* Выбранные толщина и плотность: по умолчанию самый дешёвый вариант */
   var cheapest = product.variants.slice().sort(function (a, b) { return a.price - b.price; })[0];
   var chosen = {};
   Object.keys(cheapest.options).forEach(function (k) { chosen[k] = cheapest.options[k]; });
 
-  function currentVariant() {
+  function variantFor(selection) {
     return product.variants.filter(function (v) {
-      return Object.keys(chosen).every(function (k) { return v.options[k] === chosen[k]; });
-    })[0] || cheapest;
+      return Object.keys(selection).every(function (k) { return v.options[k] === selection[k]; });
+    })[0];
+  }
+
+  function currentVariant() {
+    return variantFor(chosen) || cheapest;
   }
 
   function optionNames() {
@@ -54,16 +64,30 @@
     }).slice(0, 4);
   }
 
-  function render() {
-    var v = currentVariant();
+  /* Кнопка выбора недоступна, если сочетание с уже выбранными значениями
+     других групп не находит варианта в выгрузке — иначе цену и артикул
+     показывали от совсем другого сочетания молча, без предупреждения
+     (так было с одной строкой у Керамин Куба 2, где в данных нет пары
+     «100 мм / 16», а кнопки её всё равно позволяли выбрать). */
+  function combinationExists(name, val) {
+    var test = {};
+    Object.keys(chosen).forEach(function (k) { test[k] = chosen[k]; });
+    test[name] = val;
+    return !!variantFor(test);
+  }
 
+  /* ─── Статичная часть: один раз при загрузке ───
+     Фото, вкладки, похожие товары и структура выбора не зависят от того,
+     какая толщина/плотность выбрана — их не трогаем при каждом клике. */
+  function renderStatic() {
     var opts = optionNames().map(function (name) {
+      var gid = 'opt-' + slug(name);
       return '<div class="popt">' +
-        '<span class="popt__name" id="opt-' + esc(name) + '">' + esc(name) + '</span>' +
-        '<div class="popt__row" role="group" aria-labelledby="opt-' + esc(name) + '">' +
+        '<span class="popt__name" id="' + gid + '">' + esc(name) + '</span>' +
+        '<div class="popt__row" role="group" aria-labelledby="' + gid + '">' +
           valuesFor(name).map(function (val) {
             return '<button class="popt__btn" type="button" data-opt="' + esc(name) + '" data-val="' + esc(val) + '"' +
-              ' aria-pressed="' + (chosen[name] === val ? 'true' : 'false') + '">' + esc(val) + '</button>';
+              ' aria-pressed="false">' + esc(val) + '</button>';
           }).join('') +
         '</div></div>';
     }).join('');
@@ -117,9 +141,9 @@
         '<h1 class="pinfo__title">' + esc(product.title) + '</h1>' +
         opts +
         '<p class="pprice">' +
-          '<span class="pprice__now">' + money(v.price) + ' <span>за ' + esc(product.unit || 'шт.') + '</span></span>' +
-          (v.price_old && v.price_old > v.price ? '<span class="pprice__old">' + money(v.price_old) + '</span>' : '') +
-          '<span class="pprice__sku">артикул ' + esc(v.sku) + '</span>' +
+          '<span class="pprice__now" id="priceNow"></span>' +
+          '<span class="pprice__old" id="priceOld" hidden></span>' +
+          '<span class="pprice__sku" id="priceSku" hidden></span>' +
         '</p>' +
         '<div class="pinfo__actions">' +
           '<button class="btn btn--accent" type="button" data-open-calculator>Рассчитать стоимость</button>' +
@@ -140,12 +164,53 @@
     document.title = product.title + ' — Московский Завод Термопанелей';
   }
 
+  /* ─── Цена, артикул и состояния кнопок: при каждом клике по параметру ───
+     Раньше клик перерисовывал весь #productRoot — сброшенными оказывались
+     открытая фотография, активная вкладка и фокус (уходил на <body> вместе
+     с уничтоженной кнопкой). Теперь трогаем только то, что действительно
+     меняется от выбора толщины и плотности. */
+  function updateSelection() {
+    var v = currentVariant();
+
+    root.querySelectorAll('.popt__btn').forEach(function (btn) {
+      var name = btn.getAttribute('data-opt');
+      var val = btn.getAttribute('data-val');
+      btn.setAttribute('aria-pressed', chosen[name] === val ? 'true' : 'false');
+      var ok = combinationExists(name, val);
+      btn.disabled = !ok;
+      btn.setAttribute('aria-disabled', String(!ok));
+    });
+
+    document.getElementById('priceNow').innerHTML =
+      money(v.price) + ' <span>за ' + esc(product.unit || 'шт.') + '</span>';
+
+    var oldEl = document.getElementById('priceOld');
+    if (v.price_old && v.price_old > v.price) {
+      oldEl.hidden = false;
+      oldEl.textContent = money(v.price_old);
+    } else {
+      oldEl.hidden = true;
+    }
+
+    /* У одной строки в выгрузке артикул относится к другому сочетанию
+       (см. prepare_catalog.py, check_variants) — на этот случай sku
+       приходит пустым, и строку с артикулом просто не показываем,
+       вместо того чтобы показать заведомо неверный номер. */
+    var skuEl = document.getElementById('priceSku');
+    if (v.sku) {
+      skuEl.hidden = false;
+      skuEl.textContent = 'артикул ' + v.sku;
+    } else {
+      skuEl.hidden = true;
+    }
+  }
+
   /* ─── Нажатия: выбор параметра, снимок, вкладка ─── */
   root.addEventListener('click', function (e) {
     var opt = e.target.closest('[data-opt]');
     if (opt) {
       chosen[opt.getAttribute('data-opt')] = opt.getAttribute('data-val');
-      render();
+      updateSelection();
       return;
     }
 
@@ -169,5 +234,6 @@
     }
   });
 
-  render();
+  renderStatic();
+  updateSelection();
 })();

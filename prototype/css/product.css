@@ -119,6 +119,15 @@
   font-weight: var(--mzt-fw-bold);
 }
 
+/* Сочетание, для которого нет варианта в выгрузке (толщина+плотность
+   без цены) — кнопка недоступна, а не молча подставляет чужую цену */
+.popt__btn:disabled {
+  border-color: rgba(18, 18, 18, .08);
+  color: rgba(18, 18, 18, .32);
+  cursor: not-allowed;
+}
+.popt__btn:disabled:hover { border-color: rgba(18, 18, 18, .08); }
+
 .pprice {
   display: flex;
   align-items: baseline;
