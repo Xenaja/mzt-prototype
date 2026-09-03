@@ -1092,7 +1092,11 @@ body.lightbox-lock { overflow: hidden; }
 .field + .field { margin-top: 40px; }
 
 .field__flag { flex: 0 0 auto; width: 24px; height: 16px; object-fit: cover; }
-.field__code { flex: 0 0 auto; }
+/* «+7» — статичная подпись рядом с полем, не часть введённого значения.
+   В макете у неё та же непрозрачность 0.5, что и у плейсхолдера номера —
+   раньше это заметил только для псевдоэлемента ::placeholder, сам «+7»
+   остался полностью тёмным. */
+.field__code { flex: 0 0 auto; opacity: .5; }
 
 .field__input,
 .field__code {
