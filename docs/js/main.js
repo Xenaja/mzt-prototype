@@ -52,6 +52,23 @@
     shift();
   }
 
+  /* ─── Закрепление верхнего меню ───
+     Обычный position:sticky не подходит для шапки на главной: она лежит
+     внутри .hero, у которой overflow:hidden ради кадрирования фото первого
+     экрана, и закреплённый элемент обрезался бы вместе с секцией. Поэтому
+     закрепляем через JS: как только метка #topbarSentinel (стоит сразу
+     перед шапкой на всех страницах, partials/topbar.html) уходит выше
+     верхнего края экрана, шапка получает .topbar--pinned и встаёт
+     position:fixed поверх страницы. */
+  var topbar = document.querySelector('.topbar');
+  var sentinel = document.getElementById('topbarSentinel');
+
+  if (topbar && sentinel && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      topbar.classList.toggle('topbar--pinned', !entries[0].isIntersecting);
+    }, { rootMargin: '-16px 0px 0px 0px' }).observe(sentinel);
+  }
+
   /* ─── Нижняя панель ───
      Панель плавающая на всех страницах и лежит рядом с подвалом, а не внутри
      первого экрана: тот задаёт собственный слой, и панель из него не могла

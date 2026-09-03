@@ -138,6 +138,28 @@ h1, h2, p { margin: 0; }
   min-width: 0;
 }
 
+/* Закрепление шапки при прокрутке. .topbar живёт внутри .hero, у которой
+   overflow:hidden (кадрирование фото первого экрана) — обычный
+   position:sticky там обрезался бы вместе с герой-секцией. Поэтому шапку
+   закрепляет JS (js/main.js, IntersectionObserver по #topbarSentinel):
+   как только первый экран уходит за верх экрана, .topbar получает
+   .topbar--pinned и выходит в position:fixed поверх страницы; место,
+   которое она освобождает в потоке .hero__inner, к этому моменту уже
+   не видно — экран проскроллен дальше. */
+.topbar--pinned {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(calc(100% - var(--gutter) * 2), var(--page));
+  z-index: 150;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .12);
+}
+
+/* метка конца первого экрана — точка отсчёта для закрепления шапки,
+   ничего не рисует (тот же приём, что был у #dockSentinel) */
+#topbarSentinel { height: 1px; margin-top: -1px; }
+
 .topbar__logo { display: flex; align-items: center; flex: 0 0 auto; }
 .topbar__logo img { width: clamp(180px, 11.77vw, 226px); height: auto; }
 
