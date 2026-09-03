@@ -591,7 +591,17 @@ body.lightbox-lock { overflow: hidden; }
   text-align: left;
   border: none;
   font-family: inherit;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
 }
+
+/* Три обычные плитки: состояние Hover из макета — фон становится оранжевым,
+   заголовок и текст белыми (оба просто наследуют color, своего не задают),
+   значок тёмным. Плитку-кнопку это не касается, у неё свой hover ниже. */
+.why__card:not(.why__card--action):hover {
+  background: var(--mzt-accent);
+  color: var(--mzt-white);
+}
+.why__card:not(.why__card--action):hover .why__icon { color: var(--mzt-ink); }
 
 /* заголовок 295 и значок стоят вплотную: 295 + 58 = 353 = 433 − 80 */
 .why__card-top {
@@ -601,6 +611,12 @@ body.lightbox-lock { overflow: hidden; }
   gap: 0;
 }
 .why__card-top img { flex: 0 0 auto; }
+
+.why__icon {
+  flex: 0 0 auto;
+  color: var(--mzt-accent);
+  transition: color var(--dur) var(--ease);
+}
 
 /* 40px / вес 700 / интервал 100% / трекинг −4% */
 .why__title {

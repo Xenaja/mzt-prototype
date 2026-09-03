@@ -58,6 +58,29 @@
      подняться над блоками страницы. Позиция в макете (правый нижний угол,
      поле 80 и 26 снизу) совпадает с плавающей, поэтому переключать нечего. */
 
+  /* ─── Аккордеон в блоке «Производство» ───
+     В макете первый пункт раскрыт, остальные свёрнуты: у раскрытого знак
+     «минус», у свёрнутых «плюс». Открытым может быть только один пункт. */
+  document.addEventListener('click', function (e) {
+    var head = e.target.closest('.acc__head');
+    if (!head) return;
+
+    var acc = head.closest('.acc');
+    var open = head.getAttribute('aria-expanded') === 'true';
+
+    acc.querySelectorAll('.acc__head').forEach(function (h) {
+      var body = document.getElementById(h.getAttribute('aria-controls'));
+      h.setAttribute('aria-expanded', 'false');
+      if (body) body.hidden = true;
+    });
+
+    if (!open) {
+      head.setAttribute('aria-expanded', 'true');
+      var body = document.getElementById(head.getAttribute('aria-controls'));
+      if (body) body.hidden = false;
+    }
+  });
+
   /* ─── Карта дилеров ───
      Комментарий к макету требует интерактивную карту Яндекса. Точек дилеров
      и ключа API пока нет (PENDING, строка P-11), поэтому по умолчанию стоит
