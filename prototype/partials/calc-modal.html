@@ -1,0 +1,147 @@
+<div class="ef-calc-modal" id="efCalcModal" aria-hidden="true" hidden>
+  <div class="ef-calc-modal-backdrop" data-ef-close></div>
+
+  <div class="ef-calc-modal-dialog" role="dialog" aria-modal="true"
+       aria-labelledby="efCalcTitle">
+    <button class="ef-calc-modal-close" type="button" data-ef-close aria-label="Закрыть">×</button>
+
+    <div class="ef-calc-modal-head">
+      <h2 id="efCalcTitle">Предварительный расчёт фасада</h2>
+      <p>Уточните параметры — состав и сумма пересчитаются автоматически.</p>
+    </div>
+
+    <div class="ef-calc-modal-grid">
+
+      <div class="ef-calc-modal-settings">
+        <h3>Параметры расчёта</h3>
+        <div class="ef-popup-fields">
+          <label class="ef-popup-field">
+            <span>Тип объекта</span>
+            <select id="efObjectType">
+              <option value="private">Частный дом</option>
+              <option value="cottage">Коттедж</option>
+              <option value="commercial">Коммерческий объект</option>
+            </select>
+          </label>
+          <label class="ef-popup-field">
+            <span>Площадь фасада, м²</span>
+            <input id="efModalArea" type="number" min="1" step="1" value="150" inputmode="numeric">
+          </label>
+          <label class="ef-popup-field">
+            <span>Запас материала, %</span>
+            <input id="efReserveInput" type="number" min="0" step="1" value="10" inputmode="numeric">
+          </label>
+          <label class="ef-popup-field">
+            <span>Материал</span>
+            <select id="efModalMaterial">
+              <option value="eps">Термопанели ЭППС</option>
+              <option value="pps25">Термопанели ППС 25</option>
+            </select>
+          </label>
+          <label class="ef-popup-field">
+            <span>Доставка</span>
+            <select id="efDeliveryInput">
+              <option value="moscow">Москва, Московская область</option>
+              <option value="russia">Доставка по России</option>
+              <option value="pickup">Самовывоз</option>
+            </select>
+          </label>
+          <label class="ef-popup-field">
+            <span>Монтаж</span>
+            <select id="efInstallInput">
+              <option value="none">Без монтажа</option>
+              <option value="install">Монтаж под ключ</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="ef-calc-summary">
+          <div><span>Площадь с запасом</span><strong id="efAreaWithReserve">0 м²</strong></div>
+          <div><span>Ориентировочно панелей</span><strong id="efPanelQtyInfo">0 шт.</strong></div>
+        </div>
+      </div>
+
+      <div class="ef-calc-modal-table-wrap">
+        <h3>Состав предварительного расчёта</h3>
+
+        <div class="ef-calc-table">
+          <div class="ef-calc-table-row ef-calc-table-head">
+            <div>Позиция</div><div>Кол-во</div><div>Цена</div><div>Сумма</div>
+          </div>
+
+          <div class="ef-calc-table-row" data-row="panels">
+            <div><strong>Термопанели ЭППС</strong><span>Площадь фасада с запасом</span></div>
+            <div><input class="ef-row-qty" type="number" min="0" step="0.1" aria-label="Количество, м²"><small>м²</small></div>
+            <div><div class="ef-row-price" data-price="0">0</div><small>₽/м²</small></div>
+            <div class="ef-row-total">0 ₽</div>
+          </div>
+
+          <div class="ef-calc-table-row" data-row="glue">
+            <div><strong>Клей-пена</strong><span>Для монтажа термопанелей</span></div>
+            <div><input class="ef-row-qty" type="number" min="0" step="1" aria-label="Количество, шт."><small>шт.</small></div>
+            <div><div class="ef-row-price" data-price="0">0</div><small>₽/шт.</small></div>
+            <div class="ef-row-total">0 ₽</div>
+          </div>
+
+          <div class="ef-calc-table-row" data-row="grout">
+            <div><strong>Затирка</strong><span>Для обработки швов</span></div>
+            <div><input class="ef-row-qty" type="number" min="0" step="1" aria-label="Количество, мешков"><small>меш.</small></div>
+            <div><div class="ef-row-price" data-price="0">0</div><small>₽/меш.</small></div>
+            <div class="ef-row-total">0 ₽</div>
+          </div>
+
+          <div class="ef-calc-table-row" data-row="fasteners">
+            <div><strong>Крепёж</strong><span>Комплектующие для установки</span></div>
+            <div><input class="ef-row-qty" type="number" min="0" step="1" aria-label="Количество, шт."><small>шт.</small></div>
+            <div><div class="ef-row-price" data-price="0">0</div><small>₽/шт.</small></div>
+            <div class="ef-row-total">0 ₽</div>
+          </div>
+
+          <div class="ef-calc-table-row" data-row="delivery">
+            <div><strong>Доставка</strong><span>По выбранному направлению</span></div>
+            <div><input class="ef-row-qty" type="number" min="0" step="1" aria-label="Количество услуг"><small>усл.</small></div>
+            <div><div class="ef-row-price" data-price="0">0</div><small>₽</small></div>
+            <div class="ef-row-total">0 ₽</div>
+          </div>
+
+          <div class="ef-calc-table-row" data-row="install">
+            <div><strong>Монтаж</strong><span>Работы по облицовке фасада</span></div>
+            <div><input class="ef-row-qty" type="number" min="0" step="0.1" aria-label="Площадь монтажа, м²"><small>м²</small></div>
+            <div><div class="ef-row-price" data-price="0">0</div><small>₽/м²</small></div>
+            <div class="ef-row-total">0 ₽</div>
+          </div>
+        </div>
+
+        <div class="ef-calc-total-box">
+          <span>Итого ориентировочно</span>
+          <strong id="efCalcTotal">0 ₽</strong>
+        </div>
+
+        <div class="ef-calc-lead">
+          <label>
+            <span>Ваш телефон</span>
+            <input id="efClientPhone" type="tel" name="phone" autocomplete="tel"
+                   inputmode="tel" placeholder="+7 (___) ___-__-__">
+          </label>
+          <button type="button" id="efSendCalcRequest">Получить точный расчёт</button>
+        </div>
+
+        <div class="ef-calc-note" id="efCalcNote" role="status" aria-live="polite"></div>
+
+        <label class="ef-policy-check">
+          <input id="efPolicyInput" type="checkbox">
+          <span>
+            Я согласен с обработкой персональных данных и принимаю
+            <a href="#" data-pending="P-05">политику конфиденциальности</a>
+          </span>
+        </label>
+
+        <p class="ef-calc-disclaimer">
+          Расчёт предварительный. Точные значения зависят от конфигурации фасада,
+          углов, проёмов, логистики и выбранной коллекции материала.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>

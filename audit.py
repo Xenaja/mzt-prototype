@@ -39,9 +39,20 @@ window.addEventListener('load', function () {
     var hidden = 0, noRing = [];
     list.forEach(function (e) {
       var was = getComputedStyle(e);
-      if (was.display === 'none' || was.visibility === 'hidden') { hidden++; return; }
+      /* display/visibility самого элемента не ловят «скрыт из-за родителя» —
+         поля закрытого попапа калькулятора сами по себе display:block,
+         прячет их только .ef-calc-modal{display:none}. offsetParent===null
+         верно отражает оба случая разом (кроме position:fixed, которых
+         среди проверяемых элементов здесь нет). */
+      if (was.visibility === 'hidden' || e.offsetParent === null) { hidden++; return; }
       var before = [was.outlineWidth, was.boxShadow, was.borderBottomColor, was.backgroundColor].join('|');
-      try { e.focus(); } catch (x) { return; }
+      /* Обычный .focus() не включает :focus-visible у Chrome для button/select —
+         правила вида ":focus-visible { outline: ... }" при таком фокусе не
+         срабатывают, хотя с настоящей клавиатуры сработают. focusVisible:true
+         просит браузер включить именно то состояние, которое видит человек. */
+      try { e.focus({ focusVisible: true }); } catch (x) {
+        try { e.focus(); } catch (y) { return; }
+      }
       var now = getComputedStyle(e);
       var after = [now.outlineWidth, now.boxShadow, now.borderBottomColor, now.backgroundColor].join('|');
       var ring = (now.outlineStyle !== 'none' && parseFloat(now.outlineWidth) > 0);

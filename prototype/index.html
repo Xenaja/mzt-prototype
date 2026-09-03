@@ -34,11 +34,11 @@
         <nav class="topbar__nav" aria-label="Основная навигация">
           <ul class="topbar__list">
             <li><a class="navchip" href="catalog.html">Каталог</a></li>
-            <li><a class="navchip" href="#services">Услуги</a></li>
-            <li><a class="navchip" href="#projects">Проекты</a></li>
-            <li><a class="navchip" href="#about">О заводе</a></li>
-            <li><a class="navchip" href="#contacts">Контакты</a></li>
-            <li><a class="navchip" href="visualizer.html">Визуализатор</a></li>
+        <li><a class="navchip" href="#services">Услуги</a></li>
+        <li><a class="navchip" href="#projects">Проекты</a></li>
+        <li><a class="navchip" href="#about">О заводе</a></li>
+        <li><a class="navchip" href="#contacts">Контакты</a></li>
+        <li><a class="navchip" href="visualizer.html">Визуализатор</a></li>
           </ul>
         </nav>
 
@@ -47,6 +47,7 @@
           <a class="navchip navchip--dark" href="#" data-pending="P-05">Вход для дилеров</a>
         </div>
       </header>
+
 
       <!-- контент первого экрана -->
       <div class="hero__body">
@@ -101,10 +102,6 @@
 
     </div>
   </section>
-
-  <!-- Метка конца первого экрана: как только она входит в кадр,
-       панель переключается в плавающий режим -->
-  <div id="dockSentinel" aria-hidden="true"></div>
 
   <!-- ═══ 2. Готовые проекты ═══ -->
   <section class="projects" id="projects">
@@ -775,7 +772,7 @@
 <!-- Нижняя панель. Держим её вне первого экрана: он задаёт свой слой
      (.hero__inner), и панель, лежавшая внутри, оказывалась под блоками
      страницы, хотя её z-index выше. -->
-<div class="dock is-floating">
+<div class="dock">
   <button class="btn btn--accent" type="button" data-open-calculator>Калькулятор</button>
   <a class="btn btn--dark" href="visualizer.html">Визуализатор</a>
 </div>
@@ -860,6 +857,7 @@
 
   </div>
 </footer>
+
 
 <!-- ═══ Калькулятор: общий поп-ап ═══
      Логика расчёта перенесена из блока заказчика без изменений.
@@ -1011,6 +1009,7 @@
     </div>
   </div>
 </div>
+
 
 
 <!-- ═══ Просмотр фото на весь экран ═══

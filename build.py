@@ -22,7 +22,10 @@ DOCS  = os.path.join(HERE, "docs")   # то же самое для GitHub Pages
 
 DEV_ONLY = ("PENDING.md", "DECISIONS.md", "content.json",
             "BLOCK-CHECKLIST.md", "figma-comments.json",
-            "data/catalog.json")   # дублирует catalog.js, который и подключается
+            "data/catalog.json",   # дублирует catalog.js, который и подключается
+            "partials")            # источник для assemble_shared.py, в самих
+                                    # страницах уже расставлено — заказчику эти
+                                    # заготовки с {{плейсхолдерами}} не нужны
 HERO_W   = 2560     # первый экран
 PHOTO_W  = 1750     # снимки в карточках
 FULL_W   = 1920     # оригиналы для просмотра на весь экран
@@ -97,12 +100,13 @@ def main():
 
     for f in DEV_ONLY:
         p = os.path.join(BUILD, *f.split("/"))
-        if os.path.exists(p):
+        if os.path.isdir(p):
+            shutil.rmtree(p)
+        elif os.path.exists(p):
             os.remove(p)
 
     # рабочие файлы переведены в WebP ещё в prototype/, поэтому здесь только
     # проверка: если PNG появился снова, его надо перевести, а не тащить в сборку
-    renames = {}
     heavy = []
     for root, _, files in os.walk(os.path.join(BUILD, "assets")):
         for fn in files:
@@ -126,8 +130,6 @@ def main():
         s = io.open(p, encoding="utf-8").read()
         s = s.replace('<html lang="ru" data-env="dev">', '<html lang="ru">')
         s = re.sub(r'\s*data-pending="[^"]*"', '', s)
-        for old, new in renames.items():
-            s = s.replace(old, new)
         io.open(p, "w", encoding="utf-8").write(s)
         ok = 'data-pending' not in s and 'data-env' not in s
         print(f"{name}: {'очищен' if ok else 'ПРОВЕРИТЬ — что-то осталось'}")

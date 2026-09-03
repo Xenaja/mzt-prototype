@@ -140,16 +140,15 @@
   }
 
   /* ─── Калькулятор ───
-     Готовая логика расчёта лежит в mzt-assets/block-start-260831_1901.md
-     и подключается следующим шагом (реестр PENDING, строка P-07).
-     Здесь — единственная точка интеграции: заменить тело openCalculator
-     на вызов реального модуля, снять data-pending с кнопок. */
+     Логика расчёта перенесена из блока заказчика без изменений (calculator.js,
+     подключён на всех четырёх страницах). Проверка на всякий случай — вдруг
+     страницу открыли без него. */
   function openCalculator() {
     if (typeof window.MZTCalculator === 'object' && window.MZTCalculator.open) {
       window.MZTCalculator.open();
       return;
     }
-    console.info('[МЗТ] Калькулятор ещё не подключён — см. PENDING.md, строка P-07.');
+    console.warn('[МЗТ] На странице нет js/calculator.js — калькулятор не откроется.');
   }
 
   document.addEventListener('click', function (e) {

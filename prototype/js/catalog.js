@@ -42,8 +42,6 @@
     });
   }
 
-  var money = window.MZTCard.money;
-
   /* Карточку рисует общий компонент js/pcard.js — тот же, что в блоке
      «Смотрите также» на странице товара. */
   function card(product) {
