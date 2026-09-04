@@ -111,7 +111,7 @@
     if (!box || box.classList.contains('is-live')) return;
 
     var frame = document.createElement('iframe');
-    frame.src = 'https://yandex.ru/map-widget/v1/?ll=44.0%2C56.5&z=5';
+    frame.src = 'https://yandex.ru/map-widget/v1/?um=constructor%3A4375170cad370fd48523d66a6bbcd6b9e541120452ae76d4b407792a726515b2&source=constructor';
     frame.title = 'Карта дилеров МЗТ';
     frame.loading = 'lazy';
     frame.allowFullscreen = true;
