@@ -59,13 +59,29 @@
      закрепляем через JS: как только метка #topbarSentinel (стоит сразу
      перед шапкой на всех страницах, partials/topbar.html) уходит выше
      верхнего края экрана, шапка получает .topbar--pinned и встаёт
-     position:fixed поверх страницы. */
+     position:fixed поверх страницы.
+
+     Одного класса мало: .hero__inner задаёт свой position:relative
+     и z-index — это создаёт для шапки чужой контекст наложения, из
+     которого фиксированный элемент не может «выйти» поверх остальной
+     страницы своим z-index, как ни повышай его. Из-за этого закреплённое
+     меню оказывалось НИЖЕ идущих следом секций (карточка блока 3 рисовалась
+     поверх него). Поэтому при закреплении шапку физически переносим
+     в <body> перед <main> — там такого контекста нет; при откреплении
+     возвращаем её на место сразу после метки. */
   var topbar = document.querySelector('.topbar');
   var sentinel = document.getElementById('topbarSentinel');
+  var main = document.getElementById('main');
 
-  if (topbar && sentinel && 'IntersectionObserver' in window) {
+  if (topbar && sentinel && main && 'IntersectionObserver' in window) {
     new IntersectionObserver(function (entries) {
-      topbar.classList.toggle('topbar--pinned', !entries[0].isIntersecting);
+      var pin = !entries[0].isIntersecting;
+      topbar.classList.toggle('topbar--pinned', pin);
+      if (pin) {
+        document.body.insertBefore(topbar, main);
+      } else {
+        sentinel.after(topbar);
+      }
     }, { rootMargin: '-16px 0px 0px 0px' }).observe(sentinel);
   }
 

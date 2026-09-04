@@ -734,7 +734,14 @@ body.lightbox-lock { overflow: hidden; }
   cursor: pointer;
   color: var(--mzt-ink);
 }
-.acc__item:first-child .acc__head { padding-top: 0; padding-bottom: 0; }
+/* Раскрытая шапка теряет свой вертикальный отступ — его роль берёт
+   padding-top у показанного .acc__body ниже. Раньше это было завязано
+   на :first-child (в макете открыт только первый пункт), но аккордеон
+   кликабельный и открыть можно любой — тогда первый пункт, закрывшись,
+   оставался без отступов от .acc__head, а тот, что открылся, отступов
+   не получал вовсе. Правило должно следовать за состоянием, а не за
+   позицией в списке. */
+.acc__head[aria-expanded="true"] { padding-top: 0; padding-bottom: 0; }
 
 /* 24px / вес 700 / интервал 110% / трекинг −4% */
 .acc__title {
@@ -769,7 +776,7 @@ body.lightbox-lock { overflow: hidden; }
 }
 
 .acc__body { padding-bottom: 30px; }
-.acc__item:first-child .acc__body { padding-top: 40px; }
+.acc__body:not([hidden]) { padding-top: 40px; }
 
 .acc__body p {
   font-size: 16px;
