@@ -1062,7 +1062,6 @@ body.lightbox-lock { overflow: hidden; }
   border-radius: 10px;
 }
 
-.dealers__map-shot,
 .dealers__map iframe {
   display: block;
   width: 100%;
@@ -1070,43 +1069,14 @@ body.lightbox-lock { overflow: hidden; }
   border: 0;
 }
 
-/* Снимок карты — фотография, а не растягиваемая плашка: на узких экранах
-   ширина уменьшается, и без этого карта сплющивалась по вертикали.
-   Кадрируем от центра, подписи городов остаются читаемыми. */
-.dealers__map-shot { object-fit: cover; object-position: 42% 46%; }
-
 /* На узких окнах полоса 1760×600 становится слишком низкой — даём ей
    подрасти, чтобы карта оставалась разборчивой */
 @media (max-width: 1400px) {
-  .dealers__map-shot,
   .dealers__map iframe { aspect-ratio: 16 / 7; }
 }
 @media (max-width: 1000px) {
-  .dealers__map-shot,
   .dealers__map iframe { aspect-ratio: 4 / 3; }
 }
-
-/* Кнопка на всю карту: до нажатия карта выглядит ровно как в макете,
-   поэтому у кнопки нет своего оформления — только подпись для клавиатуры
-   и экранного диктора. Появляется при наведении и при фокусе. */
-.dealers__map-btn {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  border: 0;
-  background: none;
-  color: transparent;
-  font: inherit;
-  cursor: pointer;
-}
-.dealers__map-btn:hover,
-.dealers__map-btn:focus-visible {
-  color: var(--mzt-ink);
-  background: rgba(242, 242, 242, .82);
-  font-size: 20px;
-  font-weight: var(--mzt-fw-bold);
-}
-.dealers__map.is-live .dealers__map-btn { display: none; }
 
 /* Нижний ряд: снимок и форма */
 .dealers__row {

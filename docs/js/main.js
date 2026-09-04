@@ -114,29 +114,6 @@
     }
   });
 
-  /* ─── Карта дилеров ───
-     Комментарий к макету требует интерактивную карту Яндекса. Точек дилеров
-     и ключа API пока нет (PENDING, строка P-11), поэтому по умолчанию стоит
-     вид из макета, а по нажатию подключается живой виджет: он работает без
-     ключа, метки дилеров добавятся вместе с их адресами. */
-  document.addEventListener('click', function (e) {
-    var btn = e.target.closest('[data-map-live]');
-    if (!btn) return;
-
-    var box = btn.closest('.dealers__map');
-    if (!box || box.classList.contains('is-live')) return;
-
-    var frame = document.createElement('iframe');
-    frame.src = 'https://yandex.ru/map-widget/v1/?um=constructor%3A4375170cad370fd48523d66a6bbcd6b9e541120452ae76d4b407792a726515b2&source=constructor';
-    frame.title = 'Карта дилеров МЗТ';
-    frame.loading = 'lazy';
-    frame.allowFullscreen = true;
-
-    var shot = box.querySelector('.dealers__map-shot');
-    if (shot) shot.replaceWith(frame);
-    box.classList.add('is-live');
-  });
-
   /* ─── Заявка на расчёт фасада ───
      По ТЗ этого этапа заявка никуда не уходит: показываем подтверждение,
      как и в калькуляторе. Проверяем поля сами — у формы стоит novalidate,
