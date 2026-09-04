@@ -60,7 +60,73 @@
     </div>
   </section>
 
-  <section class="cat" aria-label="Каталог товаров">
+  <!-- ═══ Каталог фасадных решений ═══
+       Тот же блок, что на главной (§4) — здесь ссылки со стрелкой ведут
+       не на страницу каталога (мы уже на ней), а вниз к самому подбору. -->
+  <section class="catalog" id="catalog-solutions">
+    <div class="section-inner">
+
+      <div class="section-head">
+        <h2 class="section-title"><span class="hero__title-accent">К</span>аталог фасадных решений</h2>
+        <a class="link-action link-action--underline" href="#catalog-grid">
+          Перейти в каталог
+          <svg class="btn__arrow" viewBox="0 0 15 15" aria-hidden="true" focusable="false">
+            <path d="M0.7414 14.2586L13.9516 1.04843" stroke="currentColor" stroke-width="2.09686"/>
+            <path d="M13.9516 14.2586V1.04843H0.7414" stroke="currentColor" stroke-width="2.09686"/>
+          </svg>
+        </a>
+      </div>
+
+      <p class="catalog__lead">Выберите готовые термопанели, облицовочные<br>материалы и комплектующие для вашего проекта.</p>
+
+      <!-- три основные группы: 728 · 580 · 432 -->
+      <div class="catalog__rows">
+        <div class="catalog__row catalog__row--main">
+          <a class="ctile ctile--w728 ctile--baked" href="#catalog-grid">
+            <img src="assets/catalog/catalog-clinker.webp" alt="Термопанели с клинкерной плиткой"
+                 width="728" height="400" loading="lazy">
+            <span class="ctile__label">Термопанели с клинкерной плиткой <sup>237</sup></span>
+          </a>
+          <a class="ctile ctile--w580 ctile--baked" href="#catalog-grid">
+            <img src="assets/catalog/catalog-marble.webp" alt="Термопанели из мраморной крошки"
+                 width="580" height="400" loading="lazy">
+            <span class="ctile__label">Термопанели из мраморной крошки <sup>40</sup></span>
+          </a>
+          <a class="ctile ctile--w432 ctile--baked" href="#catalog-grid">
+            <img src="assets/catalog/catalog-stone.webp" alt="Термопанели с декоративным камнем"
+                 width="432" height="400" loading="lazy">
+            <span class="ctile__label">Термопанели с декоративным камнем <sup>33</sup></span>
+          </a>
+        </div>
+
+        <!-- четыре категории по 433 -->
+        <div class="catalog__row catalog__row--cats">
+          <a class="ctile ctile--cat" href="#catalog-grid">
+            <img src="assets/catalog/cat-steps.webp" alt="Ступени и терраса"
+                 width="433" height="200" loading="lazy">
+            <span class="ctile__label">Ступени и терраса</span>
+          </a>
+          <a class="ctile ctile--cat" href="#catalog-grid">
+            <img src="assets/catalog/cat-decor.webp" alt="Фасадный декор"
+                 width="433" height="200" loading="lazy">
+            <span class="ctile__label">Фасадный декор</span>
+          </a>
+          <a class="ctile ctile--cat" href="#catalog-grid">
+            <img src="assets/catalog/cat-corners.webp" alt="Угловые элементы"
+                 width="433" height="200" loading="lazy">
+            <span class="ctile__label">Угловые элементы</span>
+          </a>
+          <a class="ctile ctile--cat" href="#catalog-grid">
+            <img src="assets/catalog/cat-related.webp" alt="Сопутствующие товары"
+                 width="433" height="200" loading="lazy">
+            <span class="ctile__label">Сопутствующие товары</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cat" id="catalog-grid" aria-label="Каталог товаров">
     <div class="section-inner">
 
       <form class="cat__filters" id="catFilters" aria-label="Подбор товаров">
@@ -106,6 +172,310 @@
       <p class="cat__empty" id="catEmpty" hidden>
         По такому подбору ничего нет. Снимите часть условий или сбросьте подбор.
       </p>
+
+    </div>
+  </section>
+
+  <!-- ═══ Утепление и отделка одновременно ═══ (блок 3 главной) -->
+  <section class="insulation" id="about">
+    <div class="section-inner">
+      <div class="insulation__frame">
+        <img class="insulation__bg" src="assets/sections/insulation-bg.webp"
+             alt="Термопанель в разрезе: слой утеплителя и декоративная поверхность"
+             width="1760" height="800" loading="lazy">
+
+        <div class="insulation__card">
+          <div class="insulation__head">
+            <h2 class="insulation__title"><span class="hero__title-accent">У</span>тепление<br>и отделка<br>одновременно</h2>
+            <img class="insulation__mark" src="assets/icons/icon-brick-mark.svg"
+                 alt="" width="40" height="40">
+          </div>
+
+          <p class="insulation__text">Термопанель объединяет теплоизоляционный<br>слой и готовую декоративную поверхность.<br>Такой формат позволяет одновременно утеплить<br>здание и изменить внешний вид фасада.</p>
+
+          <div class="tiles">
+            <div class="tiles__row">
+              <div class="tile tile--sm">
+                <img src="assets/icons/icon-house-eco.svg" alt="" width="70" height="70">
+                <span>Сохраняют тепло</span>
+              </div>
+              <div class="tile tile--lg">
+                <img src="assets/icons/icon-no-damage.svg" alt="" width="70" height="70">
+                <span>Не требуют дополнительной отделки</span>
+              </div>
+            </div>
+            <div class="tiles__row">
+              <div class="tile tile--lg">
+                <img src="assets/icons/icon-house-scaffolding.svg" alt="" width="70" height="70">
+                <span>Подходят для реконструкции и нового строительства</span>
+              </div>
+              <div class="tile tile--sm">
+                <img src="assets/icons/icon-shield-brick.svg" alt="" width="70" height="70">
+                <span>Защищают фасад</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Визуализатор ═══ (блок 5 главной) -->
+  <section class="visual" id="visual">
+    <div class="section-inner">
+      <div class="visual__row">
+
+        <a class="visual__card" href="visualizer.html">
+          <div class="visual__head">
+            <h2 class="visual__title"><span class="hero__title-accent">В</span>изуализатор</h2>
+            <svg class="visual__arrow" viewBox="0 0 15 15" aria-hidden="true" focusable="false">
+              <path d="M0.7414 14.2586L13.9516 1.04843" stroke="currentColor" stroke-width="2.09686"/>
+              <path d="M13.9516 14.2586V1.04843H0.7414" stroke="currentColor" stroke-width="2.09686"/>
+            </svg>
+          </div>
+          <p class="visual__text">Подберите вариант отделки и заранее оцените, как<br>выбранные материалы будут смотреться на доме.</p>
+          <img class="visual__decor" src="assets/sections/visualizer-decor.svg" alt="" aria-hidden="true">
+        </a>
+
+        <a class="visual__shot" href="visualizer.html" aria-label="Открыть визуализатор">
+          <img src="assets/sections/visualizer-screen.webp"
+               alt="Интерфейс визуализатора: подбор плитки и цвета затирки на фотографии дома"
+               width="1171" height="655" loading="lazy">
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Почему выбирают нас ═══ (блок 6 главной) -->
+  <section class="why" id="why">
+    <div class="section-inner">
+
+      <div class="why__head">
+        <div class="why__intro">
+          <h2 class="section-title"><span class="hero__title-accent">П</span>очему выбирают нас</h2>
+          <p class="why__lead">Контролируем весь процесс — от подбора<br>материалов до производства готовых термопанелей.</p>
+        </div>
+        <img class="why__mark" src="assets/icons/icon-brick-mark-dark.svg" alt="" width="40" height="40">
+      </div>
+
+      <div class="why__cards">
+        <div class="why__card">
+          <div class="why__card-top">
+            <h3 class="why__title">Собственное производство</h3>
+            <svg class="why__icon" width="58" height="58" viewBox="0 0 58 58" fill="none" aria-hidden="true" focusable="false">
+            <rect x="30.3" y="30.3" width="27.7" height="12.6" fill="currentColor"/>
+            <rect x="0.0" y="-0.0" width="27.7" height="12.6" fill="currentColor"/>
+            <rect x="30.3" y="45.4" width="27.7" height="12.6" fill="currentColor"/>
+            <rect x="15.1" y="30.3" width="12.6" height="27.7" fill="currentColor"/>
+            <rect x="45.4" y="0.0" width="12.6" height="27.7" fill="currentColor"/>
+            <rect x="-0.0" y="30.3" width="12.6" height="27.7" fill="currentColor"/>
+            <rect x="30.3" y="0.0" width="12.6" height="27.7" fill="currentColor"/>
+            <rect x="0.0" y="15.1" width="27.7" height="12.6" fill="currentColor"/>
+          </svg>
+          </div>
+          <p class="why__text">Изготавливаем продукцию<br>на собственных<br>производственных мощностях.</p>
+        </div>
+
+        <div class="why__card">
+          <div class="why__card-top">
+            <h3 class="why__title">Контроль<br>качества</h3>
+            <svg class="why__icon" width="58" height="58" viewBox="0 0 58 58" fill="none" aria-hidden="true" focusable="false">
+            <rect x="39.9" y="10.0" width="18.3" height="8.3" fill="currentColor"/>
+            <rect x="39.9" y="-0.0" width="18.3" height="8.3" fill="currentColor"/>
+            <rect x="39.9" y="20.0" width="18.3" height="8.3" fill="currentColor"/>
+            <rect x="39.9" y="29.9" width="18.3" height="8.3" fill="currentColor"/>
+            <rect x="39.9" y="40.0" width="18.3" height="8.3" fill="currentColor"/>
+            <rect x="39.9" y="50.1" width="18.3" height="8.3" fill="currentColor"/>
+            <rect x="19.9" y="10.0" width="18.3" height="8.3" fill="currentColor"/>
+            <rect x="19.9" y="-0.0" width="18.3" height="8.3" fill="currentColor"/>
+            <rect x="19.9" y="20.0" width="18.3" height="8.3" fill="currentColor"/>
+            <rect x="19.9" y="29.9" width="18.3" height="8.3" fill="currentColor"/>
+            <rect x="19.9" y="40.0" width="18.3" height="8.3" fill="currentColor"/>
+            <rect x="19.9" y="50.1" width="18.3" height="8.3" fill="currentColor"/>
+            <rect x="0.0" y="10.0" width="18.3" height="8.3" fill="currentColor"/>
+            <rect x="0.0" y="-0.0" width="18.3" height="8.3" fill="currentColor"/>
+            <rect x="0.0" y="20.0" width="18.3" height="8.3" fill="currentColor"/>
+            <rect x="0.0" y="29.9" width="18.3" height="8.3" fill="currentColor"/>
+            <rect x="0.0" y="40.0" width="18.3" height="8.3" fill="currentColor"/>
+            <rect x="0.0" y="50.1" width="18.3" height="8.3" fill="currentColor"/>
+          </svg>
+          </div>
+          <p class="why__text">Каждая готовая панель проходит<br>проверку перед отправкой заказчику.</p>
+        </div>
+
+        <div class="why__card">
+          <div class="why__card-top">
+            <h3 class="why__title">Большой<br>выбор<br>отделки</h3>
+            <svg class="why__icon" width="73" height="65" viewBox="0 0 73 65" fill="none" aria-hidden="true" focusable="false">
+            <rect x="0.0" y="-0.0" width="35.5" height="13.3" fill="currentColor"/>
+            <rect x="37.2" y="-0.0" width="35.5" height="13.3" fill="currentColor"/>
+            <rect x="22.2" y="15.0" width="35.5" height="13.3" fill="currentColor"/>
+            <rect x="7.3" y="29.9" width="35.5" height="13.3" fill="currentColor"/>
+            <rect x="59.4" y="15.0" width="13.3" height="35.5" fill="currentColor"/>
+            <rect x="44.5" y="29.9" width="13.3" height="35.5" fill="currentColor"/>
+          </svg>
+          </div>
+          <p class="why__text">Работаем с различными<br>коллекциями клинкерной плитки,<br>камня и декоративных покрытий.</p>
+        </div>
+
+        <button class="why__card why__card--action" type="button" data-open-calculator>
+          <span class="why__title">Подберите решение под ваш фасад с менеджером</span>
+          <svg class="why__arrow" viewBox="0 0 15 15" aria-hidden="true" focusable="false">
+            <path d="M0.7414 14.2586L13.9516 1.04843" stroke="currentColor" stroke-width="2.09686"/>
+            <path d="M13.9516 14.2586V1.04843H0.7414" stroke="currentColor" stroke-width="2.09686"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Отзывы о работе с нами ═══ (блок 9 главной) -->
+  <section class="reviews" id="reviews" aria-labelledby="reviews-title">
+    <div class="section-inner">
+
+      <div class="section-head reviews__head">
+        <h2 class="section-title" id="reviews-title">
+          <span class="hero__title-accent">О</span>тзывы о<br>работе с нами
+        </h2>
+
+        <a class="link-action link-action--underline reviews__cta" href="#reviews"
+           data-pending="P-14: нужна страница со всеми отзывами">
+          Читать больше отзывов
+          <svg class="btn__arrow" viewBox="0 0 15 15" aria-hidden="true" focusable="false">
+              <path d="M0.7414 14.2586L13.9516 1.04843" stroke="currentColor" stroke-width="2.09686"/>
+              <path d="M13.9516 14.2586V1.04843H0.7414" stroke="currentColor" stroke-width="2.09686"/>
+            </svg>
+        </a>
+      </div>
+
+      <div class="reviews__grid">
+        <article class="rev">
+          <img class="rev__photo" src="assets/reviews/review-1.webp" alt="Двухэтажный светлый дом, отделанный термопанелями"
+               width="581" height="316" loading="lazy" decoding="async">
+          <div class="rev__body">
+            <h3 class="rev__name">Ваня Кубиков</h3>
+            <blockquote class="rev__text">Благодарю компанию. Качественная<br>
+              продукция. Сделали панели в срок.<br>
+              Для нас, застройщиков, это важно!</blockquote>
+            <span class="rev__marks" aria-hidden="true"></span>
+          </div>
+        </article>
+        <article class="rev">
+          <img class="rev__photo" src="assets/reviews/review-2.webp" alt="Дом с красной кирпичной отделкой и эркером"
+               width="581" height="316" loading="lazy" decoding="async">
+          <div class="rev__body">
+            <h3 class="rev__name">Александр Медведев</h3>
+            <blockquote class="rev__text">Современное большое производство, заказ<br>
+              выполнили в срок с доставкой, качество<br>
+              продукции отличное, помогли всё рассчитать</blockquote>
+            <span class="rev__marks" aria-hidden="true"></span>
+          </div>
+        </article>
+        <article class="rev">
+          <img class="rev__photo" src="assets/reviews/review-3.webp" alt="Протяжённое здание с фасадом из термопанелей"
+               width="581" height="316" loading="lazy" decoding="async">
+          <div class="rev__body">
+            <h3 class="rev__name">Олег Чумаев</h3>
+            <blockquote class="rev__text">Ни разу не пожалел, что обратился<br>
+              в эту компанию. Качество панелей<br>
+              на высоте. По срокам не подвели,<br>
+              сделали мой заказ очень быстро за одну<br>
+              неделю. В общем остался довольным<br>
+              от сотрудничества с данной компанией.</blockquote>
+            <span class="rev__marks" aria-hidden="true"></span>
+          </div>
+        </article>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ Найдите нас в своём городе ═══ (блок 10 главной) -->
+  <section class="dealers" id="dealers" aria-labelledby="dealers-title">
+    <div class="section-inner">
+
+      <div class="section-head dealers__head">
+        <div class="dealers__intro">
+          <h2 class="section-title" id="dealers-title">
+            <span class="hero__title-accent">Н</span>айдите нас в своём городе
+          </h2>
+          <p class="dealers__lead">Наша продукция представлена у официальных дилеров в разных регионах России.<br>
+            Найдите ближайшую точку продаж и получите консультацию по подбору материалов.</p>
+        </div>
+
+        <div class="dealers__actions">
+          <button class="link-action link-action--underline" type="button"
+                  data-pending="P-16: выбор города — нужен список дилеров">
+            Выбрать город
+            <svg class="btn__arrow" viewBox="0 0 15 15" aria-hidden="true" focusable="false">
+            <path d="M0.7414 14.2586L13.9516 1.04843" stroke="currentColor" stroke-width="2.09686"/>
+            <path d="M13.9516 14.2586V1.04843H0.7414" stroke="currentColor" stroke-width="2.09686"/>
+          </svg>
+          </button>
+          <a class="btn btn--dark dealers__join" href="#dealers"
+             data-pending="P-05: адрес страницы «Стать дилером»">
+            Стать дилером
+            <svg class="btn__arrow" viewBox="0 0 15 15" aria-hidden="true" focusable="false">
+            <path d="M0.7414 14.2586L13.9516 1.04843" stroke="currentColor" stroke-width="2.09686"/>
+            <path d="M13.9516 14.2586V1.04843H0.7414" stroke="currentColor" stroke-width="2.09686"/>
+          </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="dealers__map" id="dealersMap">
+        <img class="dealers__map-shot" src="assets/dealers/map.webp"
+             alt="Карта России с точками официальных дилеров МЗТ"
+             width="1760" height="600" loading="lazy" decoding="async">
+        <button class="dealers__map-btn" type="button" data-map-live>
+          Открыть интерактивную карту
+        </button>
+      </div>
+
+      <div class="dealers__row">
+        <img class="dealers__photo" src="assets/dealers/request.webp"
+             alt="Проектировщик за расчётом фасада: на экране визуализация дома, рядом образцы панелей"
+             width="875" height="500" loading="lazy" decoding="async">
+
+        <form class="request" id="request" novalidate>
+          <h3 class="request__title">Рассчитаем фасад вашего дома</h3>
+          <p class="request__lead">Оставьте заявку — специалист поможет подобрать термопанели, рассчитать<br>
+            необходимое количество материалов и сориентирует по стоимости.</p>
+
+          <div class="request__fields">
+            <div class="field">
+              <input class="field__input" id="reqName" name="name" type="text"
+                     placeholder="Имя" aria-label="Имя" autocomplete="name" required>
+            </div>
+
+            <div class="field field--phone">
+              <img class="field__flag" src="assets/dealers/flag-ru.webp" alt="" width="24" height="16">
+              <span class="field__code" aria-hidden="true">+7</span>
+              <input class="field__input" id="reqPhone" name="phone" type="tel"
+                     placeholder="(000) 000-00-00" aria-label="Телефон, код +7"
+                     autocomplete="tel" required>
+            </div>
+
+            <label class="consent">
+              <input class="consent__box" id="reqPolicy" type="checkbox" required>
+              <span class="consent__text">Я подтверждаю ознакомление и даю Согласие на обработку моих персональных
+                данных в порядке и на условиях, указанных в <a href="#dealers"
+                data-pending="P-05: адрес политики">Политике обработки персональных данных</a></span>
+            </label>
+
+            <button class="btn btn--dark request__submit" type="submit">
+              Отправить
+              <svg class="btn__arrow" viewBox="0 0 15 15" aria-hidden="true" focusable="false">
+            <path d="M0.7414 14.2586L13.9516 1.04843" stroke="currentColor" stroke-width="2.09686"/>
+            <path d="M13.9516 14.2586V1.04843H0.7414" stroke="currentColor" stroke-width="2.09686"/>
+          </svg>
+            </button>
+          </div>
+
+          <p class="request__note" id="reqNote" role="status" aria-live="polite"></p>
+        </form>
+      </div>
 
     </div>
   </section>

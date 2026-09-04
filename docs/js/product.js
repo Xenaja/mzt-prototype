@@ -147,8 +147,7 @@
         '</p>' +
         '<div class="pinfo__actions">' +
           '<button class="btn btn--accent" type="button" data-open-calculator>Рассчитать стоимость</button>' +
-          '<a class="btn btn--light" href="index.html#request">Заказать консультацию</a>' +
-          '<a class="btn btn--dark" href="visualizer.html">Визуализатор</a>' +
+          '<a class="btn btn--light" href="#request">Заказать консультацию</a>' +
         '</div>' +
         '<div class="pspecs">' + specs + '</div>' +
       '</div>';
