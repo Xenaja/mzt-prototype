@@ -696,14 +696,22 @@ body.lightbox-lock { overflow: hidden; }
 .prod__left  { grid-column: 1; }
 .prod__right { grid-column: 3; position: relative; z-index: 1; }
 
-/* фото 580×392, скругление 10, отступ 168 от заголовка */
-.prod__photo {
+/* фото 580×392, скругление 10, отступ 168 от заголовка.
+   Приближение при наведении — как в блоке 4 «Каталог фасадных решений»:
+   тот же масштаб и то же время перехода на фото похожего размера. */
+.prod__photo-wrap {
   margin-top: 126px;     /* 131 минус накопленный полулид */
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.prod__photo {
+  display: block;
   width: 100%;
   aspect-ratio: 580 / 392;
   object-fit: cover;
-  border-radius: var(--radius-lg);
+  transition: transform 420ms var(--ease);
 }
+.prod__photo-wrap:hover .prod__photo { transform: scale(1.06); }
 
 /* 40px / вес 700 / интервал 100% / трекинг −4%, блок 1022×68 */
 .prod__title {
@@ -811,7 +819,7 @@ body.lightbox-lock { overflow: hidden; }
   .prod { padding-top: 120px; }
   .prod__row { grid-template-columns: 1fr; gap: 40px; }
   .prod__left, .prod__right { grid-column: 1; }
-  .prod__photo { margin-top: 40px; }
+  .prod__photo-wrap { margin-top: 40px; }
   .acc { margin-top: 40px; }
   .prod__decor { display: none; }
 }
@@ -852,14 +860,18 @@ body.lightbox-lock { overflow: hidden; }
   flex-direction: column;
   min-height: 632px;  /* высота из макета, но не жёсткая: текст может вырасти */
   background: #FFFFFF;
+  overflow: hidden;   /* держит увеличенное при наведении фото в рамках карточки */
 }
 
+/* Приближение при наведении — как в блоке 4 «Каталог фасадных решений» */
 .svc__photo {
   display: block;
   width: 100%;
   aspect-ratio: 581 / 316;
   object-fit: cover;
+  transition: transform 420ms var(--ease);
 }
+.svc:hover .svc__photo { transform: scale(1.06); }
 
 .svc__body { padding: 35px 40px 40px; }
 
@@ -928,14 +940,18 @@ body.lightbox-lock { overflow: hidden; }
   flex-direction: column;
   min-height: 632px;
   background: #FFFFFF;
+  overflow: hidden;   /* держит увеличенное при наведении фото в рамках карточки */
 }
 
+/* Приближение при наведении — как в блоке 4 «Каталог фасадных решений» */
 .rev__photo {
   display: block;
   width: 100%;
   aspect-ratio: 581 / 316;
   object-fit: cover;
+  transition: transform 420ms var(--ease);
 }
+.rev:hover .rev__photo { transform: scale(1.06); }
 
 .rev__body {
   position: relative;
