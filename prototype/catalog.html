@@ -60,9 +60,62 @@
     </div>
   </section>
 
-  <!-- ═══ Каталог фасадных решений ═══
-       Тот же блок, что на главной (§4) — здесь ссылки со стрелкой ведут
-       не на страницу каталога (мы уже на ней), а вниз к самому подбору. -->
+  <section class="cat" id="catalog-grid" aria-label="Каталог товаров">
+    <div class="section-inner">
+
+      <form class="cat__filters" id="catFilters" aria-label="Подбор товаров">
+        <div class="cat__filter">
+          <span class="cat__filter-name" id="fBrandName">Бренд</span>
+          <div class="cat__chips" role="group" aria-labelledby="fBrandName" data-filter="brand"></div>
+        </div>
+        <div class="cat__filter">
+          <span class="cat__filter-name" id="fColorName">Цвет</span>
+          <div class="cat__chips" role="group" aria-labelledby="fColorName" data-filter="color"></div>
+        </div>
+        <div class="cat__filter">
+          <span class="cat__filter-name" id="fThickName">Толщина панели</span>
+          <div class="cat__chips" role="group" aria-labelledby="fThickName" data-filter="Толщина панели"></div>
+        </div>
+        <div class="cat__filter">
+          <span class="cat__filter-name" id="fDensName">Плотность ППС</span>
+          <div class="cat__chips" role="group" aria-labelledby="fDensName" data-filter="Плотность ППС"></div>
+        </div>
+
+        <div class="cat__filter cat__filter--sort">
+          <label class="cat__filter-name" for="catSort">Сортировка</label>
+          <select class="cat__sort" id="catSort">
+            <option value="default">по умолчанию</option>
+            <option value="price-asc">сначала дешёвые</option>
+            <option value="price-desc">сначала дорогие</option>
+            <option value="title">по названию</option>
+          </select>
+        </div>
+      </form>
+
+      <p class="cat__hint">Толщина и плотность есть у каждой панели — выбор меняет цену в карточках.</p>
+
+      <div class="cat__bar">
+        <p class="cat__count" id="catCount" role="status" aria-live="polite"></p>
+        <button class="link-action link-action--underline cat__reset" type="button" id="catReset" hidden>
+          Сбросить подбор
+        </button>
+      </div>
+
+      <div class="cat__grid" id="catGrid"></div>
+
+      <p class="cat__empty" id="catEmpty" hidden>
+        По такому подбору ничего нет. Снимите часть условий или сбросьте подбор.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- ═══ Каталог фасадных решений ═══ (блок 4 главной)
+       Сюда, а не перед подбором: человек только зашёл на страницу каталога,
+       ему сперва нужно понять, что он уже в каталоге, а не увидеть ту же
+       вывеску ещё раз. Здесь блок работает как «посмотрели раздел — вот
+       другие»: ссылки со стрелкой ведут не на страницу каталога
+       (мы уже на ней), а к самому подбору выше. -->
   <section class="catalog" id="catalog-solutions">
     <div class="section-inner">
 
@@ -123,56 +176,6 @@
           </a>
         </div>
       </div>
-    </div>
-  </section>
-
-  <section class="cat" id="catalog-grid" aria-label="Каталог товаров">
-    <div class="section-inner">
-
-      <form class="cat__filters" id="catFilters" aria-label="Подбор товаров">
-        <div class="cat__filter">
-          <span class="cat__filter-name" id="fBrandName">Бренд</span>
-          <div class="cat__chips" role="group" aria-labelledby="fBrandName" data-filter="brand"></div>
-        </div>
-        <div class="cat__filter">
-          <span class="cat__filter-name" id="fColorName">Цвет</span>
-          <div class="cat__chips" role="group" aria-labelledby="fColorName" data-filter="color"></div>
-        </div>
-        <div class="cat__filter">
-          <span class="cat__filter-name" id="fThickName">Толщина панели</span>
-          <div class="cat__chips" role="group" aria-labelledby="fThickName" data-filter="Толщина панели"></div>
-        </div>
-        <div class="cat__filter">
-          <span class="cat__filter-name" id="fDensName">Плотность ППС</span>
-          <div class="cat__chips" role="group" aria-labelledby="fDensName" data-filter="Плотность ППС"></div>
-        </div>
-
-        <div class="cat__filter cat__filter--sort">
-          <label class="cat__filter-name" for="catSort">Сортировка</label>
-          <select class="cat__sort" id="catSort">
-            <option value="default">по умолчанию</option>
-            <option value="price-asc">сначала дешёвые</option>
-            <option value="price-desc">сначала дорогие</option>
-            <option value="title">по названию</option>
-          </select>
-        </div>
-      </form>
-
-      <p class="cat__hint">Толщина и плотность есть у каждой панели — выбор меняет цену в карточках.</p>
-
-      <div class="cat__bar">
-        <p class="cat__count" id="catCount" role="status" aria-live="polite"></p>
-        <button class="link-action link-action--underline cat__reset" type="button" id="catReset" hidden>
-          Сбросить подбор
-        </button>
-      </div>
-
-      <div class="cat__grid" id="catGrid"></div>
-
-      <p class="cat__empty" id="catEmpty" hidden>
-        По такому подбору ничего нет. Снимите часть условий или сбросьте подбор.
-      </p>
-
     </div>
   </section>
 
